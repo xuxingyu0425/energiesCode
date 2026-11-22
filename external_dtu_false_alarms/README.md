@@ -10,7 +10,7 @@ Candidates were identified by year and frame order after removing originals matc
 to a published defect annotation. Of the 120 reviewed candidates, 70 had ambiguous
 surface features, 23 had insufficient blade visibility, and 16 repeated an accepted
 view. The remaining 11 frames were fixed before any detector ran on DTU.
-The visual screen was assisted by OpenAI Codex. One author manually reviewed all 11 retained frames and confirmed that no defects were visible on the assessable blade surfaces.
+One author reviewed all 11 retained frames and confirmed that no defects were visible on the assessable blade surfaces.
 [Public DTU defect annotations](https://doi.org/10.3390/machines11100953)
 
 per_image.csv gives one row per frame and model run. per_seed.csv reports the

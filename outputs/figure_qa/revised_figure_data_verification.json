@@ -1,0 +1,108 @@
+{
+  "manuscript_figures": [
+    4,
+    6
+  ],
+  "added_configuration": "S1_CBAM",
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "replicate_unit": "training seed",
+  "n": 5,
+  "df": 4,
+  "center": "mean paired difference against A baseline",
+  "interval": "two-sided paired Student t 95% CI, unadjusted",
+  "original_effect_estimates_unchanged": true,
+  "TP_IoU_definition": "difference in each model mean TP IoU; not common-object intersection IoU",
+  "source_files": [
+    {
+      "path": "data/baseline_contrasts_v12.json",
+      "sha256": "c16d474f69f0a8e244037142d3e1567e4120ce6d21d8d4f0a75fc30a30021ed0"
+    },
+    {
+      "path": "data/yolov8_reeval_table.csv",
+      "sha256": "d9f236f7b52dafe509b9cc4cba7a34a03fce903cf58c71770ed355710da3b295"
+    },
+    {
+      "path": "data/localization_v12.csv",
+      "sha256": "820e8fb3a4de0d88829eb0937aafa0c4523c84058aff791f525dcf09525c6bf0"
+    },
+    {
+      "path": "data/locked_per_seed.csv",
+      "sha256": "46c1a0164e684aeb50517c604242a320824a675cde5092580bba00c3933b0b56"
+    },
+    {
+      "path": "data/locked_per_class.csv",
+      "sha256": "2a01ae5a023f04d12bf1ecbad05ddb2301e3a1f69dde79733f5d9b951594752b"
+    },
+    {
+      "path": "revision_s1_cbam/analysis/native_AP_raw.csv",
+      "sha256": "a5b60bbd7e6cafbed3f9129d41498904a233214cdd9438650a4d6f632ad5a2b6"
+    },
+    {
+      "path": "revision_s1_cbam/analysis/localization_per_seed.csv",
+      "sha256": "dfaead793c3ba73d467830b795f3bbd5b614e673efce200459187fbf1c6a3a18"
+    },
+    {
+      "path": "revision_s1_cbam/analysis/locked_screening_per_seed.csv",
+      "sha256": "13ef21b084ef9917899799060133fdc29dd119ff9a43213896cc0866f60d9df2"
+    }
+  ],
+  "new_effects": {
+    "best:S1_CBAM:AP": {
+      "mean": 1.7555663778835793,
+      "lo": 0.3785279985585259,
+      "hi": 3.1326047572086324,
+      "positive": 5,
+      "n": 5
+    },
+    "best:S1_CBAM:AP75": {
+      "mean": 4.973127577507901,
+      "lo": 0.941352123717043,
+      "hi": 9.00490303129876,
+      "positive": 5,
+      "n": 5
+    },
+    "best:S1_CBAM:tp_mean_iou": {
+      "mean": 0.01535102493408096,
+      "lo": 0.0054561920253810205,
+      "hi": 0.025245857842780897,
+      "positive": 5,
+      "n": 5
+    },
+    "last:S1_CBAM:AP": {
+      "mean": 2.2381305828631284,
+      "lo": 1.8113606236854336,
+      "hi": 2.664900542040823,
+      "positive": 5,
+      "n": 5
+    },
+    "last:S1_CBAM:AP75": {
+      "mean": 1.8631136443744225,
+      "lo": -2.55251321428859,
+      "hi": 6.278740503037435,
+      "positive": 4,
+      "n": 5
+    },
+    "last:S1_CBAM:tp_mean_iou": {
+      "mean": 0.013337778994425875,
+      "lo": 0.002220155735630268,
+      "hi": 0.02445540225322148,
+      "positive": 5,
+      "n": 5
+    },
+    "locked:S1_CBAM:F1": {
+      "mean": 0.4270543768148684,
+      "lo": -0.719917129291086,
+      "hi": 1.574025882920823,
+      "positive": 4,
+      "n": 5
+    }
+  },
+  "inference_performed": false,
+  "training_performed": false
+}

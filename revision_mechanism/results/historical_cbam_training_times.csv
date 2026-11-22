@@ -1,0 +1,6 @@
+cell,seed,completed_epochs,cumulative_training_seconds,source,interpretation
+historical S2+CBAM,42,200,1866.55,E:\风机图像\experiments\runs_yolov8_attention_comparison_v1\cbam\seed_42\results.csv,historical runtime only; not new S1 runtime
+historical S2+CBAM,43,200,1864.99,E:\风机图像\experiments\runs_yolov8_attention_comparison_v1\cbam\seed_43\results.csv,historical runtime only; not new S1 runtime
+historical S2+CBAM,44,200,1866.59,E:\风机图像\experiments\runs_yolov8_attention_comparison_v1\cbam\seed_44\results.csv,historical runtime only; not new S1 runtime
+historical S2+CBAM,45,200,1863.32,E:\风机图像\experiments\runs_yolov8_attention_comparison_v1\cbam\seed_45\results.csv,historical runtime only; not new S1 runtime
+historical S2+CBAM,46,200,1868.55,E:\风机图像\experiments\runs_yolov8_attention_comparison_v1\cbam\seed_46\results.csv,historical runtime only; not new S1 runtime

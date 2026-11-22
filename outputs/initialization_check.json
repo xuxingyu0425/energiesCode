@@ -1,0 +1,38 @@
+{
+  "device": "cpu",
+  "pretrained_weights_sha256": "f59b3d833e2ff32e194b5bb8e08d211dc7c5bdf144b90d2c8412c47ccfc83b36",
+  "checks": [
+    {
+      "seed": 42,
+      "full_state_sha256": "4bbf03742e2f473592dc92f1b34fb228027cd25186361d8181066e0cf291b533",
+      "common_state_sha256": "7e6b72fd68b33e814bbcb9822d9cf484ecd187f8c24991d27d73ede7de43ceb6",
+      "matches_historical": true
+    },
+    {
+      "seed": 43,
+      "full_state_sha256": "949dc476991ff84380b7e7f020e67c7bdd30313d0587bf0abe10c687fd6b1452",
+      "common_state_sha256": "39bcd445f43e51864b7f1137b3a5dad0fad61ccb5d530c1c707f06c280d170d6",
+      "matches_historical": true
+    },
+    {
+      "seed": 44,
+      "full_state_sha256": "328498d82af26c156c7a1ea1635fd8334b80dba437937d75d8990b77dd6cf127",
+      "common_state_sha256": "8149137365c79923ae2a4ebe86af8e4c95bd1ce25702b693accdb56abc32d71b",
+      "matches_historical": true
+    },
+    {
+      "seed": 45,
+      "full_state_sha256": "303d4b58c020b8d3eef2a03f93868ed15f9031795b4468e112e7e1d2120bf10e",
+      "common_state_sha256": "9163d43fc31a959794433658ba56f75e1cd98de14c0b671f20e0d0d4f0bbbbd8",
+      "matches_historical": true
+    },
+    {
+      "seed": 46,
+      "full_state_sha256": "a944c42892b14661d4c852758129498bd755ced2be845776b359e31ecb198760",
+      "common_state_sha256": "f054bcf72d411fb60caac9ce1e8f94dafbcc34c41d7c491797c2dbf823f02055",
+      "matches_historical": true
+    }
+  ],
+  "training_performed": false,
+  "gpu_used": false
+}

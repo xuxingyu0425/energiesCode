@@ -1,0 +1,63 @@
+{
+  "source": "E:\\风机图像\\WT blade defect dataset\\WT blade defect dataset",
+  "seed": 42,
+  "phash_hamming_threshold": 8,
+  "dataset_sha256": "d7d9880eb7c716cd9e54e0dc849bd29e7bda4d50ff9865d648c7fdec99cb6bbe",
+  "images": 1065,
+  "phash_groups": 750,
+  "largest_phash_group": 7,
+  "boxes_primary": 1584,
+  "boxes_second": 1543,
+  "boxes_consensus": 1584,
+  "fusion_status": {
+    "matched_class_conflict": 92,
+    "matched_same_class": 1451,
+    "only_annotator_a": 41
+  },
+  "splits": {
+    "train": {
+      "images": 744,
+      "consensus_boxes": 1132,
+      "class_boxes": {
+        "craze": 189,
+        "crack": 154,
+        "corrosion": 184,
+        "hide_craze": 243,
+        "surface_injure": 298,
+        "thunderstrike": 64
+      }
+    },
+    "val": {
+      "images": 160,
+      "consensus_boxes": 219,
+      "class_boxes": {
+        "craze": 33,
+        "crack": 33,
+        "corrosion": 32,
+        "hide_craze": 50,
+        "surface_injure": 58,
+        "thunderstrike": 13
+      }
+    },
+    "test": {
+      "images": 161,
+      "consensus_boxes": 233,
+      "class_boxes": {
+        "craze": 35,
+        "crack": 37,
+        "corrosion": 41,
+        "hide_craze": 49,
+        "surface_injure": 56,
+        "thunderstrike": 15
+      }
+    }
+  },
+  "class_names": [
+    "craze",
+    "crack",
+    "corrosion",
+    "hide_craze",
+    "surface_injure",
+    "thunderstrike"
+  ]
+}

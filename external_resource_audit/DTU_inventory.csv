@@ -1,0 +1,10 @@
+﻿variant,split,patch_images,boxes,inferred_source_images,empty_patch_images
+base,train,423,559,212,0
+base,val,82,113,44,0
+base,test,93,124,45,0
+D2,train,421,559,211,0
+D2,val,82,115,44,0
+D2,test,93,124,45,0
+D3,train,423,566,212,0
+D3,val,82,118,44,0
+D3,test,93,124,45,0

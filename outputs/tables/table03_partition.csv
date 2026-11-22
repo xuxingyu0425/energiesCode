@@ -1,0 +1,4 @@
+subset,images,A_boxes,B_boxes
+train,744,1132,1100
+val,160,219,214
+test,161,233,229

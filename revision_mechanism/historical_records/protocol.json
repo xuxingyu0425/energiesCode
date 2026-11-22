@@ -1,0 +1,74 @@
+{
+  "created_at": "2026-09-07T01:42:02+08:00",
+  "study": "WTBD mechanism diagnostics v1",
+  "task": "annotation distribution, same-prediction S1/S2 gradients, saved-checkpoint sensitivity; no training",
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "architectures": [
+    "v8",
+    "v11"
+  ],
+  "reference_cells": [
+    "S1",
+    "S2"
+  ],
+  "periods": {
+    "epoch50": 51,
+    "epoch100": 101,
+    "epoch150": 151,
+    "last": 200
+  },
+  "checkpoint_note": "epochN.pt is zero-indexed, i.e. N+1 completed epochs; best is separately historical, not a new primary endpoint",
+  "gradient": {
+    "references": "20 last EMA checkpoints; both supervision references",
+    "images": "all 744 training images",
+    "imgsz": 768,
+    "batch": 8,
+    "mode": "eval with BN fixed",
+    "augmentation": false,
+    "precision": "float32",
+    "target": "primary: gradient w.r.t. pre-DFL box logits, not full parameter gradients",
+    "parameter_check": "both architectures and S1/S2, seed42, 32 fixed stratified train images, batch2, all trainable parameters",
+    "normalization": "same positive assignment, detached target scores, gains and normalization; native S1 and native S2 objectives on same predictions",
+    "bins": [
+      "identical",
+      "mild_095_1",
+      "moderate_09_095",
+      "large_lt09",
+      "unpaired"
+    ],
+    "limitations": "unaugmented endpoint diagnostic, not a replay of SGD or causal proof; per-instance gradient coordinates are disjoint but parameter gradients can cancel"
+  },
+  "checkpoint_eval": {
+    "split": [
+      "val",
+      "test"
+    ],
+    "labels": [
+      "annotator_a",
+      "annotator_b"
+    ],
+    "imgsz": 768,
+    "batch": 16,
+    "workers": 0,
+    "conf": 0.001,
+    "iou": 0.7,
+    "half": false,
+    "max_det": 300,
+    "selection": "secondary only: choose among 51/101/151/200 by mean A/B VAL AP50:95, earliest tie; never select on test",
+    "aggregation": "five paired seeds; all fixed checkpoints retained; 95% t intervals descriptive, no new confirmatory p-values"
+  },
+  "annotation": "audit row grain; exact-coordinate comparison, mutually exclusive IoU bins; geometry based on A and repeated with B; no adjudicated truth",
+  "input_hashes": {
+    "E:\\风机图像\\experiments\\data\\dual_annotation_audit.csv": "936ed4602972e5395c8fb091981b4fd449f358c7c5e5bb1fc1702f6f00766733",
+    "E:\\风机图像\\experiments\\data\\split_manifest.csv": "6fd96004adadd381c7633e4b73eeea1b3695c99233484a17068b6ec3469d73a5",
+    "E:\\风机图像\\experiments\\scripts\\wtbd_dual.py": "ec8476eaef4a0f3b558fc461467aab43798514f4619745ad562ff07289b71155",
+    "E:\\风机图像\\experiments\\scripts\\wtbd_modules.py": "586e3b286239f81145b12a801879b409ec06d606c4a22f2e0f11eabc97cfd788"
+  },
+  "script_sha256": "10c7c5082af098c448c0360e30d290ce28bbf7d21fbd589823aa62c419bb1dba"
+}

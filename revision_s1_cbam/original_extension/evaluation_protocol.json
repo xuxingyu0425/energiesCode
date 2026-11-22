@@ -1,0 +1,276 @@
+{
+  "created_at": "2026-11-17 04:06:11 +0800",
+  "study": "Reviewer-requested S1+CBAM extension evaluation",
+  "cells": [
+    "S1_CBAM",
+    "S2_CBAM"
+  ],
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "training_protocol_sha256": "64e37a5ba277058f2f6e690a7caac3e6ab0f3a77b2838273692173cfabb41890",
+  "code_sha256": {
+    "evaluate_extension.py": "ff1b75ba51a0db9266bc23a92f8aab0c99d1bd24dc870aee277771a107c5d58d",
+    "analyze_extension.py": "d539b1df87bc4219e69ab8a1e3ae0b426591460b9bebeee6a5fa3165657bf8d4"
+  },
+  "source_environment": {
+    "python": "3.12.13",
+    "torch": "2.3.1+cu121",
+    "ultralytics": "8.4.37",
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU"
+  },
+  "primary": {
+    "checkpoint": "last epoch200",
+    "reference": "A",
+    "metrics": [
+      "AP50-95",
+      "common-object IoU"
+    ],
+    "comparison": "S2_CBAM minus S1_CBAM; paired seeds"
+  },
+  "secondary": {
+    "checkpoints": [
+      "best (original fused-validation selection)"
+    ],
+    "references": [
+      "B"
+    ],
+    "metrics": [
+      "AP50",
+      "AP75",
+      "TP IoU",
+      "IoU coverage",
+      "validation-locked P/R/F1/FP/FN"
+    ]
+  },
+  "native_evaluation": {
+    "imgsz": 768,
+    "batch": 16,
+    "workers": 0,
+    "device": 0,
+    "conf": 0.001,
+    "iou": 0.7,
+    "max_det": 300,
+    "half": false,
+    "plots": false,
+    "verbose": false,
+    "save_json": false
+  },
+  "expected_actual_shape": [
+    800,
+    800
+  ],
+  "threshold_selection": {
+    "checkpoint": "last",
+    "reference": "A",
+    "split": "val",
+    "grid": [
+      0.01,
+      0.02,
+      0.03,
+      0.04,
+      0.05,
+      0.06,
+      0.07,
+      0.08,
+      0.09,
+      0.1,
+      0.11,
+      0.12,
+      0.13,
+      0.14,
+      0.15,
+      0.16,
+      0.17,
+      0.18,
+      0.19,
+      0.2,
+      0.21,
+      0.22,
+      0.23,
+      0.24,
+      0.25,
+      0.26,
+      0.27,
+      0.28,
+      0.29,
+      0.3,
+      0.31,
+      0.32,
+      0.33,
+      0.34,
+      0.35,
+      0.36,
+      0.37,
+      0.38,
+      0.39,
+      0.4,
+      0.41,
+      0.42,
+      0.43,
+      0.44,
+      0.45,
+      0.46,
+      0.47,
+      0.48,
+      0.49,
+      0.5,
+      0.51,
+      0.52,
+      0.53,
+      0.54,
+      0.55,
+      0.56,
+      0.57,
+      0.58,
+      0.59,
+      0.6,
+      0.61,
+      0.62,
+      0.63,
+      0.64,
+      0.65,
+      0.66,
+      0.67,
+      0.68,
+      0.69,
+      0.7,
+      0.71,
+      0.72,
+      0.73,
+      0.74,
+      0.75,
+      0.76,
+      0.77,
+      0.78,
+      0.79,
+      0.8,
+      0.81,
+      0.82,
+      0.83,
+      0.84,
+      0.85,
+      0.86,
+      0.87,
+      0.88,
+      0.89,
+      0.9,
+      0.91,
+      0.92,
+      0.93,
+      0.94,
+      0.95,
+      0.96,
+      0.97,
+      0.98,
+      0.99
+    ],
+    "criterion": "max pooled instance F1",
+    "ties": "first/smallest threshold",
+    "freeze_before": "all test inference for this seed"
+  },
+  "matching": "confidence-descending, same-class, one-to-one IoU>=.5",
+  "localization_confidence": 0.25,
+  "coverage": "max same-class IoU>=.5/.75/.85 per reference; not one-to-one",
+  "CI": "two-sided unadjusted paired Student t; seeds42-46, n=5, df=4; fixed WTBD split",
+  "no_test_selection": true,
+  "no_AB_mean_AP": true,
+  "no_GPU_while_training": true,
+  "calibration": {
+    "model": "historical S2_CBAM seed42 last",
+    "reference": "A test",
+    "native_max_abs_tolerance": 2e-05,
+    "metrics": [
+      "P",
+      "R",
+      "AP50",
+      "AP75",
+      "AP"
+    ],
+    "expected_images": 161,
+    "expected_GT": 233,
+    "expected_actual_shape": [
+      800,
+      800
+    ],
+    "stop_on_failure": true
+  },
+  "discrepancy_analysis": "exploratory identical/nonidentical/unpaired; XML-verified object mapping; seed intervals",
+  "expected_counts": {
+    "A": {
+      "val": [
+        160,
+        219
+      ],
+      "test": [
+        161,
+        233
+      ]
+    },
+    "B": {
+      "val": [
+        160,
+        214
+      ],
+      "test": [
+        161,
+        229
+      ]
+    }
+  },
+  "dataset_fingerprints": {
+    "A_val_labels": {
+      "sha256": "c3ca294b5702d28bd90488eb2b30c5589576d46517a6cdad4c4c75381af99b1e",
+      "files": 160
+    },
+    "A_test_labels": {
+      "sha256": "adf04092af0063cf27b914988d2a8ac7a3ca6aa6e7806d2f37e7de05ae027d8c",
+      "files": 161
+    },
+    "A_yaml": "b04f259ba00e86d9b9ca813aa2d9e6f41c78e28e358993bb6aa1a92ea9246241",
+    "B_val_labels": {
+      "sha256": "194dcca79c2c2d2cb27a15a7e68e7b1e0aac566278bd2762addf65a9bb212e28",
+      "files": 160
+    },
+    "B_test_labels": {
+      "sha256": "e48477a030b539d7d7f3f8b87b4b367726b623a1ae15c5fc94a8838880454516",
+      "files": 161
+    },
+    "B_yaml": "8b6849d61a7a38fd20182783f2b7818efcb358f773d3d8c62dee70415c7c0468",
+    "val_images_A": {
+      "sha256": "2e87f1fe14cc0ff660c537285fda1a7b29922360276039a8d160af309d20988f",
+      "files": 160
+    },
+    "val_images_B": {
+      "sha256": "2e87f1fe14cc0ff660c537285fda1a7b29922360276039a8d160af309d20988f",
+      "files": 160
+    },
+    "test_images_A": {
+      "sha256": "7d957d057196fba8dbe18066a342aefd3b09bbb6d7402a593415c826e380dd96",
+      "files": 161
+    },
+    "test_images_B": {
+      "sha256": "7d957d057196fba8dbe18066a342aefd3b09bbb6d7402a593415c826e380dd96",
+      "files": 161
+    }
+  },
+  "inputs": {
+    "E:\\风机图像\\experiments\\scripts\\evaluate_wtbd_controls.py": "9f030a298409ea5f547788996c22987ebaae9dcbe54b5f31763d19bd70865866",
+    "E:\\风机图像\\papers\\mdpi_wind_20261019_v25_en\\figure_sources\\analyse_prf.py": "b5f67bc3fe82547a18cce0fb615959e85f97891ed689ab3358ab1d7593fb8ba3",
+    "E:\\风机图像\\papers\\mdpi_wind_20261019_v25_en\\figure_sources\\localization.py": "4f76869e691a181fe2fff89e66f331f9c59b8b210947b87f7ecaa6aa5243736b",
+    "E:\\风机图像\\experiments\\scripts\\wtbd_modules.py": "d00ce3aa3a979b0dac63c1b50182bb3c047545563274536c27123d5f7ece88dd",
+    "E:\\风机图像\\experiments\\scripts\\wtbd_attention.py": "5878f5f10943f96973c6103c871051d3f1790eeae7f9d187992b0b566161fc94",
+    "E:\\风机图像\\experiments\\data\\split_manifest.csv": "6fd96004adadd381c7633e4b73eeea1b3695c99233484a17068b6ec3469d73a5",
+    "E:\\风机图像\\papers\\mdpi_wind_20261019_v25_en\\source_data\\yolov8_reeval_table.csv": "d9f236f7b52dafe509b9cc4cba7a34a03fce903cf58c71770ed355710da3b295",
+    "E:\\风机图像\\papers\\mdpi_wind_20261019_v25_en\\source_data\\locked_per_seed.csv": "46c1a0164e684aeb50517c604242a320824a675cde5092580bba00c3933b0b56",
+    "E:\\风机图像\\papers\\mdpi_wind_20261019_v25_en\\source_data\\localization_v12.csv": "820e8fb3a4de0d88829eb0937aafa0c4523c84058aff791f525dcf09525c6bf0",
+    "E:\\风机图像\\papers\\mdpi_wind_20261019_v25_en\\source_data\\cbam_increment_summary_v16.json": "22374f43675e4c8a7dff44d766da195f98ba3b7c19db868e1de8b805b62dc6cb",
+    "E:\\风机图像\\papers\\mdpi_wind_20261019_v25_en\\source_data\\annotation_sensitivity.csv": "79a4a0210a8bd3353a16702c023c6f19c7e7e4ca47f5bdeaf22633318b5da8ed",
+    "E:\\风机图像\\papers\\mdpi_wind_20261019_v25_en\\reproducibility\\weight_manifest.csv": "7a2b0600dbd9b811457b03f56ea29c82007a9fa4df16f09b11d083f1ec77bad1",
+    "E:\\风机图像\\experiments\\reports\\yolov8_attention_comparison_v1\\protocol.json": "96376856dc41ab489317da15038f0fcc515c9d0b67d0f40c713b000e9b981153"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "native_AP_raw": "one cell, seed, checkpoint, reference, metric per row; AP values percent",
+  "locked_screening_per_seed": "pooled instance-level P/R/F1 percent; FP/FN counts; per-run A-validation threshold",
+  "paired_contrasts": "positive means S2>S1; lower FP/FN is preferable; differences before rounding",
+  "common_objects": "conditional on both models detecting a matched A object; not all-object IoU"
+}

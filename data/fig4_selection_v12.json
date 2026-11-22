@@ -1,0 +1,48 @@
+{
+  "n_total": 233,
+  "n_common": 160,
+  "n_positive": 92,
+  "n_negative": 68,
+  "n_positive_fit": 66,
+  "n_negative_fit": 57,
+  "n_crossing": 20,
+  "selection": "Require all GT/matched boxes within original image and their union plus 35px margin to fit a 2:1 crop (height <=512, width <=1024). Three largest positive differences with distinct classes among eligible targets, then upper median eligible negative difference; tie-break by image name and target index. Purposeful illustrations, not a prevalence sample; no targets excluded from quantitative analysis.",
+  "cases": [
+    {
+      "row": 1,
+      "selection": "Lightning damage: localization improvement",
+      "image": "32.jpg",
+      "gt_index": 0,
+      "baseline_iou": 0.6816068110590879,
+      "enhanced_iou": 0.8889135767108208,
+      "delta": 0.2073067656517329
+    },
+    {
+      "row": 2,
+      "selection": "Hidden craze: localization improvement",
+      "image": "13.jpg",
+      "gt_index": 1,
+      "baseline_iou": 0.6623821197545517,
+      "enhanced_iou": 0.8393639882760945,
+      "delta": 0.17698186852154274
+    },
+    {
+      "row": 3,
+      "selection": "Crack: localization improvement",
+      "image": "263.jpg",
+      "gt_index": 1,
+      "baseline_iou": 0.6972597723096908,
+      "enhanced_iou": 0.8562218246339204,
+      "delta": 0.15896205232422955
+    },
+    {
+      "row": 4,
+      "selection": "Surface damage: localization regression",
+      "image": "200.jpg",
+      "gt_index": 1,
+      "baseline_iou": 0.7235367773839966,
+      "enhanced_iou": 0.6772674917694902,
+      "delta": -0.046269285614506384
+    }
+  ]
+}

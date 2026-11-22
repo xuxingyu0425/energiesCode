@@ -1,0 +1,48 @@
+{
+  "seed": 46,
+  "tensor_sha256": "5598bc829161a0cbeaab84080fc651559ebc6e16e1d6fde5d8cc3afa6b982fba",
+  "tensor_shapes": {
+    "batch_idx": [
+      50
+    ],
+    "bboxes": [
+      50,
+      4
+    ],
+    "cls": [
+      50,
+      1
+    ],
+    "img": [
+      16,
+      3,
+      768,
+      768
+    ],
+    "keypoints": [
+      50,
+      12,
+      3
+    ]
+  },
+  "image_files": [
+    "E:\\风机图像\\experiments\\data\\fused\\images\\train\\211.jpg",
+    "E:\\风机图像\\experiments\\data\\fused\\images\\train\\133.jpg",
+    "E:\\风机图像\\experiments\\data\\fused\\images\\train\\620.jpg",
+    "E:\\风机图像\\experiments\\data\\fused\\images\\train\\959.jpg",
+    "E:\\风机图像\\experiments\\data\\fused\\images\\train\\195.jpg",
+    "E:\\风机图像\\experiments\\data\\fused\\images\\train\\188.jpg",
+    "E:\\风机图像\\experiments\\data\\fused\\images\\train\\435.jpg",
+    "E:\\风机图像\\experiments\\data\\fused\\images\\train\\974.jpg",
+    "E:\\风机图像\\experiments\\data\\fused\\images\\train\\198.jpg",
+    "E:\\风机图像\\experiments\\data\\fused\\images\\train\\364.jpg",
+    "E:\\风机图像\\experiments\\data\\fused\\images\\train\\338.jpg",
+    "E:\\风机图像\\experiments\\data\\fused\\images\\train\\57.jpg",
+    "E:\\风机图像\\experiments\\data\\fused\\images\\train\\805.jpg",
+    "E:\\风机图像\\experiments\\data\\fused\\images\\train\\439.jpg",
+    "E:\\风机图像\\experiments\\data\\fused\\images\\train\\602.jpg",
+    "E:\\风机图像\\experiments\\data\\fused\\images\\train\\478.jpg"
+  ],
+  "time": "2026-11-17 05:55:07 +0800",
+  "matches_historical_s2_cbam": true
+}

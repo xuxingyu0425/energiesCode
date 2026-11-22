@@ -1,0 +1,12 @@
+{
+  "seed": 43,
+  "complete": true,
+  "epochs": 200,
+  "time": "2026-11-17 04:53:46 +0800",
+  "wall_seconds": 1826.663333000004,
+  "csv_cumulative_seconds": 1776.39,
+  "last_sha256": "8df2620953fab0ce8c090bd734b87939b7f713a2c195754cdc8c8278c972caa3",
+  "best_sha256": "634bded00405471a02c6413fd6a68a018b162b457f35ced5edfd73ec9eda1947",
+  "first_batch_identical": true,
+  "full_initialization_identical": true
+}

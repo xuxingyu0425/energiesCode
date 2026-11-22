@@ -1,0 +1,10 @@
+﻿Component,Specification
+CPU,"Intel Core i9-13980HX, 24 cores, 32 logical processors"
+Memory,32 GB RAM
+GPU,"NVIDIA GeForce RTX 4060 Laptop GPU, 8 GB VRAM"
+Operating system,"Windows 11, 64-bit"
+Python,3.12.13
+Framework,"PyTorch 2.3.1, CUDA 12.1 build"
+Detector implementation,Ultralytics 8.4.37
+Training precision,Automatic mixed precision
+Evaluation precision,FP32

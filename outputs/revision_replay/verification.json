@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "CPU_only": true,
+  "inference_or_training_performed": false,
+  "paired_contrasts": 34,
+  "screening_rows": 20,
+  "common_objects": 1608,
+  "max_absolute_error": 5.3290705182007514e-14,
+  "AP_note": "Native-evaluator archived AP values, not AP recomputed from raw predictions",
+  "rematched": "common-object IoU and validation-selected screening counts"
+}

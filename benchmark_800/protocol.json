@@ -1,0 +1,187 @@
+{
+  "created_at": "2026-11-17 08:41:01 +0800",
+  "benchmark": "Fixed800 desktop GPU; seed42 epoch200 EMA checkpoints",
+  "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+  "python": "3.12.13",
+  "torch": "2.3.1+cu121",
+  "ultralytics": "8.4.37",
+  "precision": "FP32",
+  "batch": 1,
+  "fused": false,
+  "actual_tensor": [
+    1,
+    3,
+    800,
+    800
+  ],
+  "image_resize": [
+    768,
+    768
+  ],
+  "padding_each_side": 16,
+  "forward": {
+    "warmup": 200,
+    "iterations": 1000,
+    "rounds": 3,
+    "input": "one fixed random tensor, seed20261117; raw network output"
+  },
+  "image_pipeline": {
+    "warmup": 200,
+    "images_per_round": 32,
+    "rounds": 3,
+    "order_seed": 20261117,
+    "confidence": 0.001,
+    "nms_iou": 0.7,
+    "max_det": 300,
+    "stages": "cv2 resize768, border16, BGR to RGB/CHW, contiguous, host-to-device, FP32 divide255, unfused forward, NMS",
+    "excluded": "disk IO, coordinate rescaling, visualisation and result storage"
+  },
+  "synchronization": "torch.cuda.synchronize before/after each measured stage",
+  "statistics": "means/p50/p95 of measured technical timings, not model-training replication",
+  "source_image_manifest_sha256": "26a583e2f6377b788feecf5b672d426c2dafd1f33d02328f5d55d40f8ce08df2",
+  "images": [
+    {
+      "path": "E:\\风机图像\\experiments\\data\\gt_primary\\images\\test\\127.jpg",
+      "sha256": "e68ce1a84ce72e989b39a91d6a9849af1dc74ac5b49b6afcf0b8d4b6088e08f1"
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\data\\gt_primary\\images\\test\\13.jpg",
+      "sha256": "358329e3df591068ae6a387fa71adeb896afe3bebee86fac645857aedc048cc3"
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\data\\gt_primary\\images\\test\\167.jpg",
+      "sha256": "e12fbe908638a0fffae0e640170900d8e6fa757a5258f25cffe610117521cc10"
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\data\\gt_primary\\images\\test\\196.jpg",
+      "sha256": "002cc9d69a2b33e55c41a7515329ac7f34496c8960f58a16fbdbe4ee6c5517a6"
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\data\\gt_primary\\images\\test\\209.jpg",
+      "sha256": "6ec474936d10bfb59042660a7cf3c2d6ba3e1cb76846481b054ceefcd37fb418"
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\data\\gt_primary\\images\\test\\239.jpg",
+      "sha256": "1a3071856fae9ff775feb6f4a22f3072a897bc88b96c27e558418a0f91001239"
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\data\\gt_primary\\images\\test\\245.jpg",
+      "sha256": "4a94111262e953cd26d30537223bd2ba1b44c1361b2e2045b2317e3a68f87280"
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\data\\gt_primary\\images\\test\\263.jpg",
+      "sha256": "14f4f31fd6ceeb712ae3a864d1fc806d04dc999dc1b35be7ca889457b034f42a"
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\data\\gt_primary\\images\\test\\266.jpg",
+      "sha256": "2c18734f463cc8ca7e53ffcb9a91e936e497ea13c7c412f38fd32bd40a24de2a"
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\data\\gt_primary\\images\\test\\303.jpg",
+      "sha256": "e934e4cb6aec6860c2aac45d5f6802e7bd19dbf5717aa21713eaa264f0d0e786"
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\data\\gt_primary\\images\\test\\31.jpg",
+      "sha256": "9f5b2c8c8f7ce6a7d68f1a4b1782c80b3010c5a1416be6aaa0746e8891dac935"
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\data\\gt_primary\\images\\test\\322.jpg",
+      "sha256": "2253c8b69bb3816ae5eb658d9e53e16211b7dbbc839905cc27f0e7585b877a57"
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\data\\gt_primary\\images\\test\\371.jpg",
+      "sha256": "b650a8d0007bf4af64fb56de4ef556dba1388523608aa560210108f1a4eb9dfc"
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\data\\gt_primary\\images\\test\\379.jpg",
+      "sha256": "a70af8fb28364f1446563426f882380c22a601c28ec07d3e08e7efe49de09f0c"
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\data\\gt_primary\\images\\test\\401.jpg",
+      "sha256": "08629faed6a1055e8e8980c3d42121d7436fdf4a430337745592f04e085a9759"
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\data\\gt_primary\\images\\test\\406.jpg",
+      "sha256": "abe48139eb15316845b70fc515034606a55956c62f01539d94d7689b562d71eb"
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\data\\gt_primary\\images\\test\\473.jpg",
+      "sha256": "e45e9ff207b5263597a52085239afcf4e98cfd5c3a80d608cbacfa57530979ef"
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\data\\gt_primary\\images\\test\\482.jpg",
+      "sha256": "dbbaf123e1489110df9d1391f0495644642c2094dd7b385cf40a9b6298a1252b"
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\data\\gt_primary\\images\\test\\497.jpg",
+      "sha256": "b4eb312d82d738591195ed1c56ff4f05378f9a7b4ccae2b44d8f75b212d8e13d"
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\data\\gt_primary\\images\\test\\514.jpg",
+      "sha256": "f9403f098b732545c57f5fee3cd3b49c34c82d519df88527007f0444b21267d6"
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\data\\gt_primary\\images\\test\\526.jpg",
+      "sha256": "7929250df3a5ad912040b56b799b4fbe29a89a0922574803dd4c177bbaf367b1"
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\data\\gt_primary\\images\\test\\559.jpg",
+      "sha256": "1e1e33a29d77f8f9604be7141a85f3c2e638f7e6872660c55bbf11a7702eb363"
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\data\\gt_primary\\images\\test\\565.jpg",
+      "sha256": "ed9ff90a27b997e13bbc08a4add814497ea646909d4e66f47c7aadf7d6a48e14"
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\data\\gt_primary\\images\\test\\606.jpg",
+      "sha256": "775c68b321c76937bc7b716c25d19d5c79b91304d1a4bde46c5d970ae47f0717"
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\data\\gt_primary\\images\\test\\721.jpg",
+      "sha256": "a1f21a99d7b8fcf0928ad16de77a5c69c0abe327547d96ad2d0c2d1f54fe28ef"
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\data\\gt_primary\\images\\test\\801.jpg",
+      "sha256": "613d62dbbd40eec35e0037cdb86986980ec9053912776ef99c5b8ce386995612"
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\data\\gt_primary\\images\\test\\811.jpg",
+      "sha256": "e8acd2f4ea327014b20c7225f5139619d23713dd6eb3ab6eb449a416b04898fe"
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\data\\gt_primary\\images\\test\\823.jpg",
+      "sha256": "8c6433fa6e99e8c02eeb6cb204267d016fa90320286cd529c1641f72948fee5e"
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\data\\gt_primary\\images\\test\\867.jpg",
+      "sha256": "c11dc151dc102d131f90c0c335ca34837d4aab4cac2492975749c227e98c6fb0"
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\data\\gt_primary\\images\\test\\940.jpg",
+      "sha256": "2771dabeb09ff53375ce6662999fd373e6ae302105e4831eb3b55a3baeb5bfd7"
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\data\\gt_primary\\images\\test\\961.jpg",
+      "sha256": "2204eecefe6fae9b6a78dc66409bf5089599fa4e8884a62a9066a36c5fe9b34d"
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\data\\gt_primary\\images\\test\\984.jpg",
+      "sha256": "b69f11e3d30ec18fe205ded9dcc97e2d352d117388596b10325ab6189eed1c70"
+    }
+  ],
+  "weights": {
+    "A": {
+      "path": "E:\\风机图像\\experiments\\runs_yolov8_ab_s2_f1_v1\\v8_a_f0\\seed_42\\weights\\last.pt",
+      "sha256": "c45cb2562420be215533e8d8c0a4fff3ab42f5e9be0834a8067fdcc9dbe5058c"
+    },
+    "A_CBAM": {
+      "path": "E:\\风机图像\\experiments\\runs_yolov8_dual_fusion_v1\\v8_a_cbam\\seed_42\\weights\\last.pt",
+      "sha256": "82d4d546b0157734b7b5f1f036d22475765e118a7445214efe502f8208debb65"
+    },
+    "S2_CBAM": {
+      "path": "E:\\风机图像\\experiments\\runs_yolov8_attention_comparison_v1\\cbam\\seed_42\\weights\\last.pt",
+      "sha256": "3a2db266bf7220d203e873bfd273148b8b4d80ac613e76f36d8b6af9175be56b"
+    }
+  },
+  "script_sha256": "0b6840419495612c3b2b7ea7b535be6187221201333f73a69da7758e30463f9f"
+}

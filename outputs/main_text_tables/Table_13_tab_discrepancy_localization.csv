@@ -1,0 +1,7 @@
+﻿Checkpoint,Test stratum,Objects,Common objects,$\Delta$IoU [95\% CI]
+Epoch 200,Identical coordinates,162,107--116,"+0.0036 [-0.0121, +0.0192]"
+Epoch 200,Non-identical pair,67,48--52,"-0.0062 [-0.0220, +0.0095]"
+Epoch 200,Single-annotation fallback,4,2--3,"-0.0199 [-0.0864, +0.0465]"
+Best,Identical coordinates,162,104--113,"+0.0012 [-0.0089, +0.0113]"
+Best,Non-identical pair,67,48--49,"-0.0019 [-0.0344, +0.0306]"
+Best,Single-annotation fallback,4,2--3,"+0.0090 [-0.0857, +0.1037]"

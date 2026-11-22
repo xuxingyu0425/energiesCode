@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "excluded_output_fields": [
+    "name",
+    "project",
+    "save_dir"
+  ]
+}

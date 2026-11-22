@@ -1,0 +1,4 @@
+module,parameters,parameter_increase_percent,gflops_estimate,forward_latency_ms,input_size,precision,batch,timing_rounds
+none,3012018,0,11.807318016,5.76329936667,768,FP32,1,3
+esb,3043768,1.0541105664,12.035377152,6.97251639999,768,FP32,1,3
+cbam,3014982,0.0984057864196,11.815566336,7.1675051,768,FP32,1,3

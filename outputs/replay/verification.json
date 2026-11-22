@@ -1,0 +1,16 @@
+{
+  "runs": 35,
+  "subsets_replayed": 70,
+  "max_absolute_error": 1.4210854715202004e-14,
+  "metric_tolerance": 1e-08,
+  "validation_grid_points": 99,
+  "tie_break": "lower threshold",
+  "exact_partition_verified": true,
+  "coordinate_shape": [
+    800,
+    800
+  ],
+  "training_performed": false,
+  "inference_performed": false,
+  "gpu_required": false
+}

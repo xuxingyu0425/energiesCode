@@ -1,0 +1,13 @@
+{
+  "annotation_objects": 1584,
+  "gradient_references": 20,
+  "parameter_references": 4,
+  "checkpoint_complete": true,
+  "checkpoint_rows": 400,
+  "max_annotation_iou_error": 4.989775052033352e-07,
+  "checkpoint_weight_hashes_rechecked": true,
+  "component_decomposition_verified": true,
+  "source_hashes_verified": true,
+  "analysis_sha256": "0a687e5545d140a31ae2460dcd7b2a8ddb2e341cedf8d1b2e20995632fe8308b",
+  "checks": "unique coverage; finite gradients; disjoint-object gradient energy reconciled to batch; equal-target loss; native assignment/class identity; checkpoint metadata and reused metric identity"
+}

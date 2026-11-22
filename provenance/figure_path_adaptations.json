@@ -1,0 +1,37 @@
+[
+  {
+    "bundle_path": "tools/analyse_prf.py",
+    "source_path": "papers/mdpi_wind_20261019_v25_en/figure_sources/analyse_prf.py",
+    "original_sha256": "b5f67bc3fe82547a18cce0fb615959e85f97891ed689ab3358ab1d7593fb8ba3",
+    "adapted_sha256": "3c49995607228b8b0d134fcdddc8599821fbdfc40b3e55880c3ab8e23d9089fa",
+    "change_scope": "Rebased data/output/image paths for portable execution; no statistical formulas or matching/selection rules changed."
+  },
+  {
+    "bundle_path": "tools/localization.py",
+    "source_path": "papers/mdpi_wind_20261019_v25_en/figure_sources/localization.py",
+    "original_sha256": "4f76869e691a181fe2fff89e66f331f9c59b8b210947b87f7ecaa6aa5243736b",
+    "adapted_sha256": "a450629a5db3a348d8c7758a9023e253b3de4996336aa060b89585d521f6d6ba",
+    "change_scope": "Rebased data/output/image paths for portable execution; no statistical formulas or matching/selection rules changed."
+  },
+  {
+    "bundle_path": "tools/audit_panel_alignment.py",
+    "source_path": "papers/mdpi_wind_20261019_v25_en/figure_sources/audit_panel_alignment.py",
+    "original_sha256": "3fd6426506e7a72326899b90cdce0fb4e3b80ba51b75d61a7fe25266578eed13",
+    "adapted_sha256": "3fd6426506e7a72326899b90cdce0fb4e3b80ba51b75d61a7fe25266578eed13",
+    "change_scope": "Rebased data/output/image paths for portable execution; no statistical formulas or matching/selection rules changed."
+  },
+  {
+    "bundle_path": "tools/figures_original.py",
+    "source_path": "papers/mdpi_wind_20261019_v25_en/figure_sources/figures_v12.py",
+    "original_sha256": "9882610fbb5b876d81bdaa95b5ecdebb1e424cae7df5ee1e7c81e755baf6d001",
+    "adapted_sha256": "e68728676531269cf329f54c1a78a0266a6c8c92d71532b85d3709eb9f6a6e5c",
+    "change_scope": "Rebased data/output/image paths for portable execution; no statistical formulas or matching/selection rules changed."
+  },
+  {
+    "bundle_path": "tools/fig2_original.py",
+    "source_path": "papers/mdpi_wind_20261019_v25_en/figure_sources/fig2_v25.py",
+    "original_sha256": "912518542548332f15152ff506de6718d3cd2a8ad2afb84a0bbd18bff55c6880",
+    "adapted_sha256": "eaf3e686c1a3a45e4071c21df737e29d592b4468a29a859e1014bc7af2e4726e",
+    "change_scope": "Rebased data/output/image paths for portable execution; no statistical formulas or matching/selection rules changed."
+  }
+]

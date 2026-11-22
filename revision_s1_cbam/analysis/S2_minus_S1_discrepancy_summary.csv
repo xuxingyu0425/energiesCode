@@ -1,0 +1,7 @@
+checkpoint,stratum,mean,sd,lo,hi,positive,n,df,n_common_min,n_common_max,scope
+best,identical,0.0011900853017351395,0.00811349458157803,-0.008884148819831612,0.01126431942330189,2,5,4,104,113,"exploratory fixed-split seed CI, not population generalization"
+best,nonidentical,-0.0019152180546912374,0.026186338944971993,-0.0344298523674241,0.030599416258041624,3,5,4,48,49,"exploratory fixed-split seed CI, not population generalization"
+best,unpaired,0.00901301643377345,0.07629450184502137,-0.08571911976808025,0.10374515263562714,3,5,4,2,3,"exploratory fixed-split seed CI, not population generalization"
+last,identical,0.0035565535920480625,0.012582647992062844,-0.012066867421767252,0.019179974605863376,3,5,4,107,116,"exploratory fixed-split seed CI, not population generalization"
+last,nonidentical,-0.0062385221935129355,0.012676457429006782,-0.021978423007873303,0.009501378620847434,2,5,4,48,52,"exploratory fixed-split seed CI, not population generalization"
+last,unpaired,-0.019931548237505974,0.05353800617448551,-0.08640776303997547,0.04654466656496351,2,5,4,2,3,"exploratory fixed-split seed CI, not population generalization"

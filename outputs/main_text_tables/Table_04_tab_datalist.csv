@@ -1,0 +1,4 @@
+﻿Path relative to \texttt{WT blade defect dataset/},Files,Description
+\texttt{JPEGImages/*.jpg},1065,Images
+\texttt{Annotations/*.xml},1065,Annotation set A
+\texttt{annotation\_second\_person/*.xml},1065,Annotation set B

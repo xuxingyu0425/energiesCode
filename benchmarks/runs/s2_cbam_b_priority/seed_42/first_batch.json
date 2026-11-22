@@ -1,0 +1,45 @@
+{
+  "image_names": [
+    "211.jpg",
+    "133.jpg",
+    "620.jpg",
+    "959.jpg",
+    "195.jpg",
+    "188.jpg",
+    "435.jpg",
+    "974.jpg",
+    "198.jpg",
+    "364.jpg",
+    "338.jpg",
+    "57.jpg",
+    "805.jpg",
+    "439.jpg",
+    "602.jpg",
+    "478.jpg"
+  ],
+  "tensor_shapes": {
+    "batch_idx": [
+      50
+    ],
+    "bboxes": [
+      50,
+      4
+    ],
+    "cls": [
+      50,
+      1
+    ],
+    "img": [
+      16,
+      3,
+      768,
+      768
+    ],
+    "keypoints": [
+      50,
+      12,
+      3
+    ]
+  },
+  "nonclass_tensor_sha256": "e23970c3ae1a76b66fccb5ae04c296b031e96019c9d333b144a1798e30617cdf"
+}

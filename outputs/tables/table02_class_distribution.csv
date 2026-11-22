@@ -1,0 +1,8 @@
+dataset_label,english_name,A_boxes,A_share_percent,B_boxes,elongated_A_percent
+craze,Crazing,257,16.2247474747,263,15.953307393
+crack,Cracks,224,14.1414141414,215,36.1607142857
+corrosion,Corrosion,257,16.2247474747,258,57.9766536965
+hide_craze,Hidden crazing,342,21.5909090909,322,50.5847953216
+surface_injure,Surface damage,412,26.0101010101,396,17.4757281553
+thunderstrike,Lightning damage,92,5.80808080808,89,7.60869565217
+Total,,1584,100,1543,33.0176767677

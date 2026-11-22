@@ -1,0 +1,7 @@
+﻿method,parameters,gflops_estimate,input,flops_note,feature_shapes
+eca,3012024,11.809972224,768,Ultralytics/THOP estimate (2 FLOPs/MAC); elementwise attention operations may be uncounted,"{'15': [1, 64, 96, 96], '18': [1, 128, 48, 48]}"
+cbam,3014982,11.815566336,768,Ultralytics/THOP estimate (2 FLOPs/MAC); elementwise attention operations may be uncounted,"{'15': [1, 64, 96, 96], '18': [1, 128, 48, 48]}"
+ca,3017058,11.831353344,768,Ultralytics/THOP estimate (2 FLOPs/MAC); elementwise attention operations may be uncounted,"{'15': [1, 64, 96, 96], '18': [1, 128, 48, 48]}"
+f0_baseline,3012018,11.807318016,768,"Ultralytics/THOP estimate, elementwise ops may be uncounted",
+f1_esb,3043768,12.035377151999999,768,"Ultralytics/THOP estimate, elementwise ops may be uncounted",
+f2_lsk,3058494,12.190500864,768,"Ultralytics/THOP estimate, elementwise ops may be uncounted",

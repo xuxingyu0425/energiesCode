@@ -1,0 +1,434 @@
+{
+  "thresholds": [
+    0.1,
+    0.25,
+    0.5,
+    0.75
+  ],
+  "matching": "confidence-descending same-class one-to-one IoU >= 0.5",
+  "scope": "post-hoc fixed-threshold test sensitivity, best checkpoints only",
+  "n_images": 161,
+  "n_gt": 233,
+  "caches": [
+    {
+      "path": "E:\\风机图像\\experiments\\reports\\controls_esb_v2\\prediction_cache\\v8_A_42_best_annotator_a.json",
+      "sha256": "04d8e0be871b071a38991b9d3cff15c8667a4089e05f7ad9602606e8c7010c83",
+      "key": {
+        "weight_sha256": "238a1c362656583d1d05f4672d879233e72a57c4751e4482118e8555a348adc0",
+        "label_sha256": "adf04092af0063cf27b914988d2a8ac7a3ca6aa6e7806d2f37e7de05ae027d8c",
+        "protocol_sha256": "84903240ce4d5ab3f68b8c402ffa5fabdacab4e002c79550324f1c56e4c7f899",
+        "checkpoint": "best",
+        "version": "v8",
+        "cell": "A",
+        "seed": 42,
+        "ground_truth": "annotator_a"
+      }
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\reports\\controls_esb_v2\\prediction_cache\\v8_A_43_best_annotator_a.json",
+      "sha256": "a4d0e46f4d39b789379cccd49e0e80746c8c736ff84bbc0d4807905c1e065c94",
+      "key": {
+        "weight_sha256": "7d4b9f7217294d7ff55bc2feced9cac5a65a4522256a2919e3253cc47d7ca0bb",
+        "label_sha256": "adf04092af0063cf27b914988d2a8ac7a3ca6aa6e7806d2f37e7de05ae027d8c",
+        "protocol_sha256": "84903240ce4d5ab3f68b8c402ffa5fabdacab4e002c79550324f1c56e4c7f899",
+        "checkpoint": "best",
+        "version": "v8",
+        "cell": "A",
+        "seed": 43,
+        "ground_truth": "annotator_a"
+      }
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\reports\\controls_esb_v2\\prediction_cache\\v8_A_44_best_annotator_a.json",
+      "sha256": "9545ef6d3081daa2143618bdd92c5a96ceaeafc824d72e3cfa95f0f5168cbc68",
+      "key": {
+        "weight_sha256": "13491ae3c0d76f89fad898cf20e6a9bf85bf15a74dedbe7024bd0613c99cc539",
+        "label_sha256": "adf04092af0063cf27b914988d2a8ac7a3ca6aa6e7806d2f37e7de05ae027d8c",
+        "protocol_sha256": "84903240ce4d5ab3f68b8c402ffa5fabdacab4e002c79550324f1c56e4c7f899",
+        "checkpoint": "best",
+        "version": "v8",
+        "cell": "A",
+        "seed": 44,
+        "ground_truth": "annotator_a"
+      }
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\reports\\controls_esb_v2\\prediction_cache\\v8_A_45_best_annotator_a.json",
+      "sha256": "518c7706701a1554fc43765f9f0863af2b27d39a12e98a3fa82c5b3b5e2c93bc",
+      "key": {
+        "weight_sha256": "acb3288abdd2f10c331e24c2988680e6e64b6453afca4a56cd569b358f10cfc6",
+        "label_sha256": "adf04092af0063cf27b914988d2a8ac7a3ca6aa6e7806d2f37e7de05ae027d8c",
+        "protocol_sha256": "84903240ce4d5ab3f68b8c402ffa5fabdacab4e002c79550324f1c56e4c7f899",
+        "checkpoint": "best",
+        "version": "v8",
+        "cell": "A",
+        "seed": 45,
+        "ground_truth": "annotator_a"
+      }
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\reports\\controls_esb_v2\\prediction_cache\\v8_A_46_best_annotator_a.json",
+      "sha256": "e56c9842eeb38fb05b520e82faaa2097ee4932be2819781b38fd6e24cdca3cd6",
+      "key": {
+        "weight_sha256": "25919cf68deb4c0f194d5aef15bea3a0aa0b76b2384cc7f3b7f10932d84a0b3b",
+        "label_sha256": "adf04092af0063cf27b914988d2a8ac7a3ca6aa6e7806d2f37e7de05ae027d8c",
+        "protocol_sha256": "84903240ce4d5ab3f68b8c402ffa5fabdacab4e002c79550324f1c56e4c7f899",
+        "checkpoint": "best",
+        "version": "v8",
+        "cell": "A",
+        "seed": 46,
+        "ground_truth": "annotator_a"
+      }
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\reports\\controls_esb_v2\\prediction_cache\\v8_S2_42_best_annotator_a.json",
+      "sha256": "0ee1d864a0fa45c7c7302c0101d839a8a501f7fc0c486dd0d82e207bcab3fb15",
+      "key": {
+        "weight_sha256": "b25ef253290605210cebca97e30873bc9551cb37f160a80e13ca6bb99ffb87c0",
+        "label_sha256": "adf04092af0063cf27b914988d2a8ac7a3ca6aa6e7806d2f37e7de05ae027d8c",
+        "protocol_sha256": "84903240ce4d5ab3f68b8c402ffa5fabdacab4e002c79550324f1c56e4c7f899",
+        "checkpoint": "best",
+        "version": "v8",
+        "cell": "S2",
+        "seed": 42,
+        "ground_truth": "annotator_a"
+      }
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\reports\\controls_esb_v2\\prediction_cache\\v8_S2_43_best_annotator_a.json",
+      "sha256": "9dd6d42b7ce312be18baaf7a781fbab9454282bd0f52642b73a75948e39dab77",
+      "key": {
+        "weight_sha256": "9a4574cf24b65d431880381b963d0cf6a15573a130ab1bc6d4fe64d12ec1cdce",
+        "label_sha256": "adf04092af0063cf27b914988d2a8ac7a3ca6aa6e7806d2f37e7de05ae027d8c",
+        "protocol_sha256": "84903240ce4d5ab3f68b8c402ffa5fabdacab4e002c79550324f1c56e4c7f899",
+        "checkpoint": "best",
+        "version": "v8",
+        "cell": "S2",
+        "seed": 43,
+        "ground_truth": "annotator_a"
+      }
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\reports\\controls_esb_v2\\prediction_cache\\v8_S2_44_best_annotator_a.json",
+      "sha256": "f96b21dca53c28218338c3de186812c9741d506b4c0b33d68fba1baf99487d61",
+      "key": {
+        "weight_sha256": "c7d4e5492cc46eb60429c6deb495b44ad23f9ab77800a5e8fbb32f4b43b3cf7e",
+        "label_sha256": "adf04092af0063cf27b914988d2a8ac7a3ca6aa6e7806d2f37e7de05ae027d8c",
+        "protocol_sha256": "84903240ce4d5ab3f68b8c402ffa5fabdacab4e002c79550324f1c56e4c7f899",
+        "checkpoint": "best",
+        "version": "v8",
+        "cell": "S2",
+        "seed": 44,
+        "ground_truth": "annotator_a"
+      }
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\reports\\controls_esb_v2\\prediction_cache\\v8_S2_45_best_annotator_a.json",
+      "sha256": "1588f43ba5d5ae4e05b3d7c68eee22c3966c57a858f0fd9ad401c3544c104995",
+      "key": {
+        "weight_sha256": "e3b3152822dd77d14b2c7b1f64b6d3926199a89b4c4b71642af95eeeaeb00388",
+        "label_sha256": "adf04092af0063cf27b914988d2a8ac7a3ca6aa6e7806d2f37e7de05ae027d8c",
+        "protocol_sha256": "84903240ce4d5ab3f68b8c402ffa5fabdacab4e002c79550324f1c56e4c7f899",
+        "checkpoint": "best",
+        "version": "v8",
+        "cell": "S2",
+        "seed": 45,
+        "ground_truth": "annotator_a"
+      }
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\reports\\controls_esb_v2\\prediction_cache\\v8_S2_46_best_annotator_a.json",
+      "sha256": "1c73bc2908deff1bc10521a76f17ce4de8b76d80ad8029a408090226740dd2ce",
+      "key": {
+        "weight_sha256": "27f164ab3ec5d9fbd416f1dc88303d8f677f20318993f81eea5c6fb42a910a0f",
+        "label_sha256": "adf04092af0063cf27b914988d2a8ac7a3ca6aa6e7806d2f37e7de05ae027d8c",
+        "protocol_sha256": "84903240ce4d5ab3f68b8c402ffa5fabdacab4e002c79550324f1c56e4c7f899",
+        "checkpoint": "best",
+        "version": "v8",
+        "cell": "S2",
+        "seed": 46,
+        "ground_truth": "annotator_a"
+      }
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\reports\\controls_esb_v2\\prediction_cache\\v8_A_ESB_42_best_annotator_a.json",
+      "sha256": "412b8e2bb116a17a8124562004a70f201bd4055ae091f2f90cc234a08f9d6b85",
+      "key": {
+        "weight_sha256": "e788cb0a52502905199febaa621244537389ade48e4dd899c778ff67e7604a0d",
+        "label_sha256": "adf04092af0063cf27b914988d2a8ac7a3ca6aa6e7806d2f37e7de05ae027d8c",
+        "protocol_sha256": "84903240ce4d5ab3f68b8c402ffa5fabdacab4e002c79550324f1c56e4c7f899",
+        "checkpoint": "best",
+        "version": "v8",
+        "cell": "A_ESB",
+        "seed": 42,
+        "ground_truth": "annotator_a"
+      }
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\reports\\controls_esb_v2\\prediction_cache\\v8_A_ESB_43_best_annotator_a.json",
+      "sha256": "664f92f8148eeaddb613ae1495a64ab7f7a03bd0556b00297a0a4955e259e293",
+      "key": {
+        "weight_sha256": "b48a1959693ecc238721ef73f0f8863b9931c5e4fb036e74115fa51b879ad1b8",
+        "label_sha256": "adf04092af0063cf27b914988d2a8ac7a3ca6aa6e7806d2f37e7de05ae027d8c",
+        "protocol_sha256": "84903240ce4d5ab3f68b8c402ffa5fabdacab4e002c79550324f1c56e4c7f899",
+        "checkpoint": "best",
+        "version": "v8",
+        "cell": "A_ESB",
+        "seed": 43,
+        "ground_truth": "annotator_a"
+      }
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\reports\\controls_esb_v2\\prediction_cache\\v8_A_ESB_44_best_annotator_a.json",
+      "sha256": "c8282b2fdea4057c5651dab21265a88c0e8eed4a43231901ce6c84f293a97009",
+      "key": {
+        "weight_sha256": "741d0c7b10f4023f18f305b0c95820b8374a4a7ba6cb30d1ec1cd74ac45d2248",
+        "label_sha256": "adf04092af0063cf27b914988d2a8ac7a3ca6aa6e7806d2f37e7de05ae027d8c",
+        "protocol_sha256": "84903240ce4d5ab3f68b8c402ffa5fabdacab4e002c79550324f1c56e4c7f899",
+        "checkpoint": "best",
+        "version": "v8",
+        "cell": "A_ESB",
+        "seed": 44,
+        "ground_truth": "annotator_a"
+      }
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\reports\\controls_esb_v2\\prediction_cache\\v8_A_ESB_45_best_annotator_a.json",
+      "sha256": "1d9b2bb41bd6941cdd9f136bff52509c9a0b28619c719b548fe9be741d08faf9",
+      "key": {
+        "weight_sha256": "a8b13bbc928bc9ffa219275b6deccd74f4d8d225b70170719b447594bb5ce002",
+        "label_sha256": "adf04092af0063cf27b914988d2a8ac7a3ca6aa6e7806d2f37e7de05ae027d8c",
+        "protocol_sha256": "84903240ce4d5ab3f68b8c402ffa5fabdacab4e002c79550324f1c56e4c7f899",
+        "checkpoint": "best",
+        "version": "v8",
+        "cell": "A_ESB",
+        "seed": 45,
+        "ground_truth": "annotator_a"
+      }
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\reports\\controls_esb_v2\\prediction_cache\\v8_A_ESB_46_best_annotator_a.json",
+      "sha256": "40e8f894a8924431242fcf9f9341d45212a0ba83307f402d14a5a5be65ca488f",
+      "key": {
+        "weight_sha256": "cc078dbf4c03848032af10eb6a9b56f96ffb8cb8c571e1252b33d0411d622d02",
+        "label_sha256": "adf04092af0063cf27b914988d2a8ac7a3ca6aa6e7806d2f37e7de05ae027d8c",
+        "protocol_sha256": "84903240ce4d5ab3f68b8c402ffa5fabdacab4e002c79550324f1c56e4c7f899",
+        "checkpoint": "best",
+        "version": "v8",
+        "cell": "A_ESB",
+        "seed": 46,
+        "ground_truth": "annotator_a"
+      }
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\reports\\controls_esb_v2\\prediction_cache\\v8_S2_ESB_42_best_annotator_a.json",
+      "sha256": "f851e5e4585fc1f05086d04e6c778c6ebe674faaa9eb5b1307226c79a47404b5",
+      "key": {
+        "weight_sha256": "033ab1641496a3bb3170aff70146e874b8714331fb189bbaa83a7477e6c756ad",
+        "label_sha256": "adf04092af0063cf27b914988d2a8ac7a3ca6aa6e7806d2f37e7de05ae027d8c",
+        "protocol_sha256": "84903240ce4d5ab3f68b8c402ffa5fabdacab4e002c79550324f1c56e4c7f899",
+        "checkpoint": "best",
+        "version": "v8",
+        "cell": "S2_ESB",
+        "seed": 42,
+        "ground_truth": "annotator_a"
+      }
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\reports\\controls_esb_v2\\prediction_cache\\v8_S2_ESB_43_best_annotator_a.json",
+      "sha256": "75c8f3b08a8e47eafb21ad4233b3a51acb73a6e09f2cfd17afafbab253ca0cd1",
+      "key": {
+        "weight_sha256": "a72133f60ac93ab335bc7fb4f4478a42ac2193998e7e64520105cc0990ebffc0",
+        "label_sha256": "adf04092af0063cf27b914988d2a8ac7a3ca6aa6e7806d2f37e7de05ae027d8c",
+        "protocol_sha256": "84903240ce4d5ab3f68b8c402ffa5fabdacab4e002c79550324f1c56e4c7f899",
+        "checkpoint": "best",
+        "version": "v8",
+        "cell": "S2_ESB",
+        "seed": 43,
+        "ground_truth": "annotator_a"
+      }
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\reports\\controls_esb_v2\\prediction_cache\\v8_S2_ESB_44_best_annotator_a.json",
+      "sha256": "95eecb18337e28f21c20c4f8712444c5af2b3639a0917c02425b6b72cdbf93ff",
+      "key": {
+        "weight_sha256": "ffff785479a5b6f87af3803c347baf19e1890bcbb4afcee589ee73768658c592",
+        "label_sha256": "adf04092af0063cf27b914988d2a8ac7a3ca6aa6e7806d2f37e7de05ae027d8c",
+        "protocol_sha256": "84903240ce4d5ab3f68b8c402ffa5fabdacab4e002c79550324f1c56e4c7f899",
+        "checkpoint": "best",
+        "version": "v8",
+        "cell": "S2_ESB",
+        "seed": 44,
+        "ground_truth": "annotator_a"
+      }
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\reports\\controls_esb_v2\\prediction_cache\\v8_S2_ESB_45_best_annotator_a.json",
+      "sha256": "3b6bde4109f4c4836abd576f986045a3f7fe9c7a868d83c286314c43b24b41af",
+      "key": {
+        "weight_sha256": "906588882cdce44e3c44e7d5da989a8e245f29fabc0ca455cb45a5b331dfc111",
+        "label_sha256": "adf04092af0063cf27b914988d2a8ac7a3ca6aa6e7806d2f37e7de05ae027d8c",
+        "protocol_sha256": "84903240ce4d5ab3f68b8c402ffa5fabdacab4e002c79550324f1c56e4c7f899",
+        "checkpoint": "best",
+        "version": "v8",
+        "cell": "S2_ESB",
+        "seed": 45,
+        "ground_truth": "annotator_a"
+      }
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\reports\\controls_esb_v2\\prediction_cache\\v8_S2_ESB_46_best_annotator_a.json",
+      "sha256": "b27c2c9e1f847bea80e9605f5adfed0f80ea657a11448f18c0037615d1fd2ed3",
+      "key": {
+        "weight_sha256": "a753fb2eb731f7e6666c7002812237c0a904e91909f1aa90de644ada2c9b9d74",
+        "label_sha256": "adf04092af0063cf27b914988d2a8ac7a3ca6aa6e7806d2f37e7de05ae027d8c",
+        "protocol_sha256": "84903240ce4d5ab3f68b8c402ffa5fabdacab4e002c79550324f1c56e4c7f899",
+        "checkpoint": "best",
+        "version": "v8",
+        "cell": "S2_ESB",
+        "seed": 46,
+        "ground_truth": "annotator_a"
+      }
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\reports\\yolov8_revision_v1\\prediction_cache\\v8_A_CBAM_42_best_annotator_a.json",
+      "sha256": "a66e8bfecb7b3df1805dd6ba539d2a49dd3d2ed7f453eb310dbf630120fa5d63",
+      "key": {
+        "weight_sha256": "cac375fb39924a1cb10021bf8fa1f9cbe20be66f8b73f9dd5228d880c294b128",
+        "label_sha256": "adf04092af0063cf27b914988d2a8ac7a3ca6aa6e7806d2f37e7de05ae027d8c",
+        "protocol_sha256": "84903240ce4d5ab3f68b8c402ffa5fabdacab4e002c79550324f1c56e4c7f899",
+        "checkpoint": "best",
+        "version": "v8",
+        "cell": "A_CBAM",
+        "seed": 42,
+        "ground_truth": "annotator_a"
+      }
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\reports\\yolov8_revision_v1\\prediction_cache\\v8_A_CBAM_43_best_annotator_a.json",
+      "sha256": "4d5b1505e588828ba2dd71532ac5167a1bc14ce704c7ca180f68d9ce02623728",
+      "key": {
+        "weight_sha256": "5941853f828e0656b6df53a4fcd85528eeb89ade7170ce793ab29e36ca7cd7be",
+        "label_sha256": "adf04092af0063cf27b914988d2a8ac7a3ca6aa6e7806d2f37e7de05ae027d8c",
+        "protocol_sha256": "84903240ce4d5ab3f68b8c402ffa5fabdacab4e002c79550324f1c56e4c7f899",
+        "checkpoint": "best",
+        "version": "v8",
+        "cell": "A_CBAM",
+        "seed": 43,
+        "ground_truth": "annotator_a"
+      }
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\reports\\yolov8_revision_v1\\prediction_cache\\v8_A_CBAM_44_best_annotator_a.json",
+      "sha256": "3f9c2d48e267fa97379427491685af31e9df28d2c886c126e4e522faddf92490",
+      "key": {
+        "weight_sha256": "22b79b0bc0e4ba4192840aaf6ddc34cb0f34c7123a7f6e2018fe102ab4971aba",
+        "label_sha256": "adf04092af0063cf27b914988d2a8ac7a3ca6aa6e7806d2f37e7de05ae027d8c",
+        "protocol_sha256": "84903240ce4d5ab3f68b8c402ffa5fabdacab4e002c79550324f1c56e4c7f899",
+        "checkpoint": "best",
+        "version": "v8",
+        "cell": "A_CBAM",
+        "seed": 44,
+        "ground_truth": "annotator_a"
+      }
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\reports\\yolov8_revision_v1\\prediction_cache\\v8_A_CBAM_45_best_annotator_a.json",
+      "sha256": "6c7d2f8bd2652f0087594fc53c7eaf974aa76a399189a37223b68275f6618a23",
+      "key": {
+        "weight_sha256": "a290b5e7fcdd734753a1c39787fb98b703950bd642460a4ebc82b58a508d73b1",
+        "label_sha256": "adf04092af0063cf27b914988d2a8ac7a3ca6aa6e7806d2f37e7de05ae027d8c",
+        "protocol_sha256": "84903240ce4d5ab3f68b8c402ffa5fabdacab4e002c79550324f1c56e4c7f899",
+        "checkpoint": "best",
+        "version": "v8",
+        "cell": "A_CBAM",
+        "seed": 45,
+        "ground_truth": "annotator_a"
+      }
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\reports\\yolov8_revision_v1\\prediction_cache\\v8_A_CBAM_46_best_annotator_a.json",
+      "sha256": "d7da0e47c3ae3b0c87ff8d623b9189366886fb94369495a647d990a2fedd47ea",
+      "key": {
+        "weight_sha256": "b40fa1595f4fb52474328dcba7f2a6f9ba585a5dce854975d834c31aeffcef21",
+        "label_sha256": "adf04092af0063cf27b914988d2a8ac7a3ca6aa6e7806d2f37e7de05ae027d8c",
+        "protocol_sha256": "84903240ce4d5ab3f68b8c402ffa5fabdacab4e002c79550324f1c56e4c7f899",
+        "checkpoint": "best",
+        "version": "v8",
+        "cell": "A_CBAM",
+        "seed": 46,
+        "ground_truth": "annotator_a"
+      }
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\reports\\yolov8_revision_v1\\prediction_cache\\v8_S2_CBAM_42_best_annotator_a.json",
+      "sha256": "cfcced89dbe0416850358e4069061171a0dce9443e45357892993eba1092146f",
+      "key": {
+        "weight_sha256": "bef440d81c8cc63602487e8c980b9aef2db271fab004d149c96e8e9a4891f32a",
+        "label_sha256": "adf04092af0063cf27b914988d2a8ac7a3ca6aa6e7806d2f37e7de05ae027d8c",
+        "protocol_sha256": "84903240ce4d5ab3f68b8c402ffa5fabdacab4e002c79550324f1c56e4c7f899",
+        "checkpoint": "best",
+        "version": "v8",
+        "cell": "S2_CBAM",
+        "seed": 42,
+        "ground_truth": "annotator_a"
+      }
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\reports\\yolov8_revision_v1\\prediction_cache\\v8_S2_CBAM_43_best_annotator_a.json",
+      "sha256": "7a4ea2121fd468ccbb9b6ae1c7191a74d645f4fad2c18d9ad765d8864e098e9b",
+      "key": {
+        "weight_sha256": "66513856e388591d78cec56c280430014d2b3abcc94d3e0c9296433da880aa58",
+        "label_sha256": "adf04092af0063cf27b914988d2a8ac7a3ca6aa6e7806d2f37e7de05ae027d8c",
+        "protocol_sha256": "84903240ce4d5ab3f68b8c402ffa5fabdacab4e002c79550324f1c56e4c7f899",
+        "checkpoint": "best",
+        "version": "v8",
+        "cell": "S2_CBAM",
+        "seed": 43,
+        "ground_truth": "annotator_a"
+      }
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\reports\\yolov8_revision_v1\\prediction_cache\\v8_S2_CBAM_44_best_annotator_a.json",
+      "sha256": "67418e69f5052db6806c7e2d42f4fddfec9b0f5cbbbaac3ae0032652174b8f70",
+      "key": {
+        "weight_sha256": "7f2c3fa48e187c1a05b779e64c08af3f907a58c54a648b3f512f9224a249ece2",
+        "label_sha256": "adf04092af0063cf27b914988d2a8ac7a3ca6aa6e7806d2f37e7de05ae027d8c",
+        "protocol_sha256": "84903240ce4d5ab3f68b8c402ffa5fabdacab4e002c79550324f1c56e4c7f899",
+        "checkpoint": "best",
+        "version": "v8",
+        "cell": "S2_CBAM",
+        "seed": 44,
+        "ground_truth": "annotator_a"
+      }
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\reports\\yolov8_revision_v1\\prediction_cache\\v8_S2_CBAM_45_best_annotator_a.json",
+      "sha256": "26b2185ed1484a27ae15aaed83dd283cfe8d94c94fb34af8d58ff697cd587dd6",
+      "key": {
+        "weight_sha256": "d973a762bcc47fe8f3a50e07006bcf6398c2df762912d4fb9286b246918d6786",
+        "label_sha256": "adf04092af0063cf27b914988d2a8ac7a3ca6aa6e7806d2f37e7de05ae027d8c",
+        "protocol_sha256": "84903240ce4d5ab3f68b8c402ffa5fabdacab4e002c79550324f1c56e4c7f899",
+        "checkpoint": "best",
+        "version": "v8",
+        "cell": "S2_CBAM",
+        "seed": 45,
+        "ground_truth": "annotator_a"
+      }
+    },
+    {
+      "path": "E:\\风机图像\\experiments\\reports\\yolov8_revision_v1\\prediction_cache\\v8_S2_CBAM_46_best_annotator_a.json",
+      "sha256": "5f8e68e09699068b79b878a28d14249483b24b7c009eec1af7e3fb934038e2f6",
+      "key": {
+        "weight_sha256": "aa510bba149128e049968a87330cc6e6fa9f591095f62f04c23b94499a425073",
+        "label_sha256": "adf04092af0063cf27b914988d2a8ac7a3ca6aa6e7806d2f37e7de05ae027d8c",
+        "protocol_sha256": "84903240ce4d5ab3f68b8c402ffa5fabdacab4e002c79550324f1c56e4c7f899",
+        "checkpoint": "best",
+        "version": "v8",
+        "cell": "S2_CBAM",
+        "seed": 46,
+        "ground_truth": "annotator_a"
+      }
+    }
+  ]
+}

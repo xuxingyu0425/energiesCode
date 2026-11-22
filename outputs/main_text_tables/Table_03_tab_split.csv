@@ -1,0 +1,5 @@
+﻿Subset,Images,A boxes,B boxes
+Training,744,1132,1100
+Validation,160,219,214
+Test,161,233,229
+Total,1065,1584,1543

@@ -1,0 +1,35 @@
+{
+  "eca": {
+    "repository": "BangguWu/ECANet",
+    "commit": "b332f6b3e6e2afe8a3287dc8ee8440a0fbec74c4",
+    "upstream_path": "models/eca_module.py",
+    "url": "https://raw.githubusercontent.com/BangguWu/ECANet/b332f6b3e6e2afe8a3287dc8ee8440a0fbec74c4/models/eca_module.py",
+    "sha256": "6207d410dced66dcbec27bd5510430dca780a13dd21bedab4ce5317b3a816e57",
+    "license_notice_files": [
+      "eca_LICENSE"
+    ],
+    "license_note": "Original notices preserved; an empty list is not a license grant."
+  },
+  "cbam": {
+    "repository": "Jongchan/attention-module",
+    "commit": "459efad0e05ee7dde50c41ca10a3d0800bc3792a",
+    "upstream_path": "MODELS/cbam.py",
+    "url": "https://raw.githubusercontent.com/Jongchan/attention-module/459efad0e05ee7dde50c41ca10a3d0800bc3792a/MODELS/cbam.py",
+    "sha256": "6a2115f71541c77ab09c666e4cf32ab9928520f9c2bba9c1ceab8edc8fdd8ac5",
+    "license_notice_files": [
+      "cbam_LICENSE"
+    ],
+    "license_note": "Original notices preserved; an empty list is not a license grant."
+  },
+  "ca": {
+    "repository": "houqb/CoordAttention",
+    "commit": "7619bea9acbe260b3793833cc78cef3f124c8112",
+    "upstream_path": "coordatt.py",
+    "url": "https://raw.githubusercontent.com/houqb/CoordAttention/7619bea9acbe260b3793833cc78cef3f124c8112/coordatt.py",
+    "sha256": "c40cc881d0a23b64c886274a9d8df7d13f04b6ec4fc935c3b281a82998f9ebfc",
+    "license_notice_files": [
+      "ca_LICENSE"
+    ],
+    "license_note": "Original notices preserved; an empty list is not a license grant."
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "python": "3.12.13 | packaged by Anaconda, Inc. | (main, Mar 19 2026, 20:16:45) [MSC v.1942 64 bit (AMD64)]",
+  "executable_basename": "python.exe",
+  "source": "Existing CV_uav environment used for historical runs, read on 2026-11-17",
+  "direct_packages": {
+    "torch": "2.3.1+cu121",
+    "torchvision": "0.18.1+cu121",
+    "ultralytics": "8.4.37",
+    "numpy": "1.26.4",
+    "scipy": "1.17.1",
+    "pandas": "3.0.2",
+    "opencv-python": "4.11.0.86",
+    "matplotlib": "3.10.8",
+    "Pillow": "12.1.1",
+    "PyYAML": "6.0.3",
+    "thop": null,
+    "psutil": "7.2.2"
+  },
+  "package_count": 66,
+  "note": "A recorded package inventory, not proof that every package is required by this project."
+}

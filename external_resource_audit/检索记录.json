@@ -1,0 +1,54 @@
+{
+  "search_date_client_timezone": "2026-11-17 Asia/Shanghai",
+  "workflow": "primary-source search plus repository metadata and small annotation audit",
+  "scope": "Visible RGB wind turbine blade images with two retained per-annotator bounding-box targets; not exhaustive",
+  "queries": [
+    "\"wind turbine blade\" \"two annotators\" dataset bounding boxes",
+    "\"wind turbine blade\" \"re-annotations\" dataset",
+    "\"wind turbine blade\" \"multiple annotators\" dataset",
+    "\"wind turbine blade\" dataset \"annotators\" \"independently\"",
+    "\"wind turbine\" dataset \"two annotators\" \"bounding\"",
+    "\"Blade30\" annotators annotation",
+    "\"WTBs2025\" \"annotation\" \"experts\"",
+    "\"wind turbine blade\" \"double annotation\" dataset",
+    "\"wind turbine blade\" \"multi-annotator\" dataset",
+    "\"wind turbine blade\" \"inter-annotator\" \"dataset\" -site:researchgate.net -site:academia.edu",
+    "\"wind turbine blade\" \"two experts\" \"annotations\" dataset",
+    "\"Wind turbine blades surface defect high-quality\" \"annotat\" \"expert\"",
+    "\"WTBs2025\" \"two\" \"label\"",
+    "\"wind turbine blade\" \"independent annotations\" dataset",
+    "\"Blade30\" \"annotations\" \"independent\"",
+    "\"WTBlade-Defect\" \"annotators\"",
+    "\"WTBlade-Defect\" dataset repository",
+    "\"wind turbine blade\" \"independent\" \"annotators\" dataset -WTBD -s41597-026-06762-x -s26123878 -site:researchgate.net"
+  ],
+  "primary_sources": [
+    "https://doi.org/10.1038/s41597-026-06762-x",
+    "https://github.com/imadgohar/DTU-annotations",
+    "https://github.com/cong-yang/Blade30",
+    "https://github.com/imadgohar/Rotated_BB_Annotations",
+    "https://doi.org/10.1038/s41597-026-07455-1",
+    "https://doi.org/10.3390/s26123878",
+    "https://github.com/Yae666/GFD-YOLOX",
+    "https://data.mendeley.com/datasets/hd96prn3nc/2",
+    "https://www.mdpi.com/2075-1702/11/10/953",
+    "https://aquada-go.github.io/",
+    "https://arxiv.org/abs/2607.28065"
+  ],
+  "direct_metadata_endpoints": [
+    "https://api.github.com/repos/imadgohar/DTU-annotations/git/trees/main?recursive=1",
+    "https://api.github.com/repos/imadgohar/DTU-annotations/commits/main",
+    "https://api.github.com/repos/cong-yang/Blade30",
+    "https://api.github.com/repos/imadgohar/Rotated_BB_Annotations",
+    "https://api.figshare.com/v2/articles/28876391",
+    "https://api.figshare.com/v2/articles/28876406",
+    "https://api.figshare.com/v2/articles/30210175"
+  ],
+  "failures_and_limits": [
+    "doi.org Figshare redirect unavailable through web tool; API metadata used instead",
+    "Nature publisher page occasionally redirects to inaccessible identity provider; PMC full text and publisher-indexed results used",
+    "Some broad query results were secondary pages; conclusions rely on linked original papers/authors repositories",
+    "No new large image download; no image-level deduplication against WTBD; no training or inference; no messages to dataset authors"
+  ],
+  "finding": "No additional immediately usable and verified independent per-annotator dual-box blade dataset identified in this search; existence elsewhere is not excluded."
+}

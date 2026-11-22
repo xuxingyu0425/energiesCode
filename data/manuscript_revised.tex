@@ -1,0 +1,866 @@
+% LaTeX support: latex@mdpi.com
+% Energies manuscript, transferred on 30 October 2026 using the original MDPI submission template.
+% All manuscript tables and equations are embedded in this file.
+% Compile: pdflatex manuscript; bibtex manuscript; pdflatex manuscript; pdflatex manuscript.
+\documentclass[energies,article,submit,pdftex,moreauthors]{Definitions/mdpi}
+\usepackage{adjustbox}
+\usepackage{seqsplit}
+\usepackage{placeins}
+\usepackage{needspace}
+
+% Both submission PDFs use the same source; only revision color changes.
+\providecommand{\revisionmode}{0}
+\newcommand{\rev}[1]{\ifnum\revisionmode=1\relax{\color{red}#1}\else#1\fi}
+
+% Accommodate the stock MDPI header with current fancyhdr; preserve body position.
+\setlength{\headheight}{25pt}
+\addtolength{\topmargin}{-13pt}
+\setlength{\emergencystretch}{2em}
+\newcommand{\CIoU}{\operatorname{CIoU}}
+\newcommand{\DFL}{\operatorname{DFL}}
+\newcommand{\GAP}{\operatorname{GAP}}
+\firstpage{1}
+\makeatletter\setcounter{page}{\@firstpage}\makeatother
+\pubvolume{1}\issuenum{1}\articlenumber{0}\pubyear{2026}\copyrightyear{2026}
+\datereceived{ }\daterevised{ }\dateaccepted{ }\datepublished{ }
+\hreflink{https://doi.org/}
+\Title{\texorpdfstring{\rev{Wind Turbine Blade Defect Detection and Localization with Attention and Dual-Target Supervision}}{Wind Turbine Blade Defect Detection and Localization with Attention and Dual-Target Supervision}}
+\TitleCitation{Attention and Dual-Target Supervision for Blade Inspection}
+\Author{Kaijun Xu $^{1,2,*}$, Xingyu Xu $^{1,2}$ and Yong Yang $^{1,2}$}
+\AuthorNames{Kaijun Xu, Xingyu Xu and Yong Yang}
+\AuthorCitation{Xu, K.; Xu, X.; Yang, Y.}
+\address{%
+$^{1}$ \quad College of Flight Technology, Civil Aviation Flight University of China, Guanghan 618307, China; xukaijun@cafuc.edu.cn (K.X.); xxy@cafuc.edu.cn (X.X.); yangyong@cafuc.edu.cn (Y.Y.)\\
+$^{2}$ \quad Sichuan Provincial Engineering Research Center of Domestic Civil Aircraft Flight and Operation Support, Chengdu 610021, China}
+% Corresponding author confirmed by the author: Kaijun Xu.
+\corres{Correspondence: xukaijun@cafuc.edu.cn}
+\abstract{\rev{Low-contrast boundaries and elongated defects in aerial wind turbine images make defect recognition and bounding-box placement difficult. When two annotators draw different boxes, the regression benefit of retaining both boundaries over coordinate averaging remains unclear. We propose dual-target regression supervision (S2), which averages regression losses against both original boxes under shared positive-sample assignment while leaving inference unchanged. Convolutional block attention modules (CBAM) enhance two scales of YOLOv8n (You Only Look Once version 8 nano). We used five seeds and a grouped split of the Wind Turbine Blade Defect dataset (1,065 images). At epoch 200, S2+CBAM improved test AP50--95 (average precision across intersection-over-union (IoU) thresholds) by 2.30 percentage points and common-object IoU by 0.0180 over the single-annotation baseline. With CBAM fixed, epoch-200 AP50--95 means were 40.26\% for S2 and 40.19\% for coordinate averaging (S1). At validation-selected best checkpoints, the paired difference was 0.88 percentage points (95\% confidence interval, \texorpdfstring{$-0.46$}{-0.46} to 2.23). At validation-locked thresholds, S2+CBAM reached 83.19\% precision, 68.76\% recall, and 75.17\% F1. Parameters increased 0.10\%. The combined detector trains on paired boxes without manual boundary reconciliation and improves detection and localization over the single-annotation baseline.}}
+\keyword{wind turbine blades; defect localization; YOLOv8n; attention mechanism; dual-target regression supervision; defect screening}
+\begin{document}
+\pdfstringdefDisableCommands{\def\rev#1{#1}}
+\section{Introduction}
+\rev{Cracks, corrosion, and surface damage on wind turbine blades can have elongated shapes and low-contrast transitions into the surrounding surface. In images acquired by an unmanned aerial vehicle (UAV), this complicates both recognition and the choice of a bounding box's position and extent. Oversized boxes include background, while displaced or undersized boxes can omit part of a defect. Automated image analysis is therefore useful when it supplies candidate regions that inspectors can review, with detection and localization assessed together.}
+
+\rev{Recent reviews and inspection systems place defect recognition within a broader blade-condition assessment workflow~\cite{R01,R02,D03}. Existing approaches address three main challenges in that workflow. They resolve small defects in large images, represent weak or elongated features, and obtain reliable supervision. For the first challenge, sliced inference~\cite{D01} and edge cropping~\cite{D10} concentrate processing on smaller image regions. Blade segmentation reduces background interference~\cite{D06}, and defect masks with pixel matching support dimension measurement~\cite{D07}. Some inspection systems specialize in a single defect type, such as cracks~\cite{iyer2022}. These approaches address visibility and spatial delineation. Box-based inspection also requires assessing how closely predicted boxes follow the reference boundaries.}
+
+\rev{For weak and elongated defects, recent blade detectors use multiscale fusion~\cite{D14} and feature enhancement~\cite{D02,D08,D18}. Ren and Tang combine multiscale attention and directional convolutions with a modified box-regression loss~\cite{ren2026}. Strip pooling and strip convolutions extend context along an axis~\cite{hou2020,M06}, and large selective kernels adapt the receptive field through multiple branches~\cite{M07}. Squeeze-and-excitation and efficient channel attention reweight channels~\cite{hu2018,wang2020}. The convolutional block attention module (CBAM) combines channel and spatial weighting~\cite{woo2018}, and coordinate attention encodes directional position~\cite{hou2021}. These studies motivate a comparison between CBAM and a directional elongated strip block (ESB) inserted at the same feature levels. The effect of choosing regression targets from two annotations requires a comparison with the architecture fixed.}
+
+\rev{For limited supervision, semi-supervised blade detectors use unlabeled images~\cite{D04,D05}. A related challenge is deciding how to use two available annotations for the same defect. The Wind Turbine Blade Defect dataset (WTBD) supplies two annotation sets for the same images~\cite{ji2026}. They differ in some boundaries, classes, and annotated instances. Multiple-annotator learning can aggregate labels or model annotator differences~\cite{dawid1979,M03}. Weighted boxes fusion originally combines detector predictions~\cite{solovyev2021} and has also been applied to expert annotations~\cite{le2023}. Bayesian detector combination models localization error and class confusion~\cite{M01}. These methods motivate a direct distinction between combining annotation coordinates and retaining separate regression constraints. The gap we address is whether the two original boxes provide a useful training signal beyond their mean box when the detector, class convention, paired augmentation, and assignment boxes are held fixed.}
+
+% Contribution statements and the lead-in are marked against the submitted manuscript.
+\rev{We study these supervision choices in the nano variant of You Only Look Once version 8 (YOLOv8n), a lightweight one-stage detector. Coordinate-averaged supervision (S1) provides a matched comparison. Average precision across intersection-over-union (IoU) thresholds and box overlap on commonly detected defects capture complementary aspects of detector performance. This study makes three contributions.}
+
+\rev{\begin{enumerate}
+\item \textbf{Dual-target regression supervision for paired annotations.} Two annotators can draw different boundaries for the same wind turbine blade defect. We propose a training-only dual-target regression supervision strategy (S2) for these paired annotations. With shared task-aligned positive-sample assignment, S2 computes the CIoU and DFL losses for the same prediction against each original box and averages each loss across the two targets. Both boxes contribute to regression training while inference uses the detector's standard architecture and computational cost.
+\item \textbf{Effect of annotation disagreements on localization gradients.} Paired comparisons with coordinate-averaged supervision (S1) and gradient analysis quantify how the two regression strategies differ. Objects whose annotation boxes had an IoU below 0.90 represented \textbf{6.01\%} of training targets. They accounted for \textbf{59.30\% and 62.77\%} of the sum of squared differences in localization gradients in the S1 and S2 reference models without CBAM, respectively. Most of the gradient difference was thus concentrated in the small subset with greater boundary disagreement.
+\item \textbf{Controlled evaluation of wind turbine blade defect detection and localization.} We used five training seeds and a WTBD split that keeps visually near-duplicate images within the same subset. The comparisons with A+CBAM and S1+CBAM quantify the incremental effect of supervision with the feature module fixed. At epoch 200, \textbf{test AP50--95 increased by 2.30 percentage points} with S2+CBAM relative to YOLOv8n trained on annotation set A. For defects detected by both models, the \textbf{mean IoU between predicted and reference boxes increased by 0.0180}. Both gains were positive in all five seed pairs. The combined model added approximately 0.10\% to the parameter count and processed a preloaded $800\times800$ input in a mean of 9.76~ms on an RTX 4060 Laptop GPU.
+\end{enumerate}}
+
+\rev{Section~\ref{sec:methods} describes the detector, feature modules, annotation pairing, and regression losses. Section~\ref{sec:setup} details the datasets, training configurations, and evaluation protocols. Section~\ref{sec:results} presents the results and discusses the supervision controls, screening performance, computational cost, and limitations. Section~\ref{sec:conclusions} summarizes the findings.}
+
+\Needspace{6\baselineskip}
+\section{Materials and Methods}\label{sec:methods}
+\rev{The method has two components: feature enhancement within the detector and a choice of regression supervision during training. We first define the feature scales and module positions, then describe CBAM and ESB, annotation pairing, and the S1/S2 losses. The inference path contains one detector; the two target boxes are used only during training.}
+
+
+\subsection{Detection Framework and Module Placement}\label{sec:framework}
+\rev{YOLOv8n extracts progressively coarser feature maps in its backbone, combines them in a neck, and predicts boxes and classes at three detection scales~\cite{yolov8}. The symbols P1--P5 identify pyramid levels, not different models. P1 and P2 are shallow backbone stages with downsampling factors of 2 and 4; the standard detection heads operate at P3, P4, and P5 with strides of 8, 16, and 32. A $768\times768$ training image therefore gives detection grids of $96\times96$, $48\times48$, and $24\times24$. The padded $800\times800$ evaluation tensors described in Section~\ref{sec:training} give grids of $100\times100$, $50\times50$, and $25\times25$.}
+
+\rev{CBAM and ESB are alternative modules placed after the C2f feature-fusion outputs at P3 and P4, corresponding to layers 15 and 18 of the configuration (Figure~\ref{fig:framework}). Each enhanced output feeds its detection head and the subsequent bottom-up fusion path. P5 remains in multiscale fusion and detection but receives no added module. P3/P4 retain finer spatial sampling for narrow defects and boundary adjustment than P5; restricting the added modules to these two levels also limits their cost. This placement balances spatial detail with the cost of feature enhancement.}
+
+\rev{Unmodified YOLOv8n trained with A annotations is the A baseline. A+CBAM and A+ESB measure feature-enhancement changes under the original annotation convention. S2+CBAM versus A+CBAM evaluates the complete supervision replacement, including its assignment boxes. S2+CBAM versus S1+CBAM holds the feature architecture and fused assignment rule fixed to compare dual-original-box losses with a single fused-box loss. The selected positive anchors and quality weights can still differ after the trained models' predictions diverge.}
+
+\begin{figure}[!t]
+\begin{adjustwidth}{-\extralength}{0cm}
+\centering\includegraphics[width=\fulllength]{fig1.png}
+\caption{\rev{Detection architecture, feature-enhancement alternatives, and dual-target training supervision. The backbone and fusion paths supply the P3--P5 detection heads. Each $M$ is either ESB or CBAM, inserted after the P3 and P4 C2f fusion outputs; P5 receives no added module. Grid dimensions refer to the $768\times768$ training input. (\textbf{a}) ESB combines local, horizontal, and vertical features with an identity path. (\textbf{b}) CBAM applies channel attention followed by spatial attention. (\textbf{c}) S2 uses a fused box for positive-sample assignment and averages regression losses against the two original target boxes for each prediction. The annotation examples illustrate boundary differences and an unmatched object. Dual-target supervision is used only during training. The bottom row defines the CBS, C2f, and SPPF building blocks. Module operations, annotation handling, and losses are described in Sections~\ref{sec:cbam}--\ref{sec:s2}.}}\label{fig:framework}
+\end{adjustwidth}
+\end{figure}
+
+\subsection{CBAM Channel and Spatial Attention}\label{sec:cbam}
+\rev{We adopt the sequential channel and spatial attention structure from Woo et al.~\cite{woo2018,cbam_code} (Figure~\ref{fig:framework}b). In Equation~(\ref{eq:cbam_channel}), the channel branch applies spatial average and max pooling to the input feature map $F$ with $C$ channels. The pooled vectors pass through a shared multilayer perceptron (MLP) with input and output width $C$ and hidden width $\lfloor C/16\rfloor$. The sigmoid $\sigma$ gives channel weights $M_c(F)$, and $\odot$ denotes elementwise multiplication with broadcasting.}
+\begin{equation}
+ M_c(F)=\sigma\!\left(\operatorname{MLP}(\operatorname{AvgPool}(F))+\operatorname{MLP}(\operatorname{MaxPool}(F))\right),\qquad F'=M_c(F)\odot F.
+\label{eq:cbam_channel}
+\end{equation}
+\rev{The spatial branch concatenates the channelwise maximum and mean of $F'$. Equation~(\ref{eq:cbam_spatial}) follows the CBAM authors' implementation, which includes batch normalization (BN) after the $7\times7$ convolution~\cite{cbam_code}. The spatial mask $M_s(F')$ reweights $F'$ to produce $F''$.}
+\begin{equation}
+ M_s(F')=\sigma\!\left(\operatorname{BN}\!\left(\operatorname{Conv}_{7\times7}\!\left[\operatorname{Max}_c(F');\operatorname{Mean}_c(F')\right]\right)\right),\qquad F''=M_s(F')\odot F'.
+\label{eq:cbam_spatial}
+\end{equation}
+The two CBAMs add 2,964 parameters, approximately 0.10\% of the baseline. CBAM adjusts feature responses through channel and spatial weights, whereas ESB aggregates local and directional context through convolutional branches. Both modules use identical insertion locations and input and output dimensions.
+
+\subsection{ESB Directional Feature Aggregation}\label{sec:esb}
+\rev{ESB provides a directional-context alternative to CBAM at the same P3 and P4 insertion points (Figure~\ref{fig:framework}a). Strip operations motivate the directional kernels~\cite{hou2020,M06}, and selective kernel networks motivate input-dependent branch weighting~\cite{li2019sk}. Equations~(\ref{eq:esb_branch})--(\ref{eq:esb}) specify the ESB comparator used in this study. The input $X\in\mathbb R^{N\times C\times H\times W}$ has batch size $N$, $C$ channels, height $H$, and width $W$. Each branch $i$ produces a feature tensor $F_i$ through depthwise convolution with kernel size $K_i$, BN, and a sigmoid-weighted linear unit (SiLU).}
+\begin{equation}
+ F_i=\operatorname{SiLU}\bigl(\operatorname{BN}(\operatorname{DWConv}_{K_i}(X))\bigr),\quad K_i\in\{3\times3,\ 1\times7,\ 7\times1\}.
+\label{eq:esb_branch}
+\end{equation}
+The $1\times7$ and $7\times1$ kernels cover seven feature-map positions along one axis at P3 (stride 8) and P4 (stride 16). These branches aggregate context along two directions, while depthwise convolutions limit the parameter cost. \rev{Global average pooling (GAP) and two $1\times1$ convolutions produce the weight vector $\boldsymbol w$. The two convolutions have weights $W_1,W_2$ and biases $a_1,a_2$. Softmax normalizes the coefficients $w_i$ across the three branches.}
+\begin{equation}
+ \boldsymbol w=\operatorname{Softmax}\!\left(W_2\,\operatorname{SiLU}\!\left(W_1\,\GAP(X)+a_1\right)+a_2\right),\qquad \textstyle\sum_{i=1}^{3}w_i=1.
+\label{eq:esb_gate}
+\end{equation}
+The hidden width is $\max(\lfloor C/4\rfloor,8)$. The gate produces three scalars per image, allowing the relative contributions of local, horizontal, and vertical features to depend on image content. \rev{The output $Y$ adds the input to the weighted features after a $1\times1$ projection convolution and BN.}
+\begin{equation}
+ Y=X+\operatorname{BN}\!\left(\operatorname{Conv}_{1\times1}\!\left(\sum_{i=1}^{3}w_iF_i\right)\right).
+\label{eq:esb}
+\end{equation}
+The final gating convolution has zero-initialized weights and biases, giving equal initial branch weights. The projection convolution retains its default initialization, while the subsequent BN scale and bias are initialized to zero. The residual branch therefore initially outputs zero, so $Y=X$. This initialization preserves the pretrained feature output when ESB is inserted. Gradients reach the BN scale and bias, allowing the residual branch to become active during training. The two ESBs at P3 and P4 add 31,750 parameters, approximately 1.05\% of the baseline.
+
+\subsection{Annotation and Dual-Target Supervision}\label{sec:s2}
+\rev{The two annotation sets are denoted A and B, with original corner-coordinate boxes $b^A$ and $b^B$ for a paired defect. Each single-annotation configuration uses its own boxes and class labels. S1 uses the mean box $b^F$ for assignment and regression. S2 shares the assignment boxes and evaluates both original boxes at each assigned positive sample. Equation~(\ref{eq:reg_comparison}) defines the regression comparison used in this study.}
+\begin{equation}
+L_{\mathrm{reg}}^{S2}=\tfrac12[\ell(\hat b,b^A)+\ell(\hat b,b^B)],\qquad
+L_{\mathrm{reg}}^{S1}=\ell(\hat b,b^F).
+\label{eq:reg_comparison}
+\end{equation}
+\rev{Here, $\hat b$ represents the regression prediction and $\ell$ denotes its loss against a given target. The component losses are complete IoU (CIoU) loss~\cite{zheng2022} for decoded boxes and distribution focal loss (DFL)~\cite{li2020} for their edge distributions. S2 combines the losses from both original boundaries to update the same prediction. Because the losses are nonlinear in the target, evaluating them at both original boxes can yield a different training signal from evaluating them at the mean box.} Paired objects use the A class label, and objects annotated in only one set retain the available annotation. Both sets of boxes undergo the same image augmentation. The additional S2 computation occurs during training; its inference architecture matches that of a single-annotation model with the same feature modules.
+
+\subsubsection{Instance Pairing and Class Labels} S2 first identifies boxes in A and B that describe the same defect. For an A box $a$ and a B box $b$ in the same image, we calculate IoU $u$, center distance $d$ normalized by the image diagonal, and the larger-to-smaller area ratio $r$. A pair is eligible if $u\geq0.10$, or if both $d\leq0.035$ and $r\leq5$. \rev{We define the cost $C(a,b)$ below for eligible pairs. The coefficients are fixed design choices, and $\log$ denotes the natural logarithm.}
+\begin{equation}
+ C(a,b)=1-u+1.5d+0.15\,|\log r|.
+\label{eq:pair_cost}
+\end{equation}
+\rev{We assign ineligible pairs a large cost, solve the rectangular one-to-one assignment with SciPy's modified Jonker--Volgenant solver~\cite{crouse2016}, and discard ineligible assignments. For each accepted pair we define the fused box as the componentwise arithmetic mean of the two corner-coordinate vectors.}
+\begin{equation}
+ b^{F}=\tfrac{1}{2}\left(b^{A}+b^{B}\right).
+\label{eq:fused_box}
+\end{equation}
+All B boxes are paired with A, while A contains 41 additional objects (Section~\ref{sec:data}). For paired instances with matching class labels, the shared label is retained. When the labels conflict, both S1 and S2 retain the A label, keeping classification supervision consistent with the A baseline and allowing coordinate-averaged and dual-target regression supervision to be compared under the same class-label convention. Objects annotated in only one set retain their available class. Their missing regression box and assignment box are set to the available box, reducing the loss to single-box supervision. Table~\ref{tab:strategies} summarizes the four supervision strategies.
+% Table 1: strategies
+\begin{table}[H]
+\begin{adjustwidth}{-\extralength}{0cm}
+\caption{Regression targets and class conventions for each supervision strategy.}\label{tab:strategies}
+\centering\small\setlength{\tabcolsep}{5pt}
+\begin{adjustbox}{max width=\fulllength}
+\begin{tabular}{lrrr}
+\toprule
+Strategy & Assignment target & Regression target & Class \\
+\midrule
+A & $b^A$ & $b^A$ & A \\
+B & $b^B$ & $b^B$ & B \\
+S1 & $b^{F}$ & $b^{F}$ & A if conflicting \\
+S2 & $b^{F}$ & $b^A,b^B$ with weights $1/2$ each & A if conflicting \\
+\bottomrule\end{tabular}\end{adjustbox}
+\par\vspace{3pt}{\footnotesize\raggedright S1 and S2 retain objects annotated in only one set, with both regression targets set to the available box. A and B use their respective complete target lists and class labels.\par}
+\end{adjustwidth}
+\end{table}
+
+During augmentation, both original boxes and the assignment box undergo the same transformations as the image. The four corners of each original box are carried as auxiliary keypoints and reconstructed as axis-aligned boxes after geometric transformation. Auxiliary boxes with a width or height below 0.5 pixels after cropping are replaced by the valid assignment box.
+
+\subsubsection{Shared Positive-Sample Assignment} S2 uses $b^F$ as the target for task-aligned assignment (TAL)~\cite{feng2021}. The Ultralytics implementation combines class scores with CIoU clipped at zero to compute the alignment metric~\cite{yolov8}. It selects positive samples for each object and assigns quality weights $q_j$. Within S2, both original boxes share this assignment, and their regression losses are evaluated on the same positive samples. S1 and S2 use the same assignment rule and fused boxes, while the selected samples and quality weights depend on each model's predictions.
+
+\subsubsection{Dual-Target Regression Losses} \rev{Let $\mathcal P$ denote the set of positive samples, $\hat b_j$ the decoded box for sample $j$, and $b_j^A,b_j^B$ its two assigned target boxes. The assignment supplies the quality weight $q_j$, and the normalization factor is $Z=\max(\sum_{j\in\mathcal P}q_j,1)$. The single-target box loss is one minus the CIoU score of Zheng et al.~\cite{zheng2022}. Equation~(\ref{eq:box}) derives the S2 term by taking the arithmetic mean of the two single-target losses for each positive sample.}
+\begin{equation}
+ L_{\mathrm{box}}^{S2}=\frac{1}{Z}\sum_{j\in\mathcal P}q_j\left[1-\frac{\CIoU(\hat b_j,b_j^{A})+\CIoU(\hat b_j,b_j^{B})}{2}\right].
+\label{eq:box}
+\end{equation}
+\rev{The YOLOv8 head represents each anchor-to-edge distance by a distribution over 16 bins~\cite{ultralytics8437}. Let $p=p_{j,k}$ be the predicted probability vector for edge $k$ of sample $j$. The target distance $t$ is expressed in feature-stride units and clipped so the adjacent bins $m=\lfloor t\rfloor$ and $m+1$ are valid. The entries $p_m,p_{m+1}$ are their predicted probabilities. Equation~(\ref{eq:dfl_single}) gives the single-target DFL of Li et al.~\cite{li2020}.}
+\begin{equation}
+ \rev{\ell_{\DFL}(p,t)=-(m+1-t)\log p_m-(t-m)\log p_{m+1}.}
+\label{eq:dfl_single}
+\end{equation}
+\rev{For S2, $t_{j,k}^A$ and $t_{j,k}^B$ are the target distances from annotations A and B. Equation~(\ref{eq:dfl}) averages the single-target DFL over both annotations and the four edges, giving the factor $1/8$.}
+\begin{equation}
+ L_{\mathrm{DFL}}^{S2}=\frac{1}{Z}\sum_{j\in\mathcal P}\frac{q_j}{8}\sum_{k=1}^{4}\left[\ell_{\DFL}\!\left(p_{j,k},t_{j,k}^{A}\right)+\ell_{\DFL}\!\left(p_{j,k},t_{j,k}^{B}\right)\right].
+\label{eq:dfl}
+\end{equation}
+\rev{Classification retains YOLOv8's binary cross-entropy with soft targets from task-aligned assignment~\cite{ultralytics8437}. Paired objects use class $c^A$ from annotation set A, and unpaired objects use the available class. Equation~(\ref{eq:total_loss}) uses the established YOLOv8 weighted sum of box, classification, and DFL terms~\cite{ultralytics8437}, with weights 7.5, 0.5, and 1.5 in these runs. S2 supplies the box and DFL terms from Equations~(\ref{eq:box}) and~(\ref{eq:dfl}).}
+\begin{equation}
+ L=7.5\,L_{\mathrm{box}}+0.5\,L_{\mathrm{cls}}+1.5\,L_{\mathrm{DFL}}.
+\label{eq:total_loss}
+\end{equation}
+
+\subsubsection{Relationship to Coordinate-Averaged Supervision} \rev{For squared coordinate error, expanding both squared Euclidean norms gives}
+\[
+\rev{\tfrac12\bigl(\|\hat b-b^A\|_2^2+\|\hat b-b^B\|_2^2\bigr)
+=\|\hat b-b^F\|_2^2+\tfrac14\|b^A-b^B\|_2^2.}
+\]
+\rev{The last term is independent of the prediction, so the two objectives have the same gradients and minimizers for squared coordinate loss. CIoU generally yields different losses for the two strategies because its geometric terms depend nonlinearly on each target box. Since cross-entropy is linear in the target probabilities, Equation~(\ref{eq:dfl}) can be written using the mean of the two interpolated target distributions~\cite{li2020}.} For example, if one edge has $t^A=2.2$ and $t^B=4.2$, S2 assigns target masses $0.4,0.1,0.4,0.1$ to positions 2, 3, 4, and 5. S1 instead uses the midpoint $t=3.2$, assigning masses $0.8,0.2$ to positions 3 and 4. If both distances lie within the same discrete interval and clipping is inactive, the DFL targets coincide. When the two boundaries are identical, S2 reduces to single-annotation regression. The change in supervision therefore depends on the boundary differences and their discretization.
+
+\subsubsection{Training and Inference Cost} S2 still requires one forward pass and one backward pass per training step. Its additional training work includes transforming and tracking the paired boxes and evaluating the second regression target. At inference, annotations are unused, and the parameters, computation, and postprocessing match those of a single-annotation model with the same feature modules.
+
+\FloatBarrier
+\section{Experimental Setup}\label{sec:setup}
+\rev{This section specifies the data split, training configurations, checkpoint and threshold rules, and evaluation statistics. Figure~\ref{fig:experiment_flow} separates training, validation-based choices, and held-out evaluation. All configurations use the same data split and training hyperparameters, with S1+CBAM providing the matched regression-supervision control.}
+
+\begin{figure}[H]
+\begin{adjustwidth}{-\extralength}{0cm}
+\centering\includegraphics[width=\fulllength]{fig2.png}
+\caption{\rev{Experimental workflow. Perceptual-hash groups are kept within the training, validation, or test subset. Nine configurations are evaluated with five training seeds each, giving 45 runs. Fixed epoch-200 weights provide the primary comparison; native best weights, selected using common fused validation annotations, provide checkpoint sensitivity. Operating thresholds are selected for the eight screening configurations (40 configuration--seed combinations, excluding B-only) using epoch-200 weights and original A-validation annotations, then locked before testing. Test predictions support A-reference metrics, B-reference sensitivity, and seed-paired uncertainty estimates.}}\label{fig:experiment_flow}
+\end{adjustwidth}
+\end{figure}
+
+
+\subsection{Dataset and Grouped Split}\label{sec:data}
+WTBD contains 1,065 blade images of $1024\times1024$ pixels and six defect classes~\cite{ji2026}. Annotation sets A and B contain 1,584 and 1,543 boxes, respectively (Tables~\ref{tab:classes} and~\ref{tab:split}). Near-duplicate images were grouped using perceptual hashes, and entire groups were assigned to training, validation, or testing. The resulting subsets contain 744, 160, and 161 images, respectively. All test images contain defects, with 233 objects in annotation set A. The split keeps each near-duplicate group within a single subset; blade identifiers are unavailable in the dataset.
+The two annotation directories, \texttt{Annotations} and \texttt{annotation\_second\_person}, define A and B, respectively. Table~\ref{tab:datalist} lists the image and annotation files used in this study.
+% Table 2: classes
+\begin{table}[H]
+\begin{adjustwidth}{-\extralength}{0cm}
+\caption{Class distribution and elongated-box proportions in the full dataset.}\label{tab:classes}
+\centering\small\setlength{\tabcolsep}{6pt}\renewcommand{\arraystretch}{1.12}
+
+\begin{tabular*}{\fulllength}{@{\extracolsep{\fill}}llrrrr}
+\toprule
+Dataset label & English name & A boxes & A share (\%) & B boxes & Elongated A (\%) \\
+\midrule
+craze & Crazing & 257 & 16.2 & 263 & 16.0 \\
+crack & Cracks & 224 & 14.1 & 215 & 36.2 \\
+corrosion & Corrosion & 257 & 16.2 & 258 & 58.0 \\
+hide\_craze & Hidden crazing & 342 & 21.6 & 322 & 50.6 \\
+surface\_injure & Surface damage & 412 & 26.0 & 396 & 17.5 \\
+thunderstrike & Lightning damage & 92 & 5.8 & 89 & 7.6 \\
+\midrule
+Total & -- & 1584 & 100.0 & 1543 & 33.0 \\
+\bottomrule\end{tabular*}
+\par\vspace{3pt}{\footnotesize\raggedright Elongated A denotes the percentage of A boxes with aspect ratio $\geq3$ within each class. Dataset labels are retained for matching annotation files; English names are used in the narrative and example figures.\par}
+\end{adjustwidth}
+\end{table}
+% Table 3: split
+\begin{table}[H]
+\begin{adjustwidth}{-\extralength}{0cm}
+\caption{Fixed data split used in this study.}\label{tab:split}
+\centering\small\setlength{\tabcolsep}{6pt}\renewcommand{\arraystretch}{1.12}
+
+\begin{tabular*}{\fulllength}{@{\extracolsep{\fill}}lrrr}
+\toprule
+Subset & Images & A boxes & B boxes \\
+\midrule
+Training & 744 & 1132 & 1100 \\
+Validation & 160 & 219 & 214 \\
+Test & 161 & 233 & 229 \\
+\midrule
+Total & 1065 & 1584 & 1543 \\
+\bottomrule\end{tabular*}
+\end{adjustwidth}
+\end{table}
+% Table 4: datalist
+\begin{table}[H]
+\begin{adjustwidth}{-\extralength}{0cm}
+\caption{Dataset files used in this study.}\label{tab:datalist}
+\centering\small\setlength{\tabcolsep}{5pt}
+\begin{adjustbox}{max width=\fulllength}
+\begin{tabular}{lrl}
+\toprule
+Path relative to \texttt{WT blade defect dataset/} & Files & Description \\
+\midrule
+\texttt{JPEGImages/*.jpg} & 1065 & Images \\
+\texttt{Annotations/*.xml} & 1065 & Annotation set A \\
+\texttt{annotation\_second\_person/*.xml} & 1065 & Annotation set B \\
+\bottomrule\end{tabular}\end{adjustbox}
+\end{adjustwidth}
+\end{table}
+
+Grayscale images were resized to $32\times32$ and transformed by the discrete cosine transform (DCT). From the upper-left $8\times8$ low-frequency region, the DC coefficient was excluded. The remaining 63 coefficients were compared with their median to construct a 63-bit hash. Images with Hamming distances of at most 8 were connected into 750 groups; the largest group contained seven images. Groups were shuffled with seed 42 and assigned in descending size order, balancing the 70\%/15\%/15\% image proportions and class distributions. The test set contains 98, 55, 7, and 1 images with one, two, three, and four A objects, respectively. The dataset paper reports 1,568 final instances, compared with the 1,584 A boxes and 1,543 B boxes in the annotation sets used here.
+
+For a box of width $w$ and height $h$, aspect ratio is defined as $\rho=\max(w/h,h/w)$. In annotation set A, 33.0\% of boxes have an aspect ratio of at least 3 (Figure~\ref{fig:dataset}). Pairing yields 1,543 box pairs, of which 68.0\% have identical coordinates. There are also 92 class conflicts and 41 objects annotated only in A. Thus, the two boundary annotations are generally close, defining the conditions under which dual-target supervision is evaluated.
+\begin{figure}[H]
+\begin{adjustwidth}{-\extralength}{0cm}
+\centering\includegraphics[width=0.80\fulllength]{fig3.png}
+\caption{Aspect-ratio distributions by class in annotation set A. Black lines show interquartile ranges, white dots indicate medians, and percentages on the right give the proportion with an aspect ratio of at least 3.}\label{fig:dataset}
+\end{adjustwidth}\end{figure}
+
+\subsection{Configurations, Training, and Checkpoint Selection}\label{sec:training}
+\rev{The nine configurations comprise A, B, S1, and S2 without feature modules; A or S2 combined with ESB or CBAM; and S1+CBAM. Each configuration uses seeds 42--46, giving 45 training runs.}
+
+All primary YOLOv8n configurations were independently initialized from COCO-pretrained weights and trained for 200 epochs with $768\times768$ inputs and a batch size of 16. AdamW~\cite{loshchilov2019} used an initial learning rate of $10^{-3}$, a final learning-rate ratio of 0.01, weight decay of $5\times10^{-4}$, three warmup epochs, and cosine scheduling. Augmentations included $\pm15^\circ$ rotation, translation of 0.1, scaling of 0.35, horizontal and vertical flips with probabilities of 0.5 each, and Mosaic. Mosaic was disabled for the final 20 epochs. Mixed-precision training used an NVIDIA GeForce RTX 4060 Laptop GPU, PyTorch 2.3.1, and Ultralytics 8.4.37. Both training and evaluation were configured with \texttt{imgsz=768}. \rev{Evaluation used the native rectangular padding rule with an allowance of half a stride~\cite{ultralytics8437}.} For the square images in this dataset, the actual evaluation tensor dimension was $\lceil768/32+0.5\rceil\times32=800$, giving $800\times800$ tensors. Cached predictions and ground-truth boxes share these padded coordinates; \rev{coordinate consistency was verified for all 40 locked-threshold runs.} The computational-cost benchmark used separate fixed $768\times768$ input tensors.
+
+\rev{Training annotations differ by configuration, while all training-validation directories contain the same fused annotations. Native best checkpoints were selected by validation AP50--95 against this common reference. Fixed epoch-200 EMA weights provide the primary comparison, with best checkpoints used to assess sensitivity to weight selection. Original A-validation annotations are used separately for operating-threshold selection and the available-checkpoint comparison. Across the 40 runs with checkpoints retained at epochs 101, 151, and 200, the available-checkpoint comparison using A-validation AP50--95 favored epoch 200.}
+
+\rev{S2+CBAM was selected as the primary combined configuration from the CBAM and ESB alternatives using validation-set results.} At epoch 200 on the common A-validation set, its mean AP50--95 was 47.52\%, compared with 47.43\% for S2+ESB. Mean precision at the run-specific validation-F1-maximizing operating points was 86.46\% versus 84.08\%. These validation results supported using S2+CBAM as the primary combined configuration.
+
+\rev{The S1+CBAM and S2+CBAM comparison uses the same seed-specific initialization, paired-annotation augmentation sequence, fused assignment boxes, class convention, and training hyperparameters across seeds 42--46. S1+CBAM evaluates CIoU/DFL against the fused box, whereas S2+CBAM averages losses against the two original boxes.}
+
+\begin{table}[H]
+\begin{adjustwidth}{-\extralength}{0cm}
+\ifnum\revisionmode=1\color{red}\fi
+\caption{Hardware and software environment.}\label{tab:environment}
+\centering\small\setlength{\tabcolsep}{5pt}
+\begin{adjustbox}{max width=\fulllength}\begin{tabular}{ll}
+\toprule
+Component & Specification \\
+\midrule
+CPU & Intel Core i9-13980HX, 24 cores, 32 logical processors \\
+Memory & 32 GB RAM \\
+GPU & NVIDIA GeForce RTX 4060 Laptop GPU, 8 GB VRAM \\
+Operating system & Windows 11, 64-bit \\
+Python & 3.12.13 \\
+Framework & PyTorch 2.3.1, CUDA 12.1 build \\
+Detector implementation & Ultralytics 8.4.37 \\
+Training precision & Automatic mixed precision \\
+Evaluation precision & FP32 \\
+\bottomrule\end{tabular}\end{adjustbox}
+\par\vspace{3pt}{\footnotesize\raggedright All configurations used the computer and software environment listed here.\par}
+\end{adjustwidth}\end{table}
+
+\subsection{Evaluation Metrics and Paired Statistics}\label{sec:metrics}
+\rev{AP50--95 is the mean classwise average precision over the ten COCO-style IoU thresholds from 0.50 to 0.95 in increments of 0.05~\cite{coco_eval}, evaluated with the native detector evaluator~\cite{ultralytics8437}. AP50 and AP75 use IoU thresholds of 0.50 and 0.75, respectively. Mean true-positive IoU measures localization for matched detections.} Predictions are cached with a confidence floor of 0.001, a non-maximum suppression (NMS) IoU threshold of 0.7, and a maximum of 300 predictions. Localization analysis retains predictions with confidence at least 0.25. In descending confidence order, each prediction is matched to the unmatched same-class annotation with the highest IoU, provided IoU is at least 0.5.
+
+To compare localization on the same objects, image filenames and annotation indices identify the intersection of true positives for each configuration and the A baseline. \rev{Separate intersections are constructed directly for S2+CBAM versus A+CBAM and versus S1+CBAM.} Mean IoU differences are calculated over each intersection within each seed and then aggregated across seeds. The intersection varies by configuration, seed, and checkpoint. IoU measures overlap between predicted and annotated boxes. For descriptive classwise analysis of S2+CBAM, common-object IoU differences are also averaged within each defect class for each seed, then summarized across the five seeds.
+
+Screening uses the same matching rule with validation-selected thresholds. \rev{We pool the numbers of true positives ($\mathrm{TP}$), false positives ($\mathrm{FP}$), and false negatives ($\mathrm{FN}$) across test images. The standard definitions are precision $P=\mathrm{TP}/(\mathrm{TP}+\mathrm{FP})$, recall $R=\mathrm{TP}/(\mathrm{TP}+\mathrm{FN})$, and their harmonic mean $F_1=2PR/(P+R)$~\cite{ultralytics8437}.} Metrics are calculated separately for each run and reported as the mean and sample standard deviation across five seeds. \rev{Differences are paired by seed against the A baseline and directly between S2+CBAM and each CBAM supervision control. The two-sided 95\% confidence intervals (CIs) use the standard paired Student's $t$ procedure~\cite{nist_paired}, with the mean and standard error of five seedwise differences and four degrees of freedom. The primary supervision ablation comprises the epoch-200 A-reference AP50--95 and common-object IoU differences between S2+CBAM and S1+CBAM. Best-checkpoint, B-reference, screening, and subgroup comparisons are secondary or exploratory. We report unadjusted intervals for the paired effects and identify secondary comparisons as exploratory.} Training seed is the unit of statistical replication, and the intervals describe training variability under the fixed split. All differences are calculated from unrounded per-seed results.
+
+\rev{Annotation-discrepancy diagnostics separate identical paired coordinates, non-identical pairs, and single-annotation fallbacks. At fixed predictions and assignment, we differentiate the S1 and S2 localization losses with respect to the pre-DFL box logits, using the S1- and S2-trained YOLOv8n reference checkpoints for seeds 42--46. Each checkpoint is evaluated on all 744 unaugmented training images with batch normalization fixed and the original loss gains and normalization retained. For each target, the squared gradient differences are summed across box logits and positive anchors, then aggregated by annotation-IoU stratum and divided by the total for that reference model. The five-seed mean shares describe where the objectives differ locally. Test localization is grouped separately by annotation agreement into identical pairs, non-identical pairs, and single-annotation fallbacks.}
+
+\subsection{Operating Thresholds and Sensitivity Analyses}\label{sec:thresholds}
+For epoch-200 weights, thresholds were selected using the 160 A-validation images and 219 boxes. Each configuration and seed was evaluated over thresholds from 0.01 to 0.99 in increments of 0.01. The threshold maximizing pooled instance-level F1 was selected, with ties resolved in favor of the lower value. Thresholds were recorded and locked before testing. \rev{Eight configurations, excluding B-only, were evaluated with five seeds each, yielding 40 configuration--seed operating points.} For the 35 runs with archived native-comparison records, precision, recall, and AP agreed with the saved epoch-200 outputs to within $2\times10^{-5}$.
+
+The common-threshold analysis uses the validation-selected best checkpoints at confidence thresholds of 0.10, 0.25, 0.50, and 0.75. These are sensitivity scenarios; the primary operating points are validation-selected. Analysis against B retains the predictions, A-validation thresholds, and matching rules, changing only the reference annotations. All primary screening results use pooled instance-level metrics at validation-locked thresholds.
+
+\subsection{\rev{Computational Benchmark Protocol}}\label{sec:benchmark}
+\rev{Forward timing uses unfused models, FP32, batch size one, and the GPU in Table~\ref{tab:environment}. The $768\times768$ benchmark uses seed-42 best-checkpoint weights and 200 warmup passes. Each of three repetitions times a block of 1,000 forward passes, with CUDA synchronization before and after the block; its duration is divided by 1,000. The $800\times800$ benchmark uses seed-42 epoch-200 weights for A, A+CBAM, and S2+CBAM, with 200 warmup passes per repetition and three repetitions of 1,000 individually synchronized forward passes. Model order is deterministically randomized between repetitions. The sessions differ in checkpoint choice and synchronization granularity, and may also differ in GPU clock and thermal state. Architectural comparisons therefore use models measured within each session.}
+
+\rev{The image-processing benchmark used 32 preloaded $1024\times1024$ images. Each was resized to $768\times768$, padded by 16 pixels on each side, converted to RGB/CHW, transferred to the GPU, normalized, and processed by the model and NMS (confidence 0.001, NMS IoU 0.7, maximum 300 boxes). CUDA synchronization delimited each stage. After 200 image-processing warmups per model, all 32 images were measured in each of three repetitions, giving 96 observations per model. Disk I/O, image acquisition and transmission, coordinate rescaling, visualization, and storage were excluded. Timing percentiles summarize variation within this technical session.}
+
+\subsection{Selection of Localization Examples}\label{sec:example_selection}
+Examples compare the A baseline with S2+CBAM using seed 42, the validation-selected best checkpoints, and confidence 0.25. Among the 233 targets for seed 42, the two models commonly detected 160 objects: 92 had higher IoU and 68 had lower IoU with S2+CBAM. To display complete annotation and prediction boxes in equally sized horizontal panels, all boxes had to lie within the source image. Their union, expanded by 35 pixels on each side, had to fit a 2:1 crop no larger than 1024 pixels wide and 512 pixels high. This yielded 66 eligible positive-gain and 57 negative-gain examples. The first three examples show the largest positive gains from distinct classes; the negative example is the median of the 57 eligible negative differences (29th after sorting by IoU difference). This rule applies only to figure selection. Aggregate statistics include all objects satisfying the matching rules. 
+
+\FloatBarrier
+\section{\rev{Results and Discussion}}\label{sec:results}
+\rev{We first compare detection across checkpoints and localization on matched objects. The matched S1+CBAM control then separates the regression formulation from attention, followed by annotation-discrepancy diagnostics, screening sensitivity, and computational cost. Interpretation accompanies each result; the final subsections discuss inspection use and the limits of the available evidence.}
+
+
+\subsection{Detection Performance across Checkpoints}\label{sec:detection}
+At epoch 200, S2+CBAM increased AP50--95 from 37.95\% for unmodified YOLOv8n to 40.26\%. The paired gain was 2.30 percentage points (95\% CI: 1.44 to 3.16). With the validation-selected best checkpoints, AP50--95 increased from 37.58\% to 40.21\%, a gain of 2.64 percentage points (95\% CI: 1.62 to 3.65). All five seeds showed positive gains under both checkpoint choices (Table~\ref{tab:detection_v12}; Figure~\ref{fig:localization}a,b), indicating consistent improvement in overall detection performance.
+
+AP50 and AP75 gains were more sensitive to checkpoint choice. At epoch 200, they increased by 1.59 and 3.35 percentage points, with 95\% CIs of [$-0.28$, 3.47] and [$-0.66$, 7.37], respectively. With the validation-selected best checkpoints, the corresponding gains were 2.34 and 7.15 percentage points, with CIs of [1.21, 3.47] and [5.30, 9.01]. Because AP combines localization, classification, and confidence ranking, box-overlap analyses were used to examine localization changes more directly.
+% Table 5: detection_v12
+\begin{table}[H]
+\begin{adjustwidth}{-\extralength}{0cm}
+\caption{Detection performance and checkpoint sensitivity.}\label{tab:detection_v12}
+\centering\small\setlength{\tabcolsep}{4pt}
+\begin{adjustbox}{max width=\fulllength}
+\begin{tabular}{lrrrrrr}
+\toprule
+ & \multicolumn{3}{c}{\rev{Validation best}} & \multicolumn{3}{c}{Epoch 200} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}
+Configuration & \shortstack{AP50\\(\%)} & \shortstack{AP75\\(\%)} & \shortstack{AP50--95\\(\%)} & \shortstack{AP50\\(\%)} & \shortstack{AP75\\(\%)} & \shortstack{AP50--95\\(\%)} \\
+\midrule
+YOLOv8n (A) & $76.09 \pm 0.83$ & $28.73 \pm 2.86$ & $37.58 \pm 1.14$ & $76.77 \pm 1.43$ & $30.97 \pm 1.76$ & $37.95 \pm 1.09$ \\
+B only & $70.43 \pm 2.37$ & $27.33 \pm 3.29$ & $34.45 \pm 0.96$ & $70.71 \pm 2.16$ & $27.59 \pm 3.48$ & $34.74 \pm 0.69$ \\
+S1 & $74.71 \pm 2.31$ & $30.16 \pm 3.82$ & $36.58 \pm 2.01$ & $76.16 \pm 1.76$ & $31.94 \pm 2.71$ & $37.92 \pm 1.66$ \\
+S2 & $76.73 \pm 1.40$ & $30.12 \pm 2.09$ & $37.79 \pm 0.57$ & $76.99 \pm 0.78$ & $30.88 \pm 3.03$ & $37.87 \pm 0.67$ \\
+A + ESB & $77.71 \pm 2.61$ & $36.29 \pm 1.39$ & $40.25 \pm 0.74$ & $77.91 \pm 2.36$ & $35.96 \pm 3.99$ & $40.51 \pm 0.98$ \\
+A + CBAM & $78.62 \pm 2.30$ & $33.09 \pm 2.36$ & $39.81 \pm 0.90$ & $78.77 \pm 1.72$ & $34.09 \pm 3.94$ & $39.88 \pm 0.54$ \\
+S2 + ESB & $77.45 \pm 1.96$ & $33.84 \pm 5.56$ & $39.69 \pm 1.70$ & $77.60 \pm 2.19$ & $34.20 \pm 5.74$ & $39.81 \pm 1.70$ \\
+\rev{S1 + CBAM} & \rev{$76.84 \pm 1.43$} & \rev{$33.70 \pm 1.34$} & \rev{$39.33 \pm 0.88$} & \rev{$78.28 \pm 2.12$} & \rev{$32.83 \pm 3.52$} & \rev{$40.19 \pm 1.17$} \\
+S2 + CBAM & $78.43 \pm 0.74$ & $35.88 \pm 2.61$ & $40.21 \pm 0.47$ & $78.37 \pm 0.40$ & $34.32 \pm 2.59$ & $40.26 \pm 0.60$ \\
+\bottomrule\end{tabular}\end{adjustbox}
+\par\vspace{3pt}{\footnotesize\raggedright A test annotations; mean $\pm$ sample standard deviation across five training seeds, in \%. The first three columns use the validation-selected best checkpoints; the last three use epoch 200. Gains for combined configurations are measured against unmodified YOLOv8n trained with A annotations.\par}
+\end{adjustwidth}
+\end{table}
+
+Table~\ref{tab:ap_ci_v12} gives the paired detection differences for all configurations under both checkpoint choices.
+% Table 6: ap_ci_v12
+\begin{table}[H]
+\begin{adjustwidth}{-\extralength}{0cm}
+\caption{Detection-metric differences relative to unmodified YOLOv8n.}\label{tab:ap_ci_v12}
+\centering\small\setlength{\tabcolsep}{4pt}
+\begin{adjustbox}{max width=\fulllength}
+\begin{tabular}{lrrr}
+\toprule
+\shortstack{Checkpoint /\\configuration} & \shortstack{$\Delta$AP50\\(pp)} & \shortstack{$\Delta$AP75\\(pp)} & \shortstack{$\Delta$AP50--95\\(pp)} \\
+\midrule
+Best / B only & -5.66 [-8.76, -2.57] (0/5) & -1.39 [-8.19, +5.40] (2/5) & -3.13 [-4.66, -1.59] (0/5) \\
+Best / S1 & -1.38 [-4.25, +1.49] (2/5) & +1.43 [-3.72, +6.57] (4/5) & -0.99 [-4.57, +2.59] (3/5) \\
+Best / S2 & +0.64 [-1.78, +3.07] (3/5) & +1.39 [-3.39, +6.17] (4/5) & +0.22 [-1.52, +1.95] (4/5) \\
+Best / A + ESB & +1.62 [-1.38, +4.62] (3/5) & +7.56 [+3.13, +11.98] (5/5) & +2.67 [+1.43, +3.92] (5/5) \\
+Best / A + CBAM & +2.53 [-0.58, +5.64] (4/5) & +4.36 [-1.39, +10.12] (4/5) & +2.23 [-0.22, +4.68] (4/5) \\
+Best / S2 + ESB & +1.36 [-0.54, +3.26] (4/5) & +5.11 [-4.10, +14.32] (4/5) & +2.12 [-0.38, +4.61] (5/5) \\
+\rev{Best / S1 + CBAM} & \rev{+0.75 [-0.14, +1.63] (4/5)} & \rev{+4.97 [+0.94, +9.00] (5/5)} & \rev{+1.76 [+0.38, +3.13] (5/5)} \\
+Best / S2 + CBAM & +2.34 [+1.21, +3.47] (5/5) & +7.15 [+5.30, +9.01] (5/5) & +2.64 [+1.62, +3.65] (5/5) \\
+Epoch 200 / B only & -6.06 [-8.53, -3.60] (0/5) & -3.38 [-9.81, +3.05] (1/5) & -3.22 [-4.53, -1.90] (0/5) \\
+Epoch 200 / S1 & -0.62 [-2.38, +1.15] (1/5) & +0.97 [-1.49, +3.42] (4/5) & -0.04 [-1.57, +1.49] (3/5) \\
+Epoch 200 / S2 & +0.21 [-2.18, +2.61] (3/5) & -0.09 [-3.79, +3.62] (3/5) & -0.08 [-1.66, +1.50] (3/5) \\
+Epoch 200 / A + ESB & +1.14 [-1.98, +4.25] (4/5) & +4.99 [-1.12, +11.11] (5/5) & +2.56 [+1.05, +4.07] (5/5) \\
+Epoch 200 / A + CBAM & +1.99 [-1.13, +5.12] (5/5) & +3.13 [-3.07, +9.32] (3/5) & +1.92 [+0.16, +3.69] (4/5) \\
+Epoch 200 / S2 + ESB & +0.83 [-1.73, +3.38] (2/5) & +3.23 [-4.56, +11.02] (4/5) & +1.86 [-0.46, +4.18] (5/5) \\
+\rev{Epoch 200 / S1 + CBAM} & \rev{+1.51 [-0.76, +3.77] (4/5)} & \rev{+1.86 [-2.55, +6.28] (4/5)} & \rev{+2.24 [+1.81, +2.66] (5/5)} \\
+Epoch 200 / S2 + CBAM & +1.59 [-0.28, +3.47] (4/5) & +3.35 [-0.66, +7.37] (4/5) & +2.30 [+1.44, +3.16] (5/5) \\
+\bottomrule\end{tabular}\end{adjustbox}
+\par\vspace{3pt}{\footnotesize\raggedright Values are mean differences in percentage points (pp), followed by unadjusted 95\% paired CIs and the number of seeds with $\Delta>0$. Best denotes the native fused-validation-selected checkpoint.\par}
+\end{adjustwidth}
+\end{table}
+
+The validation-selected S2+CBAM configuration also showed several favorable test characteristics relative to S2+ESB under the same supervision. Mean AP50--95 was higher for both the validation-selected best checkpoints (40.21\% versus 39.69\%) and epoch 200 (40.26\% versus 39.81\%), with smaller standard deviations across seeds (0.47 versus 1.70 and 0.60 versus 1.70, respectively). At validation-locked thresholds, mean precision and F1 were higher (83.19\% versus 81.18\%, and 75.17\% versus 74.33\%), and the mean FP count was lower (33.0 versus 37.8), with similar recall (68.76\% versus 68.84\%). CBAM also required fewer added parameters (2,964 versus 31,750) and fewer GFLOPs (11.82 versus 12.04). Together, these results characterize its balance of detection performance, repeatability across training seeds, candidate-box precision, and computational cost.
+
+ESB remains a competitive alternative. A+ESB achieved slightly higher mean AP50--95 than S2+CBAM (40.25\% versus 40.21\% for the validation-selected best checkpoints; 40.51\% versus 40.26\% at epoch 200), and ESB had lower measured forward latency (6.97 versus 7.17~ms). Thus, the primary configuration reflects the validation-based selection and the broader performance profile, rather than the highest test AP alone.
+
+\subsection{Localization Quality on Detected and Common Objects}\label{sec:localization}
+At epoch 200, mean true-positive IoU increased from 0.7477 to 0.7632 with S2+CBAM, a difference of 0.0155 (95\% CI: 0.0119 to 0.0190). With the validation-selected best checkpoints, it increased from 0.7469 to 0.7621, a difference of 0.0152 (95\% CI: 0.0108 to 0.0195). All five seeds showed positive differences for both checkpoint choices (Figure~\ref{fig:localization}e,f), indicating closer agreement between detected boxes and annotations. Full results for the other configurations are reported in Table~\ref{tab:loc_v12}.
+\begin{figure}[tbp]
+\begin{adjustwidth}{-\extralength}{0cm}
+\centering\includegraphics[width=\fulllength]{fig4.png}
+\caption{Detection and localization differences relative to unmodified YOLOv8n. (\textbf{a},\textbf{b}) AP50--95 differences for the validation-selected best and epoch-200 checkpoints; (\textbf{c},\textbf{d}) corresponding AP75 differences; (\textbf{e},\textbf{f}) mean true-positive IoU differences at confidence 0.25. Pale points represent five paired seeds, diamonds denote means, and horizontal lines show 95\% paired $t$ intervals without multiplicity correction. Dashed lines indicate zero difference. Positive values indicate improvements over the A baseline. The checkpoint comparison assesses the sensitivity of the gains to weight selection.}\label{fig:localization}
+\end{adjustwidth}\end{figure}
+
+For objects detected by both S2+CBAM and the A baseline, mean IoU increased by 0.0180 at epoch 200 and 0.0178 with the validation-selected best checkpoints. The respective 95\% CIs were [0.0109, 0.0252] and [0.0138, 0.0219], with positive differences for all five seeds (Table~\ref{tab:loc_v12}). The improvement in box overlap therefore persisted within the subset detected by both configurations.
+
+The descriptive classwise comparison showed the largest mean common-object IoU gain for surface damage: $0.0275 \pm 0.0098$ at epoch 200 and $0.0253 \pm 0.0100$ for the validation-selected best checkpoints (mean $\pm$ sample standard deviation across five seeds). The gain was positive for all five seeds under both checkpoint choices. Crack localization was more variable: the epoch-200 mean gain was $0.0122 \pm 0.0204$, with negative differences in two of five seeds.
+% Table 7: loc_v12
+\begin{table}[H]
+\begin{adjustwidth}{-\extralength}{0cm}
+\caption{Box overlap and paired comparisons on commonly detected objects.}\label{tab:loc_v12}
+\centering\small\setlength{\tabcolsep}{4pt}
+\begin{adjustbox}{max width=\fulllength}
+\begin{tabular}{lrrrr}
+\toprule
+Checkpoint / configuration & \shortstack{Mean true-positive\\IoU} & \shortstack{Coverage (\%)\\IoU$\geq$0.75} & \shortstack{Common objects\\Mean [range]} & \shortstack{Common-object IoU\\difference [95\% CI]} \\
+\midrule
+Best / YOLOv8n (A) & $0.7469 \pm 0.0054$ & $38.88 \pm 1.24$ & --- & --- \\
+Best / S2 & $0.7463 \pm 0.0038$ & $39.83 \pm 1.78$ & 158.8 [152, 165] & +0.0009 [-0.0023, +0.0040] \\
+Best / A + ESB & $0.7604 \pm 0.0089$ & $43.52 \pm 1.57$ & 158.2 [156, 163] & +0.0159 [+0.0033, +0.0284] \\
+Best / A + CBAM & $0.7598 \pm 0.0051$ & $42.75 \pm 2.72$ & 158.0 [151, 163] & +0.0127 [+0.0012, +0.0242] \\
+Best / S2 + ESB & $0.7621 \pm 0.0064$ & $42.49 \pm 4.42$ & 157.2 [151, 165] & +0.0160 [+0.0030, +0.0289] \\
+\rev{Best / S1 + CBAM} & \rev{$0.7622 \pm 0.0048$} & \rev{$42.92 \pm 1.25$} & \rev{157.4 [153, 161]} & \rev{+0.0161 [+0.0060, +0.0261]} \\
+Best / S2 + CBAM & $0.7621 \pm 0.0035$ & $43.86 \pm 1.90$ & 160.6 [159, 162] & +0.0178 [+0.0138, +0.0219] \\
+Epoch 200 / YOLOv8n (A) & $0.7477 \pm 0.0051$ & $40.17 \pm 0.84$ & --- & --- \\
+Epoch 200 / S2 & $0.7473 \pm 0.0079$ & $40.43 \pm 2.84$ & 158.8 [152, 164] & -0.0006 [-0.0055, +0.0043] \\
+Epoch 200 / A + ESB & $0.7647 \pm 0.0107$ & $43.00 \pm 2.32$ & 158.0 [155, 161] & +0.0161 [+0.0024, +0.0298] \\
+Epoch 200 / A + CBAM & $0.7584 \pm 0.0061$ & $44.38 \pm 1.93$ & 159.6 [155, 163] & +0.0123 [+0.0073, +0.0172] \\
+Epoch 200 / S2 + ESB & $0.7611 \pm 0.0060$ & $43.26 \pm 4.40$ & 158.0 [151, 162] & +0.0146 [+0.0032, +0.0260] \\
+\rev{Epoch 200 / S1 + CBAM} & \rev{$0.7611 \pm 0.0053$} & \rev{$41.89 \pm 1.86$} & \rev{158.8 [155, 162]} & \rev{+0.0157 [+0.0075, +0.0239]} \\
+Epoch 200 / S2 + CBAM & $0.7632 \pm 0.0028$ & $43.18 \pm 2.12$ & 160.4 [157, 164] & +0.0180 [+0.0109, +0.0252] \\
+\bottomrule\end{tabular}\end{adjustbox}
+\par\vspace{3pt}{\footnotesize\raggedright Best denotes the native fused-validation-selected checkpoint. Confidence threshold: 0.25. Coverage (\%) is the proportion of reference boxes whose maximum IoU with a same-class prediction is at least 0.75, without requiring one-to-one assignment. True positives require one-to-one matching at IoU $\geq0.5$. Common-object counts are five-seed means [minimum, maximum], from 233 test objects per seed. The last column compares IoU only on objects detected by both the configuration and unmodified YOLOv8n, then aggregates across seeds. The five training runs are the statistical replicates; CIs are unadjusted for multiple comparisons.\par}
+\end{adjustwidth}
+\end{table}
+
+\FloatBarrier
+\subsubsection{Examples of Localization Changes}\label{sec:examples}
+Figure~\ref{fig:examples} illustrates reduced displacement or adjusted box extent for three commonly detected defects and lower IoU for a fourth. The paired panels use identical image regions and scales; selection follows Section~\ref{sec:example_selection}.
+\begin{figure}[H]
+\begin{adjustwidth}{-\extralength}{0cm}
+\centering\includegraphics[width=0.90\fulllength]{fig5.png}
+\caption{Examples of changes in defect-box overlap. Unmodified YOLOv8n is shown on the left and S2+CBAM on the right. White dashed boxes are A annotations; colored solid boxes are same-class predictions matched one-to-one. Results use seed 42, the validation-selected best checkpoints, and confidence 0.25. Among eligible crops showing all annotation and prediction boxes, the first three rows show the largest IoU gains from three distinct classes. The final row shows the median eligible negative-gain example. Each row uses identical source regions and scaling and displays the selected object and its matched predictions. Selection rules are given in Section~\ref{sec:example_selection}.}\label{fig:examples}
+\end{adjustwidth}\end{figure}
+
+\FloatBarrier
+\subsection{Supervision Controls and the Incremental Effect of S2}\label{sec:supervision_results}
+Without feature modules, S2 achieved a higher mean AP50--95 than coordinate-averaged supervision (S1) at the validation-selected best checkpoints, with a difference of 1.21 percentage points. At epoch 200, the two strategies performed similarly, with a difference of $-0.04$ percentage points. Relative to the A baseline, the corresponding S2 differences were 0.22 and $-0.08$ percentage points. Table~\ref{tab:supervision_v13} reports the paired estimates and 95\% intervals. \rev{The A baseline measures the overall change from the original single-annotation detector. S2+CBAM versus A+CBAM evaluates the complete supervision replacement with the feature architecture fixed; S2+CBAM versus S1+CBAM additionally holds the fused assignment targets and paired augmentation pipeline fixed.}
+% Table 8: supervision_v13
+\begin{table}[H]
+\begin{adjustwidth}{-\extralength}{0cm}
+\caption{Direct AP50--95 comparisons of supervision strategies without feature modules.}\label{tab:supervision_v13}
+\centering\small\setlength{\tabcolsep}{4pt}
+\begin{adjustbox}{max width=\fulllength}
+\begin{tabular}{lrrr}
+\toprule
+Checkpoint & Comparison & $\Delta$AP50--95 (pp) [95\% CI] & Seeds ($\Delta>0$) \\
+\midrule
+Best & $S2-A$ & +0.22 [-1.52, +1.95] & 4/5 \\
+Best & $S2-S1$ & +1.21 [-1.45, +3.87] & 3/5 \\
+Epoch 200 & $S2-A$ & -0.08 [-1.66, +1.50] & 3/5 \\
+Epoch 200 & $S2-S1$ & -0.04 [-2.75, +2.66] & 2/5 \\
+\bottomrule\end{tabular}\end{adjustbox}
+\par\vspace{3pt}{\footnotesize\raggedright Best denotes the native fused-validation-selected checkpoint. Values are seed-paired AP50--95 differences in percentage points (pp), with unadjusted 95\% paired $t$ CIs ($n=5$). S2 uses dual-target regression; S1 averages box coordinates.\par}
+\end{adjustwidth}\end{table}
+
+Holding CBAM fixed, the direct comparison evaluates the S2 supervision change, including fused assignment boxes and dual-target regression. The S2+CBAM versus A+CBAM comparison gave an epoch-200 AP50--95 difference of 0.38 percentage points (95\% CI: $-0.71$ to 1.46). On objects detected by both configurations, mean IoU increased by 0.0050 (95\% CI: $-0.0041$ to 0.0140). Both differences were positive for three of five seeds. With the validation-selected best checkpoints, the corresponding differences were 0.41 percentage points (95\% CI: $-1.10$ to 1.91) and 0.0051 (95\% CI: $-0.0066$ to 0.0167). Table~\ref{tab:cbam_increment} summarizes these paired differences under both checkpoint choices.
+
+The direct comparison uses a mean of 161.4 commonly detected objects per seed (range: 156--164) at epoch 200 and 161.0 (157--168) for the validation-selected best checkpoints. Table~\ref{tab:cbam_increment} also reports the corresponding screening differences at validation-locked thresholds.
+
+\rev{At epoch 200, A+CBAM already reached 39.88\% AP50--95, compared with 37.95\% for A and 40.26\% for S2+CBAM (Table~\ref{tab:detection_v12}). Most of the observed mean AP gain over A was therefore present with CBAM under the original annotation convention. With CBAM fixed, the incremental AP50--95 and common-object IoU intervals include zero at both checkpoints. Without a feature module, the epoch-200 AP50--95 means for A, S1, and S2 were 37.95\%, 37.92\%, and 37.87\%, respectively. Identical boxes give S1 and S2 the same regression targets. Distinct boxes can also give identical DFL targets if their distances lie in the same interpolation interval. The concentration of gradient differences in a small subset of objects (Section~\ref{sec:mechanism}) offers a possible explanation for the limited average separation.}
+% Table 9: cbam_increment_v16
+\begin{table}[H]
+\begin{adjustwidth}{-\extralength}{0cm}
+\caption{Direct paired comparison of S2+CBAM with A+CBAM.}\label{tab:cbam_increment}
+\centering\small\setlength{\tabcolsep}{6pt}
+\begin{adjustbox}{max width=\fulllength}
+\begin{tabular}{llrrr}
+\toprule
+Checkpoint & Metric & Mean difference & 95\% CI & Seeds ($\Delta>0$) \\
+\midrule
+Epoch 200 & AP50 (pp) & $-0.40$ & $[-2.79, +1.99]$ & 2/5 \\
+Epoch 200 & AP75 (pp) & $+0.23$ & $[-4.83, +5.28]$ & 2/5 \\
+Epoch 200 & AP50--95 (pp) & $+0.38$ & $[-0.71, +1.46]$ & 3/5 \\
+Epoch 200 & Mean TP IoU & $+0.0048$ & $[-0.0032, +0.0128]$ & 4/5 \\
+Epoch 200 & Common-object IoU & $+0.0050$ & $[-0.0041, +0.0140]$ & 3/5 \\
+\midrule
+Best & AP50 (pp) & $-0.19$ & $[-3.14, +2.76]$ & 2/5 \\
+Best & AP75 (pp) & $+2.79$ & $[-1.99, +7.57]$ & 4/5 \\
+Best & AP50--95 (pp) & $+0.41$ & $[-1.10, +1.91]$ & 3/5 \\
+Best & Mean TP IoU & $+0.0023$ & $[-0.0054, +0.0099]$ & 4/5 \\
+Best & Common-object IoU & $+0.0051$ & $[-0.0066, +0.0167]$ & 4/5 \\
+\midrule
+Epoch 200, locked & Precision (pp) & $+4.91$ & $[-2.14, +11.96]$ & 4/5 \\
+Epoch 200, locked & Recall (pp) & $-1.03$ & $[-5.72, +3.66]$ & 3/5 \\
+Epoch 200, locked & F1 (pp) & $+1.56$ & $[-1.45, +4.56]$ & 3/5 \\
+Epoch 200, locked & FP count & $-13.20$ & $[-32.50, +6.10]$ & 1/5 \\
+Epoch 200, locked & FN count & $+2.40$ & $[-8.52, +13.32]$ & 2/5 \\
+\bottomrule\end{tabular}\end{adjustbox}
+\par\vspace{3pt}{\footnotesize\raggedright Best denotes the native fused-validation-selected checkpoint. Differences are S2+CBAM minus A+CBAM, paired by seeds 42--46. Values are mean differences with unadjusted 95\% paired $t$ CIs ($n=5$, 4 degrees of freedom); pp denotes percentage points. IoU metrics use confidence 0.25 and same-class, one-to-one matching at IoU $\geq0.5$; common-object IoU uses the intersection of detections from both models. Screening uses run-specific thresholds locked on A validation data at epoch 200. The last column counts runs with $\Delta>0$; lower FP and FN counts are preferable. Intervals reflect training variability on the fixed split.\par}
+\end{adjustwidth}\end{table}
+
+\rev{The matched S1+CBAM control achieved epoch-200 A-reference AP50--95 of $40.19\pm1.17\%$, compared with $40.26\pm0.60\%$ for S2+CBAM. The paired differences for S2+CBAM versus S1+CBAM were 0.06 percentage points for AP50--95 (95\% CI, $-0.96$ to 1.09) and 0.0001 for common-object IoU (95\% CI, $-0.0089$ to 0.0091) (Table~\ref{tab:s1_cbam_direct}). These primary outcomes had close point estimates. Establishing equivalence would require a prespecified practical margin and a comparison designed to test it. At validation-locked operating points, S2+CBAM had higher mean precision by 2.22 percentage points and higher mean F1 by 1.33 percentage points, with 5.4 fewer mean FP boxes. These secondary comparisons also have intervals that include zero.}
+
+\rev{The checkpoint pattern resembles the S2-versus-S1 comparison without attention. With validation-selected best weights, S2 increased mean AP50--95 by 1.21 percentage points without CBAM and by 0.88 percentage points with CBAM. At epoch 200, the corresponding differences were $-0.04$ and $+0.06$ percentage points, both close to zero. Thus, the relative AP difference follows a similar checkpoint-dependent pattern in the two comparisons. Both CBAM supervision configurations improve overall detection relative to the A baseline, while S2+CBAM combines comparable epoch-200 AP with higher mean precision and F1 at the locked operating points.}
+
+\begin{table}[H]
+\begin{adjustwidth}{-\extralength}{0cm}
+\ifnum\revisionmode=1\color{red}\fi
+\caption{Direct comparison of dual-target and coordinate-averaged regression with CBAM fixed.}\label{tab:s1_cbam_direct}
+\centering\small\setlength{\tabcolsep}{5pt}
+\begin{adjustbox}{max width=\fulllength}\begin{tabular}{llrrr}
+\toprule
+Checkpoint & Metric & Mean difference & 95\% CI & Seeds ($\Delta>0$) \\
+\midrule
+Epoch 200 & AP50--95 (pp) & +0.06 & [-0.96, +1.09] & 3/5 \\
+Epoch 200 & AP75 (pp) & +1.49 & [-1.40, +4.38] & 4/5 \\
+Epoch 200 & Mean TP IoU & +0.0021 & [-0.0058, +0.0101] & 3/5 \\
+Epoch 200 & Common-object IoU & +0.0001 & [-0.0089, +0.0091] & 4/5 \\
+Epoch 200, locked & Precision (pp) & +2.22 & [-6.89, +11.32] & 3/5 \\
+Epoch 200, locked & Recall (pp) & +0.60 & [-6.76, +7.96] & 3/5 \\
+Epoch 200, locked & F1 (pp) & +1.33 & [-1.25, +3.91] & 3/5 \\
+Epoch 200, locked & FP count & -5.40 & [-31.02, +20.22] & 2/5 \\
+Epoch 200, locked & FN count & -1.40 & [-18.55, +15.75] & 2/5 \\
+Best & AP50--95 (pp) & +0.88 & [-0.46, +2.23] & 4/5 \\
+Best & Common-object IoU & +0.0003 & [-0.0107, +0.0113] & 3/5 \\
+\bottomrule\end{tabular}\end{adjustbox}
+\par\vspace{3pt}{\footnotesize\raggedright Differences are S2+CBAM minus S1+CBAM, paired by seeds 42--46. Primary endpoints are epoch-200 A-reference AP50--95 and common-object IoU. Intervals are unadjusted two-sided paired $t$ intervals ($n=5$, 4 degrees of freedom). pp denotes percentage points. IoU uses confidence 0.25; operating thresholds are selected on A validation and locked. Lower FP/FN counts are preferable. Best denotes the native fused-validation-selected checkpoint. Values are calculated before rounding.\par}
+\end{adjustwidth}\end{table}
+
+\subsection{\rev{Annotation Discrepancies and Supervision Diagnostics}}\label{sec:mechanism}
+\rev{The training set contains 1,100 paired objects and 32 single-annotation fallbacks. Coordinates are identical for 743 pairs (67.55\% of paired objects); the other 357 pairs provide different S1/S2 boundary targets. The 68 training objects with annotation IoU below 0.90 represent 6.01\% of all 1,132 targets but accounted for 59.30\% and 62.77\% of the squared localization-gradient difference in S1- and S2-trained reference models, respectively (Table~\ref{tab:mechanism_discrepancy}). Identical-box and fallback cases produced differences close to numerical zero. A small discrepant subset can therefore account for much of the local change in the objective.}
+
+\rev{Shared network parameters couple the training targets through the learned feature representation, so gradient changes from discrepant annotations can affect predictions across test strata. The test set contains 162 objects with identical paired coordinates, 67 with non-identical pairs, and four unpaired objects. For S2+CBAM versus S1+CBAM at epoch 200, the common-object IoU differences were $+0.0036$ in the identical group and $-0.0062$ in the non-identical group (Table~\ref{tab:discrepancy_localization}). The overlapping, zero-spanning intervals indicate limited precision for a discrepancy-specific localization effect. The four-object fallback group provides a descriptive estimate.}
+
+\rev{S2 is most distinct when two valid annotations describe the same object but supply different boundary constraints. Identical boxes reduce to single-target supervision, and DFL targets within the same interpolation interval can also coincide, as described in Section~\ref{sec:s2}. The gradient diagnostic measures local changes in the training objective, while the matched ablation estimates the net difference in detection and localization. Together, they indicate that S2's additional value depends on the amount and quality of boundary information retained in the annotation pair.}
+
+\begin{table}[H]
+\begin{adjustwidth}{-\extralength}{0cm}
+\ifnum\revisionmode=1\color{red}\fi
+\caption{Concentration of training-target and localization-gradient differences.}\label{tab:mechanism_discrepancy}
+\centering\small\setlength{\tabcolsep}{5pt}
+\begin{adjustbox}{max width=\fulllength}\begin{tabular}{lrrrr}
+\toprule
+Training stratum & Objects & Share (\%) & S1 reference (\%) & S2 reference (\%) \\
+\midrule
+Identical coordinates & 743 & 65.64 & $<10^{-8}$ & $<10^{-8}$ \\
+Non-identical, annotation IoU $\geq0.95$ & 176 & 15.55 & 13.25 & 15.03 \\
+$0.90\leq$ annotation IoU $<0.95$ & 113 & 9.98 & 27.45 & 22.20 \\
+Paired, annotation IoU $<0.90$ & 68 & 6.01 & 59.30 & 62.77 \\
+Single-annotation fallback & 32 & 2.83 & $<10^{-8}$ & $<10^{-8}$ \\
+\bottomrule\end{tabular}\end{adjustbox}
+\par\vspace{3pt}{\footnotesize\raggedright Object shares use all 1,132 training objects. The last columns are five-seed mean shares of squared differences between S1/S2 localization gradients with respect to the pre-DFL box logits, holding predictions, assignment, gains, and normalization fixed. Reference models are YOLOv8 S1 or S2 checkpoints without CBAM; the gradient shares quantify changes in the training objective. Rounding can prevent totals from equaling 100\%.\par}
+\end{adjustwidth}\end{table}
+
+
+\begin{table}[H]
+\begin{adjustwidth}{-\extralength}{0cm}
+\ifnum\revisionmode=1\color{red}\fi
+\caption{Localization differences grouped by annotation agreement.}\label{tab:discrepancy_localization}
+\centering\small\setlength{\tabcolsep}{4pt}
+\begin{adjustbox}{max width=\fulllength}\begin{tabular}{llrrr}
+\toprule
+Checkpoint & Test stratum & Objects & Common objects & $\Delta$IoU [95\% CI] \\
+\midrule
+Epoch 200 & Identical coordinates & 162 & 107--116 & +0.0036 [-0.0121, +0.0192] \\
+Epoch 200 & Non-identical pair & 67 & 48--52 & -0.0062 [-0.0220, +0.0095] \\
+Epoch 200 & Single-annotation fallback & 4 & 2--3 & -0.0199 [-0.0864, +0.0465] \\
+Best & Identical coordinates & 162 & 104--113 & +0.0012 [-0.0089, +0.0113] \\
+Best & Non-identical pair & 67 & 48--49 & -0.0019 [-0.0344, +0.0306] \\
+Best & Single-annotation fallback & 4 & 2--3 & +0.0090 [-0.0857, +0.1037] \\
+\bottomrule\end{tabular}\end{adjustbox}
+\par\vspace{3pt}{\footnotesize\raggedright Differences are S2+CBAM minus S1+CBAM. Objects gives the total number of A-test targets in the stratum; common objects gives the minimum--maximum jointly detected count across seeds. Matching uses confidence 0.25, the same class, and one-to-one IoU $\geq0.5$. Intervals are exploratory, unadjusted seed-paired $t$ intervals ($n=5$, 4 degrees of freedom). Best uses native fused-validation selection. The groups characterize the observed relationship between annotation agreement and localization change.\par}
+\end{adjustwidth}\end{table}
+
+\subsection{Screening Performance at Locked Thresholds}\label{sec:screening}
+At epoch 200, using thresholds selected on the common validation set and locked for testing, S2+CBAM achieved precision, recall, and F1 of 83.19\%, 68.76\%, and 75.17\%. The baseline values were 79.68\%, 68.33\%, and 73.42\%, respectively (Table~\ref{tab:application_v12}). Gains were 3.52, 0.43, and 1.75 percentage points, with the largest mean improvement in precision. Mean FP counts decreased from 41.2 to 33.0, and FN counts decreased from 73.8 to 72.8. The 95\% CI for the F1 gain was [$-1.78$, 5.28]. Table~\ref{tab:application_ci_v12} also gives the intervals for precision, recall, and FP and FN differences.
+% Table 10: application_v12
+\begin{table}[H]
+\begin{adjustwidth}{-\extralength}{0cm}
+\caption{Defect screening at validation-selected, locked thresholds.}\label{tab:application_v12}
+\centering\small\setlength{\tabcolsep}{4pt}
+\begin{adjustbox}{max width=\fulllength}
+\begin{tabular}{lrrrrr}
+\toprule
+Configuration & P (\%) & R (\%) & F1 (\%) & \shortstack{FP\\(count)} & \shortstack{FN\\(count)} \\
+\midrule
+YOLOv8n (A) & $79.68 \pm 3.14$ & $68.33 \pm 4.25$ & $73.42 \pm 1.49$ & 41.2 & 73.8 \\
+S1 & $76.85 \pm 4.02$ & $71.16 \pm 2.34$ & $73.81 \pm 1.58$ & 50.6 & 67.2 \\
+S2 & $77.38 \pm 2.64$ & $70.56 \pm 2.60$ & $73.75 \pm 1.07$ & 48.4 & 68.6 \\
+A + ESB & $81.30 \pm 5.75$ & $67.64 \pm 3.81$ & $73.63 \pm 1.63$ & 37.6 & 75.4 \\
+A + CBAM & $78.28 \pm 4.71$ & $69.79 \pm 3.86$ & $73.62 \pm 1.42$ & 46.2 & 70.4 \\
+S2 + ESB & $81.18 \pm 3.45$ & $68.84 \pm 5.20$ & $74.33 \pm 2.43$ & 37.8 & 72.6 \\
+\rev{S1 + CBAM} & \rev{$80.98 \pm 5.32$} & \rev{$68.15 \pm 2.96$} & \rev{$73.85 \pm 1.11$} & \rev{38.4} & \rev{74.2} \\
+S2 + CBAM & $83.19 \pm 4.62$ & $68.76 \pm 3.40$ & $75.17 \pm 2.26$ & 33.0 & 72.8 \\
+\bottomrule\end{tabular}\end{adjustbox}
+\par\vspace{3pt}{\footnotesize\raggedright Epoch-200 weights. Each configuration and seed uses a threshold selected only on the common A validation set and then locked for testing. P, R, and F1 are pooled instance-level metrics (\%, mean $\pm$ sample standard deviation). FP and FN are mean counts across 161 test images containing 233 annotated defects; all images contain defects.\par}
+\end{adjustwidth}
+\end{table}
+% Table 11: application_ci_v12
+\begin{table}[H]
+\begin{adjustwidth}{-\extralength}{0cm}
+\caption{Screening differences relative to unmodified YOLOv8n.}\label{tab:application_ci_v12}
+\centering\small\setlength{\tabcolsep}{4pt}
+\begin{adjustbox}{max width=\fulllength}
+\begin{tabular}{lrrrrr}
+\toprule
+Configuration & \shortstack{$\Delta P$\\(pp)} & \shortstack{$\Delta R$\\(pp)} & \shortstack{$\Delta F1$\\(pp)} & \shortstack{$\Delta FP$\\(count)} & \shortstack{$\Delta FN$\\(count)} \\
+\midrule
+S1 & -2.83 [-10.77, +5.11] & +2.83 [-4.84, +10.51] & +0.39 [-1.67, +2.45] & +9.40 [-15.92, +34.72] & -6.60 [-24.48, +11.28] \\
+S2 & -2.30 [-6.45, +1.86] & +2.23 [-0.44, +4.91] & +0.33 [-1.25, +1.91] & +7.20 [-5.23, +19.63] & -5.20 [-11.43, +1.03] \\
+A + ESB & +1.62 [-8.27, +11.51] & -0.69 [-10.34, +8.96] & +0.21 [-2.53, +2.95] & -3.60 [-34.07, +26.87] & +1.60 [-20.88, +24.08] \\
+A + CBAM & -1.40 [-8.19, +5.40] & +1.46 [-3.80, +6.72] & +0.19 [-2.54, +2.93] & +5.00 [-15.52, +25.52] & -3.40 [-15.65, +8.85] \\
+S2 + ESB & +1.50 [-5.95, +8.96] & +0.52 [-10.35, +11.38] & +0.91 [-3.33, +5.16] & -3.40 [-27.16, +20.36] & -1.20 [-26.52, +24.12] \\
+\rev{S1 + CBAM} & \rev{+1.30 [-7.43, +10.03]} & \rev{-0.17 [-7.81, +7.46]} & \rev{+0.43 [-0.72, +1.57]} & \rev{-2.80 [-28.51, +22.91]} & \rev{+0.40 [-17.39, +18.19]} \\
+S2 + CBAM & +3.52 [-2.14, +9.18] & +0.43 [-7.22, +8.08] & +1.75 [-1.78, +5.28] & -8.20 [-24.18, +7.78] & -1.00 [-18.82, +16.82] \\
+\bottomrule\end{tabular}\end{adjustbox}
+\par\vspace{3pt}{\footnotesize\raggedright Mean differences and unadjusted 95\% paired $t$ intervals, $n=5$. P, R, and F1 differences are in percentage points; FP and FN differences are counts. All comparisons are paired against the A baseline using the same seed.\par}
+\end{adjustwidth}
+\end{table}
+
+Relative to A+CBAM at the validation-locked operating points, S2+CBAM increased mean precision by 4.91 percentage points and F1 by 1.56 percentage points, while recall decreased by 1.03 percentage points. Mean FP counts decreased by 13.2, and FN counts increased by 2.4. Precision was higher in four of the five seed pairs, making higher precision and fewer false-positive candidates the clearest features of the mean screening results. Table~\ref{tab:cbam_increment} reports the complete paired estimates and intervals.
+
+Recall changes varied by defect class (Figure~\ref{fig:application}b). Mean recall was higher for corrosion and hidden crazing, but slightly lower for crazing, cracks, surface damage, and lightning damage. These results support evaluating localization and screening separately and considering class-specific behavior when selecting operating thresholds.
+\begin{figure}[tbp]
+\begin{adjustwidth}{-\extralength}{0cm}
+\centering\includegraphics[width=\fulllength]{fig6.png}
+\caption{Overall and classwise screening differences at locked thresholds. Epoch-200 weights are used, and thresholds are selected exclusively on the common A validation set. (\textbf{a}) F1 differences from unmodified YOLOv8n; (\textbf{b}) classwise recall differences between S2+CBAM and unmodified YOLOv8n. Points and intervals follow Figure~\ref{fig:localization}; all intervals are unadjusted for multiple comparisons. Horizontal axes are in percentage points. Values left of zero indicate performance below the baseline.}\label{fig:application}
+\end{adjustwidth}\end{figure}
+
+\FloatBarrier
+\rev{At validation-locked operating points, S1+CBAM achieved precision, recall, and F1 of 80.98\%, 68.15\%, and 73.85\%, respectively. The corresponding S2+CBAM means were higher, with fewer FP boxes (33.0 versus 38.4). These pooled instance-level measures describe candidate boxes in defect-containing images.}
+
+\Needspace{34\baselineskip}
+\subsection{\rev{False Alarms on External DTU Inspection Images}}\label{sec:dtu_false_alarms}
+\rev{S1+CBAM and S2+CBAM were evaluated on 11 uncropped UAV frames of one Nordtank turbine from the DTU inspection dataset (version 2)~\cite{dtuDrone2018} (Figure~\ref{fig:dtu_negative_frames}). Before inference, we excluded frames with published defect annotations~\cite{D01} and used AI-assisted visual review with OpenAI Codex to retain distinct views with no visible blade defects. Both configurations used the epoch-200 checkpoints for seeds 42--46 and the confidence thresholds locked on the WTBD A validation set. A frame with at least one retained detection counted as a false alarm, and each retained detection anywhere in the frame counted as a false-positive box. Averaged across seeds, S2+CBAM yielded a slightly lower image-level false-alarm rate than S1+CBAM (9.09\% vs.\ 10.91\%) and fewer false-positive boxes per image (0.109 vs.\ 0.164). These estimates describe the screened sample from one turbine.}
+
+\begin{figure}[H]
+\begin{adjustwidth}{-\extralength}{0cm}
+\centering
+\includegraphics[width=0.97\fulllength]{fig7.png}
+\caption{\rev{Full UAV frames with no visible blade defects used for the DTU false-alarm evaluation. Panels (\textbf{a},\textbf{b}) are from 2017 and panels (\textbf{c}--\textbf{k}) are from 2018. Separate panels show the full frames at reduced display size. Photographs from Shihavuddin and Chen~\cite{dtuDrone2018}, licensed under \href{https://creativecommons.org/licenses/by-nc/3.0/}{CC BY-NC 3.0}.}}\label{fig:dtu_negative_frames}
+\end{adjustwidth}
+\end{figure}
+
+\subsection{Threshold, Annotation, and Geometry Sensitivity}\label{sec:sensitivity}
+In a threshold sensitivity analysis using the validation-selected best checkpoints at a common confidence threshold of 0.25, mean F1 increased by 1.90 percentage points. FP and FN counts decreased by 9.4 and 2.0, respectively (Table~\ref{tab:thresholds}). This analysis uses the same numerical threshold for all configurations, whereas the primary screening analysis uses validation-selected thresholds for each run.
+% Table 12: thresholds
+\begin{table}[H]
+\begin{adjustwidth}{-\extralength}{0cm}
+\caption{Screening trade-offs at different confidence thresholds.}\label{tab:thresholds}
+\centering\small\setlength{\tabcolsep}{4.5pt}
+\begin{adjustbox}{max width=\fulllength}
+\begin{tabular}{llrrrrr}
+\toprule
+Threshold & Configuration & P (\%) & R (\%) & F1 (\%) & FP & FN \\
+\midrule
+0.10 & YOLOv8n (A) & 52.73 & 80.43 & 63.68 & 168.4 & 45.6 \\
+0.10 & A + ESB & 52.26 & 80.26 & 63.13 & 174.8 & 46.0 \\
+0.10 & S2 + CBAM & 54.72 & 81.80 & 65.56 & 158.0 & 42.4 \\
+0.25 & YOLOv8n (A) & 67.53 & 75.02 & 71.03 & 84.4 & 58.2 \\
+0.25 & A + ESB & 69.85 & 74.76 & 72.14 & 76.4 & 58.8 \\
+0.25 & S2 + CBAM & 70.23 & 75.88 & 72.93 & 75.0 & 56.2 \\
+0.50 & YOLOv8n (A) & 83.46 & 62.40 & 71.40 & 28.8 & 87.6 \\
+0.50 & A + ESB & 85.30 & 63.26 & 72.63 & 25.4 & 85.6 \\
+0.50 & S2 + CBAM & 86.72 & 66.78 & 75.44 & 23.8 & 77.4 \\
+0.75 & YOLOv8n (A) & 97.34 & 40.26 & 56.91 & 2.6 & 139.2 \\
+0.75 & A + ESB & 96.56 & 41.12 & 57.65 & 3.4 & 137.2 \\
+0.75 & S2 + CBAM & 94.76 & 44.38 & 60.38 & 5.8 & 129.6 \\
+\bottomrule\end{tabular}\end{adjustbox}
+\par\vspace{3pt}{\footnotesize\raggedright \rev{Validation best} checkpoints, A test annotations, and means across five seeds. Predictions are matched one-to-one in descending confidence order to same-class annotations at IoU $\geq0.5$, pooling all instances. The four thresholds are fixed sensitivity scenarios.\par}
+\end{adjustwidth}
+\end{table}
+
+Changing the reference annotations from A to B while retaining predictions and A-validation thresholds reduced mean F1 for S2+CBAM from 75.17\% to 72.10\%; the corresponding baseline values were 73.42\% and 71.13\% (Table~\ref{tab:truth_prf}). S2+CBAM therefore retained a higher mean F1 than the baseline under either annotation set, while the absolute scores depended on the reference annotations.
+% Table 13: truth_prf
+\begin{table}[H]
+\begin{adjustwidth}{-\extralength}{0cm}
+\caption{Screening sensitivity to reference annotation sets A and B.}\label{tab:truth_prf}
+\centering\small\setlength{\tabcolsep}{4.5pt}
+\begin{adjustbox}{max width=\fulllength}
+\begin{tabular}{lrrrrrr}
+\toprule
+ & \multicolumn{1}{c}{Reference A} & \multicolumn{5}{c}{Reference B} \\
+\cmidrule(lr){2-2}\cmidrule(lr){3-7}
+Configuration & F1 (\%) & P (\%) & R (\%) & F1 (\%) & \shortstack{FP\\(count)} & \shortstack{FN\\(count)} \\
+\midrule
+A baseline & 73.42 $\pm$ 1.49 & 76.49 $\pm$ 3.34 & 66.72 $\pm$ 4.03 & 71.13 $\pm$ 1.45 & 47.6 $\pm$ 10.8 & 76.2 $\pm$ 9.2 \\
+S2 & 73.75 $\pm$ 1.07 & 74.40 $\pm$ 3.20 & 69.00 $\pm$ 2.23 & 71.53 $\pm$ 1.34 & 54.8 $\pm$ 9.9 & 71.0 $\pm$ 5.1 \\
+A + ESB & 73.63 $\pm$ 1.63 & 78.08 $\pm$ 6.46 & 66.03 $\pm$ 3.17 & 71.35 $\pm$ 2.29 & 44.0 $\pm$ 19.3 & 77.8 $\pm$ 7.3 \\
+S2 + ESB & 74.33 $\pm$ 2.43 & 77.40 $\pm$ 3.29 & 66.81 $\pm$ 5.40 & 71.56 $\pm$ 2.78 & 45.2 $\pm$ 10.8 & 76.0 $\pm$ 12.4 \\
+A + CBAM & 73.62 $\pm$ 1.42 & 75.20 $\pm$ 4.60 & 68.21 $\pm$ 3.80 & 71.37 $\pm$ 1.52 & 52.6 $\pm$ 16.3 & 72.8 $\pm$ 8.7 \\
+\rev{S1 + CBAM} & \rev{$73.85 \pm 1.11$} & \rev{$77.61 \pm 5.17$} & \rev{$66.46 \pm 2.89$} & \rev{$71.45 \pm 1.17$} & \rev{$45.0 \pm 15.1$} & \rev{$76.8 \pm 6.6$} \\
+S2 + CBAM & 75.17 $\pm$ 2.26 & 79.04 $\pm$ 4.43 & 66.46 $\pm$ 3.36 & 72.10 $\pm$ 2.28 & 41.0 $\pm$ 11.8 & 76.8 $\pm$ 7.7 \\
+\bottomrule\end{tabular}\end{adjustbox}
+\par\vspace{3pt}{\footnotesize\raggedright Epoch-200 weights; thresholds locked on A validation data. Values are means $\pm$ sample standard deviations across five seeds. P, R, and F1 are percentages. Only reference boxes and classes are replaced; predictions, thresholds, and matching rules remain fixed. A and B contain 233 and 229 test boxes, respectively. Annotation-version details are given in Section~\ref{sec:data}.\par}
+\end{adjustwidth}
+\end{table}
+
+\rev{With reference B, S1+CBAM had mean AP50--95 of 37.71\% at epoch 200 and 37.05\% for the validation-selected best checkpoints; S2+CBAM reached 37.91\% and 37.95\%, respectively. The paired differences were 0.20 percentage points (95\% CI $-0.93$ to 1.34) and 0.90 percentage points ($-0.42$ to 2.21). Changing the reference therefore preserved the small epoch-200 separation and the larger best-checkpoint mean difference, while using the same test images.}
+
+For the 38 test objects with aspect ratio $\rho\geq5$, conditional AP50--95 averaged over the five represented classes with the validation-selected best checkpoints was $16.81 \pm 2.32$, $18.35 \pm 2.55$, $17.82 \pm 1.78$, and $18.91 \pm 1.81$\% for A, A+ESB, S2+ESB, and S2+CBAM, respectively (mean $\pm$ sample standard deviation across five seeds). This calculation matches annotations within the elongated-object group and ignores predictions matched one-to-one to annotations outside it.
+
+\subsection{Model Size and Computational Cost}\label{sec:cost}
+The two CBAMs add 2,964 parameters, approximately 0.10\% of the baseline; ESB adds 31,750 parameters, approximately 1.05\%. Forward latency is 7.17~ms with CBAM and 6.97~ms with ESB, compared with 5.76~ms for the baseline (Table~\ref{tab:cost}). S2 changes training targets and loss computation while leaving the inference network unchanged. Thus, the configuration improves localization with a small parameter increase and a measurable increase in forward latency.
+% Table 14: cost
+\begin{table}[H]
+\begin{adjustwidth}{-\extralength}{0cm}
+\caption{Model size and forward latency.}\label{tab:cost}
+\centering\small\setlength{\tabcolsep}{4.5pt}
+\begin{adjustbox}{max width=\fulllength}
+\begin{tabular}{lrrrr}
+\toprule
+Module & Parameters (M) & \shortstack{Parameter\\increase} & GFLOPs & \shortstack{Forward latency\\(ms)} \\
+\midrule
+None & 3.012 & --- & 11.81 & 5.76 \\
+ESB & 3.044 & +1.05\% & 12.04 & 6.97 \\
+CBAM & 3.015 & +0.10\% & 11.82 & 7.17 \\
+\bottomrule\end{tabular}\end{adjustbox}
+\par\vspace{3pt}{\footnotesize\raggedright NVIDIA GeForce RTX 4060 Laptop GPU; FP32; batch size 1; $768\times768$ input; unfused model. Timing used 200 warmup passes followed by 1000 measured passes, repeated three times and averaged. S2 changes training supervision without altering the inference architecture, so inference cost matches the single-annotation model with the same architecture.\par}
+\end{adjustwidth}
+\end{table}
+
+\FloatBarrier
+\subsection{\rev{Inspection Use and Processing Platforms}}\label{sec:deployment}
+\rev{In wind-farm inspection, images acquired by UAVs can be processed at a ground station to locate candidate blade defects. The candidate boxes and full-resolution imagery provide spatial information for blade inspection and maintenance planning.}
+
+\rev{The model-forward latency for $768\times768$ inputs increased from 5.76 to 7.17~ms, an increase of 1.41~ms (24.5\%). The separate $800\times800$ session measured mean image-processing times of 9.05, 9.68, and 9.76~ms for A, A+CBAM, and S2+CBAM, respectively (Table~\ref{tab:processing_800}). These measurements cover preprocessing, GPU transfer, forward execution, and NMS for preloaded images (Section~\ref{sec:benchmark}). S2+CBAM used a peak PyTorch GPU allocation of 96.5~MiB. A+CBAM and S2+CBAM gave similar within-session forward times of 6.28 and 6.12~ms, respectively. The measured workload makes the detector a candidate for evaluation on embedded platforms with GPU acceleration. Onboard feasibility depends on complete-pipeline latency, memory, power, and sustained thermal behavior on the target device.}
+
+
+\begin{table}[H]
+\begin{adjustwidth}{-\extralength}{0cm}
+\ifnum\revisionmode=1\color{red}\fi
+\caption{Laptop-GPU processing times at actual $800\times800$ input.}\label{tab:processing_800}
+\centering\small\setlength{\tabcolsep}{4pt}
+\begin{adjustbox}{max width=\fulllength}\begin{tabular}{lrrrrr}
+\toprule
+Configuration & \shortstack{Forward\\mean (ms)} & \shortstack{Forward\\95th (ms)} & \shortstack{Image processing\\mean (ms)} & \shortstack{Image processing\\95th (ms)} & \shortstack{Allocated GPU\\memory (MiB)} \\
+\midrule
+YOLOv8n (A) & 5.09 & 6.33 & 9.05 & 11.46 & 96.4 \\
+A + CBAM & 6.28 & 8.66 & 9.68 & 11.51 & 96.5 \\
+S2 + CBAM & 6.12 & 7.66 & 9.76 & 11.66 & 96.5 \\
+\bottomrule\end{tabular}\end{adjustbox}
+\par\vspace{3pt}{\footnotesize\raggedright FP32, batch size one, unfused models, seed-42 epoch-200 weights. Forward execution has 3,000 observations per model; image processing has 96 observations (32 preloaded images, three repetitions). The 95th percentiles summarize within-session timing variation. Memory denotes peak PyTorch allocation during image processing. Image acquisition, disk I/O, transmission, coordinate rescaling, visualization, and storage are excluded. The $768\times768$ forward benchmark in Table~\ref{tab:cost} was measured in a separate session.\par}
+\end{adjustwidth}\end{table}
+
+\Needspace{6\baselineskip}
+\subsection{\rev{Limitations and Generalization}}\label{sec:limitations}
+\rev{WTBD contains 1,065 images across six defect classes, of which 161 were held out for testing. The modest size and class imbalance, especially the limited number of lightning-damage examples, constrain classwise and subgroup estimates. Perceptual-hash grouping keeps near-duplicate images within the same subset. Evaluation across physical blades or wind farms requires independent collections with blade or site identifiers.}
+
+\rev{All 1,065 images have a defect box in annotation set A, and WTBD includes no verified defect-free images. False-positive counts for WTBD therefore describe extra candidate boxes in defect-bearing images. The exploratory DTU evaluation (Section~\ref{sec:dtu_false_alarms}) estimates false alarms on 11 visually screened frames of one turbine. Some frames share an inspection pass, and the screening applies to the blade surfaces visible in each frame. External validation requires labeled inspection images with and without blade defects across turbines and sites. Repeating the S1/S2 training comparison requires paired annotations.}
+
+\rev{The two annotation sets retain differences in boundary placement, class, and object coverage. In the full dataset, 92 paired objects have conflicting class labels and 41 objects appear only in set A. Both S1 and S2 use the class in set A when labels conflict, and the B-reference analysis assesses sensitivity to the evaluation annotations. The high proportion of identical pairs also limits how often S2 receives distinct boundary information.}
+
+\rev{The combined configuration has positive AP50--95 and common-object IoU intervals relative to the A baseline. The incremental intervals against A+CBAM and S1+CBAM span zero, leaving the magnitude and direction of the additional S2 effect uncertain. Screening and subgroup estimates have similar uncertainty. These unadjusted seed-paired intervals describe the fixed split and provide effect estimates rather than an equivalence test. Common-object IoU also conditions on defects detected by both models, so AP and recall remain necessary for interpreting localization changes.}
+
+\section{Conclusions}\label{sec:conclusions}
+\rev{On the grouped WTBD split, S2+CBAM improved AP50--95 by 2.30 percentage points and common-object IoU by 0.0180 at epoch 200 relative to YOLOv8n trained on annotation set A. The gains in detection and localization were positive in all five seed pairs.}
+
+\rev{The S2 and S1 comparison followed a similar checkpoint-dependent pattern with and without CBAM. At validation-selected best checkpoints, mean AP50--95 was 1.21 percentage points higher for S2 than for S1 without CBAM and 0.88 points higher with CBAM. At epoch 200, the mean differences were close to zero ($-0.04$ and $+0.06$ percentage points, respectively). With CBAM fixed, S2 also gave higher mean precision and F1 at validation-locked thresholds by 2.22 and 1.33 percentage points, respectively.}
+
+\rev{The gradient diagnostics showed that 6.01\% of training targets accounted for approximately 59--63\% of the sum of squared localization-gradient differences between S1 and S2 in the reference models. The difference between the training objectives was concentrated among defects with greater disagreement between their annotated boundaries.}
+
+\rev{At validation-locked thresholds, S2+CBAM reached mean precision, recall, and F1 of 83.19\%, 68.76\%, and 75.17\%, respectively. The parameter count increased by approximately 0.10\%, and forward latency rose from 5.76 to 7.17~ms on the laptop GPU. Processing a preloaded image at an actual $800\times800$ input took a mean of 9.76~ms. S2 brings both annotated boundaries into regression training, and CBAM refines channel and spatial features at P3 and P4. The combined detector improves defect detection and candidate-box localization in UAV imagery to support wind turbine blade inspection and maintenance planning.}
+
+\FloatBarrier
+\authorcontributions{Conceptualization, K.X.; methodology, K.X.; software, X.X.; formal analysis, X.X.; investigation, X.X.; data curation, X.X.; writing---original draft preparation, K.X.; writing---review and editing, K.X., X.X. and Y.Y.; visualization, X.X.; supervision, Y.Y.; funding acquisition, Y.Y. All authors have read and agreed to the published version of the manuscript.}
+\funding{This study has been supported by the Open Fund Support from the Sichuan Provincial Engineering Research Centre for Flight and Operational Support of Domestic Civil Aircraft (Grant No. MJCYZY202503); this work has also been supported by the Sichuan Provincial Civil Aviation Airport Smart Operation and Maintenance Engineering Research Centre Independent Research Project (Grant No. JCZX2023ZZ07 and JCZX2024ZZ25) and the Fundamental Research Funds for the Central Universities (Grant No. 26CAFUC01004, 25CAFUC04001, 26CAFUC03008).}
+\institutionalreview{This study uses publicly available image data and involves no human participants or animal experiments.}
+\informedconsent{Not applicable.}
+\dataavailability{\rev{The WTBD images and annotations are described by Ji et al.~\cite{ji2026} and are available on Figshare at \url{https://doi.org/10.6084/m9.figshare.30210175}. Code for WTBD data preparation, model training, evaluation, and reproduction of the WTBD results is publicly available at \url{https://github.com/xuxingyu0425/energiesCode} (commit \href{https://github.com/xuxingyu0425/energiesCode/commit/496be54cb732bce607a88be472f32dd80ef5f866}{\texttt{496be54}}). The original DTU inspection frames are available from Mendeley Data~\cite{dtuDrone2018} at \url{https://doi.org/10.17632/hd96prn3nc.2}. The evaluated DTU frame IDs and prediction counts are included in the accompanying reproducibility archive. No new blade images or manual defect annotations were collected.}}
+\acknowledgments{During the preparation of this manuscript, the authors used OpenAI Codex for language polishing \rev{and to assist with the visual screening of candidate DTU frames}. The authors have reviewed and edited all AI-generated outputs and take full responsibility for the content of this manuscript.}
+\conflictsofinterest{The authors declare no conflicts of interest.}
+\Needspace{29\baselineskip}
+\begin{adjustwidth}{-\extralength}{0cm}
+\specialsection{\rev{Nomenclature}}{%
+\begingroup
+\ifnum\revisionmode=1\color{red}\fi
+\small
+\renewcommand{\arraystretch}{1.05}
+\noindent
+\begin{tabularx}{0.995\linewidth}{@{}p{0.145\linewidth}>{\raggedright\arraybackslash}X@{\hspace{1.1em}}p{0.155\linewidth}>{\raggedright\arraybackslash}X@{}}
+\toprule
+\textbf{Symbol} & \textbf{Definition} & \textbf{Symbol} & \textbf{Definition}\\
+\midrule
+$M$ & Feature module at a fusion output &
+  $b^A,b^B,b^F$ & Original A and B boxes and their coordinate mean\\
+$F,F',F''$ & CBAM input, channel-reweighted feature, and spatially reweighted output &
+  $\hat b,\hat b_j$ & Regression prediction and decoded box at sample $j$\\
+$M_c(F),M_s(F')$ & CBAM channel weights and spatial mask &
+  $b_j^A,b_j^B,c^A$ & Assigned target boxes at $j$ and class from A\\
+$\sigma,\odot$ & Sigmoid and broadcast elementwise multiplication &
+  $\mathcal P,j,q_j$ & Positive-sample set, sample index, and assignment quality weight\\
+$X,Y$ & ESB input and output feature tensors &
+  $Z$ & Loss normalizer bounded below by 1\\
+$N,C,H,W$ & Batch size, channel count, height, and width &
+  $k,p,p_{j,k}$ & Edge index and predicted bin-probability vector for one edge\\
+$i,K_i,F_i$ & Branch index, kernel size, and branch features &
+  $t,t^A,t^B$ & Clipped target edge distances in feature-stride units\\
+$\boldsymbol w,w_i$ & Branch-weight vector and its $i$th coefficient &
+  $t_{j,k}^A,t_{j,k}^B$ & Target edge distances at sample $j$ and edge $k$\\
+$W_1,W_2,a_1,a_2$ & Weights and biases of the two gate convolutions &
+  $m,m+1$ & Lower and upper DFL interpolation bin indices\\
+AvgPool, MaxPool & Spatial mean and maximum pooling &
+  $p_m,p_{m+1}$ & Predicted probabilities in the neighboring bins\\
+$\operatorname{Max}_c,\operatorname{Mean}_c$ & Pooling by maximum and mean across channels &
+  $\ell,\ell_{\mathrm{DFL}}$ & Target-specific regression term and single-target DFL\\
+Conv, DWConv & Convolution and depthwise convolution &
+  $L_{\mathrm{reg}}^{S1},L_{\mathrm{reg}}^{S2}$ & S1 and S2 regression objectives\\
+Softmax, GAP & Softmax normalization and global average pooling &
+  $L_{\mathrm{box}},L_{\mathrm{cls}},L_{\mathrm{DFL}}$ & Box, classification, and distribution loss terms\\
+$a,b,C(a,b)$ & Candidate A/B boxes and their pairing cost &
+  $L$ & Weighted total detection loss\\
+$u,d,r$ & Pair IoU, normalized center distance, and area ratio &
+  $P,R,F_1$ & Precision, recall, and their harmonic mean\\
+$w,h,\rho$ & Box width, height, and orientation-independent aspect ratio &
+  TP, FP, FN & True-positive, false-positive, and false-negative counts\\
+$\|\cdot\|_2,\log$ & Euclidean norm and natural logarithm &
+  $\Delta,n$ & Paired difference in the stated order and number of seed pairs\\
+$\lfloor\cdot\rfloor,\lceil\cdot\rceil$ & Floor and ceiling operators &
+  $t$ (statistics), $\mathbb R$ & Student's $t$ distribution and real numbers\\
+\bottomrule
+\end{tabularx}
+\par\Needspace{28\baselineskip}\vspace{7pt}\noindent\textbf{Abbreviations}\par\medskip\noindent
+\begin{tabularx}{0.995\linewidth}{@{}p{0.145\linewidth}>{\raggedright\arraybackslash}X@{\hspace{1.1em}}p{0.155\linewidth}>{\raggedright\arraybackslash}X@{}}
+\toprule
+\textbf{Abbreviation} & \textbf{Definition} & \textbf{Abbreviation} & \textbf{Definition}\\
+\midrule
+A, B & Annotation sets and corresponding single-set models &
+  FP32 & 32-bit floating-point precision\\
+AP & Average precision &
+  GFLOPs & Billions of floating-point operations\\
+AP50, AP75 & AP at IoU 0.50 and 0.75 &
+  GPU & Graphics processing unit\\
+AP50--95 & Mean AP across 10 IoU thresholds &
+  IoU & Intersection over union\\
+BN & Batch normalization &
+  MLP & Multilayer perceptron\\
+C2f & Cross-stage partial bottleneck with two convolutions &
+  NMS & Non-maximum suppression\\
+CBAM & Convolutional block attention module &
+  P1--P5 & Feature-pyramid levels\\
+CBS & Convolution, batch normalization, and SiLU &
+  pp & Percentage points\\
+CI & Confidence interval &
+  S1, S2 & Coordinate-averaged and dual-target regression supervision\\
+CIoU & Complete intersection over union &
+  SiLU & Sigmoid-weighted linear unit\\
+COCO & Common Objects in Context &
+  SPPF & Spatial pyramid pooling fast\\
+CPU & Central processing unit &
+  TAL & Task-aligned assignment\\
+DFL & Distribution focal loss &
+  UAV & Unmanned aerial vehicle\\
+DTU & Technical University of Denmark &
+  VRAM & Video random access memory\\
+EMA & Exponential moving average &
+  WTBD & Wind Turbine Blade Defect dataset\\
+ESB & Elongated strip block &
+  YOLOv8n & Nano variant of You Only Look Once version 8\\
+\bottomrule
+\end{tabularx}
+\par
+\endgroup}
+\end{adjustwidth}
+% MDPI template: references and publisher note span the full page width.
+\begin{adjustwidth}{-\extralength}{0cm}
+\reftitle{References}
+\bibliography{references}
+\PublishersNote{}
+\end{adjustwidth}
+\end{document}

@@ -1,0 +1,71 @@
+{
+  "repository_commit": "ec6e3f8d0036e8d04e7c1c8dd0155e5f19cc224c",
+  "files": [
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/imadgohar/DTU-annotations/ec6e3f8d0036e8d04e7c1c8dd0155e5f19cc224c/README.md",
+      "bytes": 3149,
+      "sha256": "4674cf629521f6f47eb7d6b29f1debd75ac1af2e76f3096145d5c55bbb77974d"
+    },
+    {
+      "path": "annotations/test-HR.json",
+      "url": "https://raw.githubusercontent.com/imadgohar/DTU-annotations/ec6e3f8d0036e8d04e7c1c8dd0155e5f19cc224c/annotations/test-HR.json",
+      "bytes": 82787,
+      "sha256": "32d817527ed51a52fe9bc3858029f265b502e9d373a2ee0fa5f6b35e37f7753f"
+    },
+    {
+      "path": "annotations/test1024-s.json",
+      "url": "https://raw.githubusercontent.com/imadgohar/DTU-annotations/ec6e3f8d0036e8d04e7c1c8dd0155e5f19cc224c/annotations/test1024-s.json",
+      "bytes": 91127,
+      "sha256": "49b2a5d97c451c46ccb03bc0a347559202c5372c41f19bdaf73a0487fd1b6d78"
+    },
+    {
+      "path": "annotations/train1024-s.json",
+      "url": "https://raw.githubusercontent.com/imadgohar/DTU-annotations/ec6e3f8d0036e8d04e7c1c8dd0155e5f19cc224c/annotations/train1024-s.json",
+      "bytes": 414506,
+      "sha256": "c9a113b35ba039e6d7f00e4dec358310566b02786cf9d7e00f079c985c10b895"
+    },
+    {
+      "path": "annotations/val1024-s.json",
+      "url": "https://raw.githubusercontent.com/imadgohar/DTU-annotations/ec6e3f8d0036e8d04e7c1c8dd0155e5f19cc224c/annotations/val1024-s.json",
+      "bytes": 82410,
+      "sha256": "e7b183b513472a70c82517c7edbcbf9d6d494b22ebb113909841c479e3c636fe"
+    },
+    {
+      "path": "re-annotation/D2/test.json",
+      "url": "https://raw.githubusercontent.com/imadgohar/DTU-annotations/ec6e3f8d0036e8d04e7c1c8dd0155e5f19cc224c/re-annotation/D2/test.json",
+      "bytes": 90817,
+      "sha256": "2f3f86f6848acdb85de6597721444dbdb5cf39b6d9e76b7824de315d9c8a7da7"
+    },
+    {
+      "path": "re-annotation/D2/train.json",
+      "url": "https://raw.githubusercontent.com/imadgohar/DTU-annotations/ec6e3f8d0036e8d04e7c1c8dd0155e5f19cc224c/re-annotation/D2/train.json",
+      "bytes": 409821,
+      "sha256": "cd3c5ba210a1f272967be77baa0a2bd1eeeb5a854cd002a79fcf308945f71029"
+    },
+    {
+      "path": "re-annotation/D2/val.json",
+      "url": "https://raw.githubusercontent.com/imadgohar/DTU-annotations/ec6e3f8d0036e8d04e7c1c8dd0155e5f19cc224c/re-annotation/D2/val.json",
+      "bytes": 82744,
+      "sha256": "b090b25fe848377906eaeef265177d006f572a3016834b7c0758d335f69ba386"
+    },
+    {
+      "path": "re-annotation/D3/test.json",
+      "url": "https://raw.githubusercontent.com/imadgohar/DTU-annotations/ec6e3f8d0036e8d04e7c1c8dd0155e5f19cc224c/re-annotation/D3/test.json",
+      "bytes": 90817,
+      "sha256": "b02f0439877f7e366c7434d5a9413d0c88933ce158977ed82554e5bcc5e37b70"
+    },
+    {
+      "path": "re-annotation/D3/train.json",
+      "url": "https://raw.githubusercontent.com/imadgohar/DTU-annotations/ec6e3f8d0036e8d04e7c1c8dd0155e5f19cc224c/re-annotation/D3/train.json",
+      "bytes": 413793,
+      "sha256": "f1b6986d31075106731c8768e71317f50f8589c6d7bd64d04f9db54fb21a5042"
+    },
+    {
+      "path": "re-annotation/D3/val.json",
+      "url": "https://raw.githubusercontent.com/imadgohar/DTU-annotations/ec6e3f8d0036e8d04e7c1c8dd0155e5f19cc224c/re-annotation/D3/val.json",
+      "bytes": 84136,
+      "sha256": "82ca4febf973245d016f1075b2323afe2e8ce6f95cedc59bacbbe242a7678c9e"
+    }
+  ]
+}

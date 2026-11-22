@@ -1,0 +1,4 @@
+﻿Module,Parameters (M),Parameter / increase,GFLOPs,Forward latency / (ms)
+None,3.012,---,11.81,5.76
+ESB,3.044,+1.05\%,12.04,6.97
+CBAM,3.015,+0.10\%,11.82,7.17

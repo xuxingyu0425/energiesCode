@@ -1,0 +1,128 @@
+[
+  {
+    "main_table": 1,
+    "label": "tab:strategies",
+    "presentation_csv": "Table_01_tab_strategies.csv",
+    "rows": 5
+  },
+  {
+    "main_table": 2,
+    "label": "tab:classes",
+    "presentation_csv": "Table_02_tab_classes.csv",
+    "rows": 8
+  },
+  {
+    "main_table": 3,
+    "label": "tab:split",
+    "presentation_csv": "Table_03_tab_split.csv",
+    "rows": 5
+  },
+  {
+    "main_table": 4,
+    "label": "tab:datalist",
+    "presentation_csv": "Table_04_tab_datalist.csv",
+    "rows": 4
+  },
+  {
+    "main_table": 5,
+    "label": "tab:environment",
+    "presentation_csv": "Table_05_tab_environment.csv",
+    "rows": 10
+  },
+  {
+    "main_table": 6,
+    "label": "tab:detection_v12",
+    "presentation_csv": "Table_06_tab_detection_v12.csv",
+    "rows": 11
+  },
+  {
+    "main_table": 7,
+    "label": "tab:ap_ci_v12",
+    "presentation_csv": "Table_07_tab_ap_ci_v12.csv",
+    "rows": 17
+  },
+  {
+    "main_table": 8,
+    "label": "tab:loc_v12",
+    "presentation_csv": "Table_08_tab_loc_v12.csv",
+    "rows": 15
+  },
+  {
+    "main_table": 9,
+    "label": "tab:supervision_v13",
+    "presentation_csv": "Table_09_tab_supervision_v13.csv",
+    "rows": 5
+  },
+  {
+    "main_table": 10,
+    "label": "tab:cbam_increment",
+    "presentation_csv": "Table_10_tab_cbam_increment.csv",
+    "rows": 16
+  },
+  {
+    "main_table": 11,
+    "label": "tab:s1_cbam_direct",
+    "presentation_csv": "Table_11_tab_s1_cbam_direct.csv",
+    "rows": 12
+  },
+  {
+    "main_table": 12,
+    "label": "tab:mechanism_discrepancy",
+    "presentation_csv": "Table_12_tab_mechanism_discrepancy.csv",
+    "rows": 6
+  },
+  {
+    "main_table": 13,
+    "label": "tab:discrepancy_localization",
+    "presentation_csv": "Table_13_tab_discrepancy_localization.csv",
+    "rows": 7
+  },
+  {
+    "main_table": 14,
+    "label": "tab:application_v12",
+    "presentation_csv": "Table_14_tab_application_v12.csv",
+    "rows": 9
+  },
+  {
+    "main_table": 15,
+    "label": "tab:application_ci_v12",
+    "presentation_csv": "Table_15_tab_application_ci_v12.csv",
+    "rows": 8
+  },
+  {
+    "main_table": 16,
+    "label": "tab:thresholds",
+    "presentation_csv": "Table_16_tab_thresholds.csv",
+    "rows": 13
+  },
+  {
+    "main_table": 17,
+    "label": "tab:truth_prf",
+    "presentation_csv": "Table_17_tab_truth_prf.csv",
+    "rows": 9
+  },
+  {
+    "main_table": 18,
+    "label": "tab:class_precedence",
+    "presentation_csv": "Table_18_tab_class_precedence.csv",
+    "rows": 6
+  },
+  {
+    "main_table": 19,
+    "label": "tab:detector_benchmark",
+    "presentation_csv": "Table_19_tab_detector_benchmark.csv",
+    "rows": 5
+  },
+  {
+    "main_table": 20,
+    "label": "tab:cost",
+    "presentation_csv": "Table_20_tab_cost.csv",
+    "rows": 4
+  },
+  {
+    "main_table": 21,
+    "label": "tab:processing_800",
+    "presentation_csv": "Table_21_tab_processing_800.csv",
+    "rows": 4
+  }
+]

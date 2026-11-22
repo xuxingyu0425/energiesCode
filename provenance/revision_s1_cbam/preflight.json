@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "time": "2026-11-17 03:48:48 +0800",
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "full_initialization_identical": true,
+  "training_arguments_identical_except_output_paths": true
+}

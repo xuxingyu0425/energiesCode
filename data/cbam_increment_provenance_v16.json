@@ -1,0 +1,42 @@
+{
+  "comparison": "S2_CBAM minus A_CBAM",
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "unit": "training seed on a fixed split",
+  "ci": "unadjusted paired t, 95%, df=4",
+  "common_objects": "intersection recomputed for A_CBAM and S2_CBAM at confidence 0.25; same-class one-to-one matching at IoU >= 0.5",
+  "screening": "existing run-specific A-validation thresholds; epoch 200",
+  "sources": {
+    "source_data/yolov8_reeval_table.csv": "d9f236f7b52dafe509b9cc4cba7a34a03fce903cf58c71770ed355710da3b295",
+    "source_data/localization_v12.csv": "820e8fb3a4de0d88829eb0937aafa0c4523c84058aff791f525dcf09525c6bf0",
+    "source_data/locked_per_seed.csv": "46c1a0164e684aeb50517c604242a320824a675cde5092580bba00c3933b0b56",
+    "source_data/locked/A_CBAM_42_test.json": "8807c46ad1ab6c301b9b3b06c5d919ba4eb3b172eff5c891b03a9f0eec33f2d3",
+    "source_data/locked/S2_CBAM_42_test.json": "9f341432c1d63976e1f91e5581c695ec24d342324bf17388bc1a13d04d660a67",
+    "source_data/locked/A_CBAM_43_test.json": "a833aaaa7f7e8f59c4ced2de2ca301f56420a06c7ac4ec0555d03c13c908d316",
+    "source_data/locked/S2_CBAM_43_test.json": "09590a3be373dead1d714948c5ffa7770233eae93aaf4ed91e882fb5c3263246",
+    "source_data/locked/A_CBAM_44_test.json": "264203fd4289716e643b293fb067a00f58b6a229c5a87844d3f2a37f11df4def",
+    "source_data/locked/S2_CBAM_44_test.json": "2840f2ccbcdfc2683ff62ecd66db202f51853b9c49e85fcd216d346d4bb606aa",
+    "source_data/locked/A_CBAM_45_test.json": "48ee862fb4dcf66b5983bb2c04adcd9bbb5257c52710b190cdfc2701208ed9e9",
+    "source_data/locked/S2_CBAM_45_test.json": "57d1de5b1285378e5aa2e6c1c4b7ec4faf39d8780d81e1164219fbc23856c536",
+    "source_data/locked/A_CBAM_46_test.json": "2336f9cf253e9f7a4e5529fd8e64307d28dc1c54854601d0281fb9992ea89c43",
+    "source_data/locked/S2_CBAM_46_test.json": "31beb52f755abe7bfbc64e197ce24edfc925072f9d1edee4995d729ca7d1ce90",
+    "reproducibility/predictions/v8_A_CBAM_42_best_annotator_a.json": "a66e8bfecb7b3df1805dd6ba539d2a49dd3d2ed7f453eb310dbf630120fa5d63",
+    "reproducibility/predictions/v8_S2_CBAM_42_best_annotator_a.json": "cfcced89dbe0416850358e4069061171a0dce9443e45357892993eba1092146f",
+    "reproducibility/predictions/v8_A_CBAM_43_best_annotator_a.json": "4d5b1505e588828ba2dd71532ac5167a1bc14ce704c7ca180f68d9ce02623728",
+    "reproducibility/predictions/v8_S2_CBAM_43_best_annotator_a.json": "7a4ea2121fd468ccbb9b6ae1c7191a74d645f4fad2c18d9ad765d8864e098e9b",
+    "reproducibility/predictions/v8_A_CBAM_44_best_annotator_a.json": "3f9c2d48e267fa97379427491685af31e9df28d2c886c126e4e522faddf92490",
+    "reproducibility/predictions/v8_S2_CBAM_44_best_annotator_a.json": "67418e69f5052db6806c7e2d42f4fddfec9b0f5cbbbaac3ae0032652174b8f70",
+    "reproducibility/predictions/v8_A_CBAM_45_best_annotator_a.json": "6c7d2f8bd2652f0087594fc53c7eaf974aa76a399189a37223b68275f6618a23",
+    "reproducibility/predictions/v8_S2_CBAM_45_best_annotator_a.json": "26b2185ed1484a27ae15aaed83dd283cfe8d94c94fb34af8d58ff697cd587dd6",
+    "reproducibility/predictions/v8_A_CBAM_46_best_annotator_a.json": "d7da0e47c3ae3b0c87ff8d623b9189366886fb94369495a647d990a2fedd47ea",
+    "reproducibility/predictions/v8_S2_CBAM_46_best_annotator_a.json": "5f8e68e09699068b79b878a28d14249483b24b7c009eec1af7e3fb934038e2f6",
+    "source_data/prf_original_contrasts.json": "a48237710b26fa66568e2df1778577728fa272e2ae7ff3af05a71e9c1ce730d4",
+    "source_data/locked_contrasts.json": "a135ae454724b3882517d07a162c7f1b05bf6506046030a28520c8d075dbfaf0"
+  },
+  "legacy_AP_and_screening_reconciled": true
+}

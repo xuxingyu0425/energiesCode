@@ -1,0 +1,47 @@
+{
+  "method": "cbam",
+  "seed": 44,
+  "common_state_sha256": "8149137365c79923ae2a4ebe86af8e4c95bd1ce25702b693accdb56abc32d71b",
+  "common_state_tensors": 355,
+  "full_state_sha256": "328498d82af26c156c7a1ea1635fd8334b80dba437937d75d8990b77dd6cf127",
+  "new_state_keys": [
+    "model.15.feature_block.ChannelGate.mlp.1.weight",
+    "model.15.feature_block.ChannelGate.mlp.1.bias",
+    "model.15.feature_block.ChannelGate.mlp.3.weight",
+    "model.15.feature_block.ChannelGate.mlp.3.bias",
+    "model.15.feature_block.SpatialGate.spatial.conv.weight",
+    "model.15.feature_block.SpatialGate.spatial.bn.weight",
+    "model.15.feature_block.SpatialGate.spatial.bn.bias",
+    "model.15.feature_block.SpatialGate.spatial.bn.running_mean",
+    "model.15.feature_block.SpatialGate.spatial.bn.running_var",
+    "model.18.feature_block.ChannelGate.mlp.1.weight",
+    "model.18.feature_block.ChannelGate.mlp.1.bias",
+    "model.18.feature_block.ChannelGate.mlp.3.weight",
+    "model.18.feature_block.ChannelGate.mlp.3.bias",
+    "model.18.feature_block.SpatialGate.spatial.conv.weight",
+    "model.18.feature_block.SpatialGate.spatial.bn.weight",
+    "model.18.feature_block.SpatialGate.spatial.bn.bias",
+    "model.18.feature_block.SpatialGate.spatial.bn.running_mean",
+    "model.18.feature_block.SpatialGate.spatial.bn.running_var"
+  ],
+  "attention_layers": [
+    15,
+    18
+  ],
+  "parameters": 3014982,
+  "pretrained_weights_sha256": "f59b3d833e2ff32e194b5bb8e08d211dc7c5bdf144b90d2c8412c47ccfc83b36",
+  "shared_native_path_including_six_class_head": true,
+  "attention_rng_seed": 100044,
+  "attention_batchnorm": {
+    "model.15.feature_block.SpatialGate.spatial.bn": {
+      "eps": 0.001,
+      "momentum": 0.03
+    },
+    "model.18.feature_block.SpatialGate.spatial.bn": {
+      "eps": 0.001,
+      "momentum": 0.03
+    }
+  },
+  "batchnorm_policy": "Ultralytics global model initialization applies eps=.001/momentum=.03 to all BatchNorm2d, including canonical attention blocks",
+  "initial_forward_identical_to_baseline": false
+}

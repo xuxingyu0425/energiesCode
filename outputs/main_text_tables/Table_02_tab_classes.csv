@@ -1,0 +1,8 @@
+﻿Dataset label,English name,A boxes,A share (\%),B boxes,Elongated A (\%)
+craze,Crazing,257,16.2,263,16.0
+crack,Cracks,224,14.1,215,36.2
+corrosion,Corrosion,257,16.2,258,58.0
+hide\_craze,Hidden crazing,342,21.6,322,50.6
+surface\_injure,Surface damage,412,26.0,396,17.5
+thunderstrike,Lightning damage,92,5.8,89,7.6
+Total,--,1584,100.0,1543,33.0

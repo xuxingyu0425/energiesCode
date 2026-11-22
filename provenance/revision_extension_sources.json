@@ -1,0 +1,67 @@
+[
+  {
+    "source": "s1_cbam\\runner.py",
+    "bundle_path": "provenance\\revision_s1_cbam\\runner.py",
+    "sha256": "450ad039fc295d7a52626aa5951fe821a5db8f0085cd899f5fb469199660080a"
+  },
+  {
+    "source": "s1_cbam\\protocol.json",
+    "bundle_path": "provenance\\revision_s1_cbam\\protocol.json",
+    "sha256": "64e37a5ba277058f2f6e690a7caac3e6ab0f3a77b2838273692173cfabb41890"
+  },
+  {
+    "source": "s1_cbam\\preflight.json",
+    "bundle_path": "provenance\\revision_s1_cbam\\preflight.json",
+    "sha256": "5279bce868e5cc8d864d6211e8b9befdbcc153bf616fbe6b4c43fc5eca715061"
+  },
+  {
+    "source": "records\\cbam\\seed_42\\initialization.json",
+    "bundle_path": "provenance\\original_attention\\seed_42\\initialization.json",
+    "sha256": "19d3eaab9d7ea4f2a06a4fe92c9be2ebccd3db1e353c30216c0a9aa077faaf6a"
+  },
+  {
+    "source": "records\\cbam\\seed_42\\first_batch.json",
+    "bundle_path": "provenance\\original_attention\\seed_42\\first_batch.json",
+    "sha256": "bf0f644540554f1e4b521d1605e1806287dc7a96ee5192b438bd310062894551"
+  },
+  {
+    "source": "records\\cbam\\seed_43\\initialization.json",
+    "bundle_path": "provenance\\original_attention\\seed_43\\initialization.json",
+    "sha256": "6320e22cda3e9af4bc6a24e0c56eb9c5d3e47266f232901f0622b4c219ab577e"
+  },
+  {
+    "source": "records\\cbam\\seed_43\\first_batch.json",
+    "bundle_path": "provenance\\original_attention\\seed_43\\first_batch.json",
+    "sha256": "c62bcba9ae236b9e60cef93af0999b5ff9db094e9a0568377878de5c95f2ac85"
+  },
+  {
+    "source": "records\\cbam\\seed_44\\initialization.json",
+    "bundle_path": "provenance\\original_attention\\seed_44\\initialization.json",
+    "sha256": "dd6aad44dc0b8e1cfa0ee450eb8395c28a60de7f229c47ee19a7bb9a380c9b6c"
+  },
+  {
+    "source": "records\\cbam\\seed_44\\first_batch.json",
+    "bundle_path": "provenance\\original_attention\\seed_44\\first_batch.json",
+    "sha256": "1614b5a1a491b830f9a8402c0582891281ff300d703d76adf6a1efec6873db8e"
+  },
+  {
+    "source": "records\\cbam\\seed_45\\initialization.json",
+    "bundle_path": "provenance\\original_attention\\seed_45\\initialization.json",
+    "sha256": "b8b34c3701a796410d905e9c457fa9f1a2e43f6902ca5d93afe3a581b1dc9ef0"
+  },
+  {
+    "source": "records\\cbam\\seed_45\\first_batch.json",
+    "bundle_path": "provenance\\original_attention\\seed_45\\first_batch.json",
+    "sha256": "dd48f99c428021d1621af233e9373f085e8966665d8550410c6f63a3a5e7c5ef"
+  },
+  {
+    "source": "records\\cbam\\seed_46\\initialization.json",
+    "bundle_path": "provenance\\original_attention\\seed_46\\initialization.json",
+    "sha256": "51c3db6a8bab7d20a2a3acdf10a8e094be7620729093dfc74173a52079d93f1e"
+  },
+  {
+    "source": "records\\cbam\\seed_46\\first_batch.json",
+    "bundle_path": "provenance\\original_attention\\seed_46\\first_batch.json",
+    "sha256": "2cf341e2224dc3df508d92b6ea11e3ea0efd01dadbd5b054ab0c4122d50c8a53"
+  }
+]

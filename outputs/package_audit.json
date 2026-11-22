@@ -1,0 +1,17 @@
+{
+  "copied_fingerprints_verified": 306,
+  "image_partition": {
+    "train": 744,
+    "test": 161,
+    "val": 160
+  },
+  "phash_groups": 750,
+  "group_cross_partition_overlap": false,
+  "original_training_argument_files": 40,
+  "original_epoch_logs": 40,
+  "epochs_per_run": 200,
+  "original_checkpoint_manifest_rows": 80,
+  "missing_local_source_imports": [],
+  "source_code_modified_during_audit": false,
+  "gpu_used": false
+}

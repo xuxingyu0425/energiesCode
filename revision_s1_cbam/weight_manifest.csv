@@ -1,0 +1,11 @@
+cell,seed,checkpoint,parameters,source_path,sha256,bytes
+S1_CBAM,42,best,3014982,E:\风机图像\papers\energies_revision_20261117\s1_cbam\runs\seed_42\weights\best.pt,a24733ccf185aef2482f4df56c440459622a714be82927d239490af0ad27f7db,6333180
+S1_CBAM,42,last,3014982,E:\风机图像\papers\energies_revision_20261117\s1_cbam\runs\seed_42\weights\last.pt,a24733ccf185aef2482f4df56c440459622a714be82927d239490af0ad27f7db,6333180
+S1_CBAM,43,best,3014982,E:\风机图像\papers\energies_revision_20261117\s1_cbam\runs\seed_43\weights\best.pt,634bded00405471a02c6413fd6a68a018b162b457f35ced5edfd73ec9eda1947,6333180
+S1_CBAM,43,last,3014982,E:\风机图像\papers\energies_revision_20261117\s1_cbam\runs\seed_43\weights\last.pt,8df2620953fab0ce8c090bd734b87939b7f713a2c195754cdc8c8278c972caa3,6333180
+S1_CBAM,44,best,3014982,E:\风机图像\papers\energies_revision_20261117\s1_cbam\runs\seed_44\weights\best.pt,7d4b11c59fb8d1ba9195ea725da1cddd7335f110e081eb6aaa449770cea4295c,6333180
+S1_CBAM,44,last,3014982,E:\风机图像\papers\energies_revision_20261117\s1_cbam\runs\seed_44\weights\last.pt,bdbe15c0dacebb6f85007be2aed6e08787c9b393ec505177a0c175e6560bcddd,6333180
+S1_CBAM,45,best,3014982,E:\风机图像\papers\energies_revision_20261117\s1_cbam\runs\seed_45\weights\best.pt,3459042bc3ad5d641452e42173995a565e9e8d7a27e39369c51de38c26851689,6333180
+S1_CBAM,45,last,3014982,E:\风机图像\papers\energies_revision_20261117\s1_cbam\runs\seed_45\weights\last.pt,f176dc91dbefcf6b3a09b272bbd39929d6d113890b55cb754731e45f07d0117c,6333180
+S1_CBAM,46,best,3014982,E:\风机图像\papers\energies_revision_20261117\s1_cbam\runs\seed_46\weights\best.pt,1d655476e4db2ceb4f8b2dae2726890578e9a6ff28267253121723c22846a7ca,6333180
+S1_CBAM,46,last,3014982,E:\风机图像\papers\energies_revision_20261117\s1_cbam\runs\seed_46\weights\last.pt,f0370d1989fc9a632c0ed8cf6f933ffe371b8b57a65eb6c7e7d64940816d5b40,6333180

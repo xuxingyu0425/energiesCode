@@ -1,0 +1,6 @@
+﻿Training stratum,Objects,Share (\%),S1 reference (\%),S2 reference (\%)
+Identical coordinates,743,65.64,$<10^{-8}$,$<10^{-8}$
+"Non-identical, annotation IoU $\geq0.95$",176,15.55,13.25,15.03
+$0.90\leq$ annotation IoU $<0.95$,113,9.98,27.45,22.20
+"Paired, annotation IoU $<0.90$",68,6.01,59.30,62.77
+Single-annotation fallback,32,2.83,$<10^{-8}$,$<10^{-8}$

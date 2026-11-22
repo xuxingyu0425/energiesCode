@@ -1,0 +1,6 @@
+{
+  "batch": 16,
+  "workers": 4,
+  "imgsz": 768,
+  "epochs": 200
+}

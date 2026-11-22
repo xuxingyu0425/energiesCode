@@ -1,0 +1,5 @@
+strategy,assignment,regression,classification
+A,A,A,A
+B,B,B,B
+S1,coordinate average,coordinate average,A on conflicts
+S2,coordinate average,equal mean of losses against A and B,A on conflicts

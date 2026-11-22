@@ -1,0 +1,476 @@
+{
+  "split_sizes": {
+    "train": 744,
+    "val": 160,
+    "test": 161
+  },
+  "split_sha256": "6fd96004adadd381c7633e4b73eeea1b3695c99233484a17068b6ec3469d73a5",
+  "a_priority_audit_sha256": "936ed4602972e5395c8fb091981b4fd449f358c7c5e5bb1fc1702f6f00766733",
+  "b_priority_audit_sha256": "d6ff810c6b3ca44a426c6c187cd566673d377e63d075df9011ae917250e28127",
+  "train_objects": 1132,
+  "changed_classes": 66,
+  "changed_images": 62,
+  "a_only_retained_in_train": 32,
+  "class_changes": [
+    {
+      "image": "16.jpg",
+      "label_row": 1,
+      "class_a": "craze",
+      "class_b": "hide_craze"
+    },
+    {
+      "image": "44.jpg",
+      "label_row": 1,
+      "class_a": "hide_craze",
+      "class_b": "craze"
+    },
+    {
+      "image": "50.jpg",
+      "label_row": 1,
+      "class_a": "craze",
+      "class_b": "hide_craze"
+    },
+    {
+      "image": "57.jpg",
+      "label_row": 2,
+      "class_a": "surface_injure",
+      "class_b": "corrosion"
+    },
+    {
+      "image": "61.jpg",
+      "label_row": 3,
+      "class_a": "craze",
+      "class_b": "hide_craze"
+    },
+    {
+      "image": "95.jpg",
+      "label_row": 2,
+      "class_a": "corrosion",
+      "class_b": "surface_injure"
+    },
+    {
+      "image": "106.jpg",
+      "label_row": 3,
+      "class_a": "surface_injure",
+      "class_b": "corrosion"
+    },
+    {
+      "image": "151.jpg",
+      "label_row": 1,
+      "class_a": "hide_craze",
+      "class_b": "craze"
+    },
+    {
+      "image": "158.jpg",
+      "label_row": 2,
+      "class_a": "corrosion",
+      "class_b": "surface_injure"
+    },
+    {
+      "image": "172.jpg",
+      "label_row": 2,
+      "class_a": "craze",
+      "class_b": "hide_craze"
+    },
+    {
+      "image": "192.jpg",
+      "label_row": 1,
+      "class_a": "surface_injure",
+      "class_b": "corrosion"
+    },
+    {
+      "image": "207.jpg",
+      "label_row": 2,
+      "class_a": "corrosion",
+      "class_b": "surface_injure"
+    },
+    {
+      "image": "228.jpg",
+      "label_row": 2,
+      "class_a": "hide_craze",
+      "class_b": "craze"
+    },
+    {
+      "image": "230.jpg",
+      "label_row": 2,
+      "class_a": "corrosion",
+      "class_b": "surface_injure"
+    },
+    {
+      "image": "276.jpg",
+      "label_row": 1,
+      "class_a": "hide_craze",
+      "class_b": "craze"
+    },
+    {
+      "image": "293.jpg",
+      "label_row": 1,
+      "class_a": "hide_craze",
+      "class_b": "craze"
+    },
+    {
+      "image": "299.jpg",
+      "label_row": 2,
+      "class_a": "hide_craze",
+      "class_b": "craze"
+    },
+    {
+      "image": "302.jpg",
+      "label_row": 1,
+      "class_a": "corrosion",
+      "class_b": "surface_injure"
+    },
+    {
+      "image": "312.jpg",
+      "label_row": 1,
+      "class_a": "craze",
+      "class_b": "hide_craze"
+    },
+    {
+      "image": "313.jpg",
+      "label_row": 1,
+      "class_a": "corrosion",
+      "class_b": "surface_injure"
+    },
+    {
+      "image": "320.jpg",
+      "label_row": 1,
+      "class_a": "hide_craze",
+      "class_b": "craze"
+    },
+    {
+      "image": "329.jpg",
+      "label_row": 1,
+      "class_a": "hide_craze",
+      "class_b": "craze"
+    },
+    {
+      "image": "364.jpg",
+      "label_row": 1,
+      "class_a": "hide_craze",
+      "class_b": "craze"
+    },
+    {
+      "image": "370.jpg",
+      "label_row": 2,
+      "class_a": "corrosion",
+      "class_b": "surface_injure"
+    },
+    {
+      "image": "384.jpg",
+      "label_row": 1,
+      "class_a": "corrosion",
+      "class_b": "surface_injure"
+    },
+    {
+      "image": "396.jpg",
+      "label_row": 2,
+      "class_a": "craze",
+      "class_b": "hide_craze"
+    },
+    {
+      "image": "407.jpg",
+      "label_row": 1,
+      "class_a": "surface_injure",
+      "class_b": "corrosion"
+    },
+    {
+      "image": "408.jpg",
+      "label_row": 2,
+      "class_a": "corrosion",
+      "class_b": "surface_injure"
+    },
+    {
+      "image": "429.jpg",
+      "label_row": 1,
+      "class_a": "craze",
+      "class_b": "hide_craze"
+    },
+    {
+      "image": "436.jpg",
+      "label_row": 1,
+      "class_a": "craze",
+      "class_b": "hide_craze"
+    },
+    {
+      "image": "451.jpg",
+      "label_row": 1,
+      "class_a": "corrosion",
+      "class_b": "surface_injure"
+    },
+    {
+      "image": "453.jpg",
+      "label_row": 1,
+      "class_a": "hide_craze",
+      "class_b": "craze"
+    },
+    {
+      "image": "456.jpg",
+      "label_row": 2,
+      "class_a": "hide_craze",
+      "class_b": "craze"
+    },
+    {
+      "image": "459.jpg",
+      "label_row": 1,
+      "class_a": "corrosion",
+      "class_b": "surface_injure"
+    },
+    {
+      "image": "459.jpg",
+      "label_row": 2,
+      "class_a": "corrosion",
+      "class_b": "surface_injure"
+    },
+    {
+      "image": "466.jpg",
+      "label_row": 1,
+      "class_a": "surface_injure",
+      "class_b": "corrosion"
+    },
+    {
+      "image": "484.jpg",
+      "label_row": 2,
+      "class_a": "surface_injure",
+      "class_b": "corrosion"
+    },
+    {
+      "image": "484.jpg",
+      "label_row": 3,
+      "class_a": "surface_injure",
+      "class_b": "corrosion"
+    },
+    {
+      "image": "490.jpg",
+      "label_row": 1,
+      "class_a": "surface_injure",
+      "class_b": "corrosion"
+    },
+    {
+      "image": "493.jpg",
+      "label_row": 1,
+      "class_a": "surface_injure",
+      "class_b": "corrosion"
+    },
+    {
+      "image": "493.jpg",
+      "label_row": 2,
+      "class_a": "surface_injure",
+      "class_b": "corrosion"
+    },
+    {
+      "image": "564.jpg",
+      "label_row": 1,
+      "class_a": "hide_craze",
+      "class_b": "craze"
+    },
+    {
+      "image": "595.jpg",
+      "label_row": 1,
+      "class_a": "surface_injure",
+      "class_b": "corrosion"
+    },
+    {
+      "image": "607.jpg",
+      "label_row": 1,
+      "class_a": "hide_craze",
+      "class_b": "craze"
+    },
+    {
+      "image": "616.jpg",
+      "label_row": 1,
+      "class_a": "hide_craze",
+      "class_b": "craze"
+    },
+    {
+      "image": "630.jpg",
+      "label_row": 1,
+      "class_a": "surface_injure",
+      "class_b": "corrosion"
+    },
+    {
+      "image": "639.jpg",
+      "label_row": 2,
+      "class_a": "surface_injure",
+      "class_b": "corrosion"
+    },
+    {
+      "image": "654.jpg",
+      "label_row": 1,
+      "class_a": "hide_craze",
+      "class_b": "craze"
+    },
+    {
+      "image": "664.jpg",
+      "label_row": 1,
+      "class_a": "surface_injure",
+      "class_b": "corrosion"
+    },
+    {
+      "image": "671.jpg",
+      "label_row": 1,
+      "class_a": "hide_craze",
+      "class_b": "craze"
+    },
+    {
+      "image": "671.jpg",
+      "label_row": 2,
+      "class_a": "surface_injure",
+      "class_b": "corrosion"
+    },
+    {
+      "image": "700.jpg",
+      "label_row": 1,
+      "class_a": "surface_injure",
+      "class_b": "corrosion"
+    },
+    {
+      "image": "711.jpg",
+      "label_row": 1,
+      "class_a": "surface_injure",
+      "class_b": "corrosion"
+    },
+    {
+      "image": "749.jpg",
+      "label_row": 1,
+      "class_a": "surface_injure",
+      "class_b": "corrosion"
+    },
+    {
+      "image": "754.jpg",
+      "label_row": 3,
+      "class_a": "hide_craze",
+      "class_b": "craze"
+    },
+    {
+      "image": "764.jpg",
+      "label_row": 2,
+      "class_a": "surface_injure",
+      "class_b": "corrosion"
+    },
+    {
+      "image": "815.jpg",
+      "label_row": 1,
+      "class_a": "corrosion",
+      "class_b": "surface_injure"
+    },
+    {
+      "image": "827.jpg",
+      "label_row": 3,
+      "class_a": "hide_craze",
+      "class_b": "craze"
+    },
+    {
+      "image": "852.jpg",
+      "label_row": 1,
+      "class_a": "corrosion",
+      "class_b": "surface_injure"
+    },
+    {
+      "image": "856.jpg",
+      "label_row": 3,
+      "class_a": "craze",
+      "class_b": "hide_craze"
+    },
+    {
+      "image": "860.jpg",
+      "label_row": 2,
+      "class_a": "surface_injure",
+      "class_b": "corrosion"
+    },
+    {
+      "image": "886.jpg",
+      "label_row": 1,
+      "class_a": "craze",
+      "class_b": "hide_craze"
+    },
+    {
+      "image": "902.jpg",
+      "label_row": 1,
+      "class_a": "corrosion",
+      "class_b": "surface_injure"
+    },
+    {
+      "image": "915.jpg",
+      "label_row": 1,
+      "class_a": "corrosion",
+      "class_b": "surface_injure"
+    },
+    {
+      "image": "956.jpg",
+      "label_row": 3,
+      "class_a": "surface_injure",
+      "class_b": "corrosion"
+    },
+    {
+      "image": "1016.jpg",
+      "label_row": 1,
+      "class_a": "corrosion",
+      "class_b": "surface_injure"
+    }
+  ],
+  "changed_label_hashes": {
+    "fused/labels/train/16.txt": "71b5e98f1f7908cee86bce2fbbdf197055a281bddd5a4da751729c729a4c9b2c",
+    "fused/labels/train/44.txt": "27239c09f177cb7340fd6f2c4eb541e88ad91cfccedf29d5c7690d50a514bac4",
+    "fused/labels/train/50.txt": "f75c9376a5dc0b0de5497c5c8ae0928694d7d8d2dfd548a3b083ce60f1278494",
+    "fused/labels/train/57.txt": "e2bd6e218e9642a4149fd251dc08945a7f0edcdb79443257473bc16194dd3a92",
+    "fused/labels/train/61.txt": "7915d2feac824501ca30e3859b57eb4da80919adc18fc4be75e967944458a4ba",
+    "fused/labels/train/95.txt": "5fb5fe825df16c7a0a63612096a45f04c6d8cb43ce83019fd9df08f55b8d7162",
+    "fused/labels/train/106.txt": "4206fd8dcac1165f36685e7e38877351741e6fa8932716c73cfb39d016745b5c",
+    "fused/labels/train/151.txt": "a181b4e237e902b6c9dbf0b225ec1bac26fd61a8799554140aa200019e7a5fed",
+    "fused/labels/train/158.txt": "930d3e3da0ecaf2b347778f0d528cd553d627b7a0bc73ef65a2b20c58758d5e2",
+    "fused/labels/train/172.txt": "01d554224209ab4f7e777354764ab2f05e9d34357098a77d9b06137eeaa36b6d",
+    "fused/labels/train/192.txt": "f24add726c93b68bde2ac426e49d06e99e0dd8655f2a0499570ff1f1a32372a0",
+    "fused/labels/train/207.txt": "58314c7a742cfed1cc9f85728c399e8520066530e9d7e091cd64a477b7f28702",
+    "fused/labels/train/228.txt": "584d3d262943b40481461fbff241469bc069977f2f7f1ae0c3f9028e1dc24dc3",
+    "fused/labels/train/230.txt": "bd95bb00ce17fd8f5c66200062e8fbc9d0343188bfba10b5c7d071b245b2ae14",
+    "fused/labels/train/276.txt": "c8657181bfbc234876ab1269fd9b39119a13dc5c7d9a030a9ae8950db118da18",
+    "fused/labels/train/293.txt": "173ebb9d5295668bd37d7fe3df321d26cd4e26847051c59b6f763cb5d56bc195",
+    "fused/labels/train/299.txt": "d6d69b4be398790fe470dd86a290f4afdec0887a07234232bc29c96047341a89",
+    "fused/labels/train/302.txt": "41860293173f8cd8d2fde860671e8cc82baf9f5deec8d9f41b0eff9c497f8388",
+    "fused/labels/train/312.txt": "1854e5ad3ae2c48a81341a8d8dd86dd61faad4a1c188f95c1ba44a64c74fe1b7",
+    "fused/labels/train/313.txt": "5da78e6493069803f80e772ce7f74f2b34a1a8bb0ba6095af3e9aa144388fe7e",
+    "fused/labels/train/320.txt": "538e130d5f2de1a16ca2c8307febf9b781241dcced98f8ac2bc2c7f06895d0fa",
+    "fused/labels/train/329.txt": "697d0da791a5de8acd52cd318ab17ce2c13d9dbc6ead457dfdc5346667205372",
+    "fused/labels/train/364.txt": "025898548b4c03bcfcb962709c41041edb5415f681f9b8b05b131fd0a04d3750",
+    "fused/labels/train/370.txt": "2c4dea53ebe8501701250f9982cac03aa6e3d2bc7bcdb04342b070296d9cd319",
+    "fused/labels/train/384.txt": "a9c6261c146431d8217d2ba4851664c6bc55c6c4e669d41d93d2bae5a065b3dd",
+    "fused/labels/train/396.txt": "d01a1a802a356ea117d3b826d08c7e89062773cd1fa9dca80ecc28f1e9ca3be9",
+    "fused/labels/train/407.txt": "df46b205c49652f2efb96adb9926e6203481e63420400d40f09e3725d36b84c6",
+    "fused/labels/train/408.txt": "bd2337df369b95b5fdbc11a9321e2708737be7cbf265e212ca95820c1c029866",
+    "fused/labels/train/429.txt": "b157a635b5b1a7b8678cb648baefe8c104039a38b3c7940b1d41acff2e1effa9",
+    "fused/labels/train/436.txt": "f8abeb7266de556deadf2e381e1c040b560edec3849d4afdb3dee2ab8752253e",
+    "fused/labels/train/451.txt": "115c46c1b958f7621626e6b9cc73c0e1c479d02b09e50b57ee943131839dad49",
+    "fused/labels/train/453.txt": "821bc105252762a480fd114ec8967b9e7aaa7411792be57d63ecb522ebdfd6bd",
+    "fused/labels/train/456.txt": "4773199072cd1942f02b17c0df28b60f017b191f84ce5fff85f59b8d8df5a7ce",
+    "fused/labels/train/459.txt": "5e892a72c8008ce030b66b7c7785597714a62339b9efdc35a3a052e3dbb56f2b",
+    "fused/labels/train/466.txt": "543f7395f6c231f779eabab27f52bd52e1174cd494a31e5e6bfc8063b8cbf4e0",
+    "fused/labels/train/484.txt": "965653db1d4642cde2689ff8f5145a67e9df1e504dcbb53b069a7019c2b1abe9",
+    "fused/labels/train/490.txt": "88b4a13712b86b54102d3e026f78e72471d255881051665c90b0522b5c193f8f",
+    "fused/labels/train/493.txt": "0da4badc4aefa55e777eb370451f59440d8d2911404b72387586ca100edc5a2f",
+    "fused/labels/train/564.txt": "4fc84efd818da8af822db9c28cc656df79870561c934067eeef31295c868c673",
+    "fused/labels/train/595.txt": "2b012d833fd5b9058f79b5e0c906ebe510d66ed1b67d43ce98e60521b7fe6392",
+    "fused/labels/train/607.txt": "ae763c82f613eac5e647ff39c36e1e1fd65526855fcd90d9ec2a32406c99b328",
+    "fused/labels/train/616.txt": "96f9e082995b4cd1aa98224af5ce1fc50054e969975dd699060462a7efb25d18",
+    "fused/labels/train/630.txt": "e87e7dff556ce80d1262612579138559fd570765e071fd4067d1cf1b2fcf8bac",
+    "fused/labels/train/639.txt": "db77ed421452d058c1de0e293d1725a851e17a9a59718c987a61d94c8b745157",
+    "fused/labels/train/654.txt": "68a560a0b1d43d5acbd7ef091df959bb30b40418d083b0b28c516a13851db143",
+    "fused/labels/train/664.txt": "f1d68ec94e1871b4a1b81b46c14e348cc72246c80b04bde774e94d1c287939a3",
+    "fused/labels/train/671.txt": "da5cd80931c0b86cd2c5157037d928eb4cb6f1e30988f5a37f9d78ea3f49a0d0",
+    "fused/labels/train/700.txt": "3543b8813f473cac0ab19b040c7b3bb608eca8c743b8ef283b7d35272677f9e7",
+    "fused/labels/train/711.txt": "210b0910c464a12fa445852741c65c9d32bb89f0c952a77e8cbc74da307d03c2",
+    "fused/labels/train/749.txt": "47fabf7b56ce4d0728d042f1a1dafaf6aa0eefd131e8994df223b80c3061438c",
+    "fused/labels/train/754.txt": "b9595275419414ddac7e67b3fee46e51dc835f83292ddeca493563efd5676107",
+    "fused/labels/train/764.txt": "142a1cbfe45ebfb615c21bdc32ad9780c14725af22eb1a167117d2fb9ee8cf78",
+    "fused/labels/train/815.txt": "67850fdfd837a1263634783fe5100883051693a70dceaeac7833058ba8bc6f98",
+    "fused/labels/train/827.txt": "0717a1c1977b2983e777900dac9ff5b35631bd58c82509b6397b1f9941e82f97",
+    "fused/labels/train/852.txt": "5da78e6493069803f80e772ce7f74f2b34a1a8bb0ba6095af3e9aa144388fe7e",
+    "fused/labels/train/856.txt": "81285e8702406bcd25da64636857adf0b6bff85fe29e6c4cc655ccba27409a0d",
+    "fused/labels/train/860.txt": "1c408515146e42d95a5f8cbc1cc4c232d1309ff7d6b83574e887bab11d949901",
+    "fused/labels/train/886.txt": "70b143a41bafb9d78a7632383cefdf829a496d1cd02bbc481cdd952da3ec9edd",
+    "fused/labels/train/902.txt": "9d7aa5543686e7efa9a517b74eccde668ca827c3a48376182b8019abe7ee4986",
+    "fused/labels/train/915.txt": "8ec4ad7ed16f572b05d193ba0686fbfdba1fefeeeeed82fe7b668d752c9fd78b",
+    "fused/labels/train/956.txt": "2334835c0817e98a16e0018887d1238d3861595f2dc30c9da73f23a349cd5145",
+    "fused/labels/train/1016.txt": "bf7300f8332bd72e25ffc21773531f23b866f52512f5c56cfcf193f35d433edf"
+  }
+}

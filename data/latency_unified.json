@@ -1,0 +1,73 @@
+{
+  "v8_none": {
+    "run": "runs_yolov8_ab_s2_f1_v1/v8_a_f0/seed_42",
+    "params": 3012018,
+    "ms_rounds": [
+      5.6866141999998945,
+      5.776423700001033,
+      5.826860200002557
+    ],
+    "ms": 5.763299366667828
+  },
+  "v8_esb": {
+    "run": "runs_controls_esb_v2/v8_a_esb/seed_42",
+    "params": 3043768,
+    "ms_rounds": [
+      7.117790599993896,
+      6.966412899993884,
+      6.833345699997153
+    ],
+    "ms": 6.972516399994977
+  },
+  "v8_cbam": {
+    "run": "runs_yolov8_dual_fusion_v1/v8_a_cbam/seed_42",
+    "params": 3014982,
+    "ms_rounds": [
+      6.9395086000004085,
+      7.2725527999937185,
+      7.290453900001012
+    ],
+    "ms": 7.16750509999838
+  },
+  "v11_none": {
+    "run": "runs/a_primary_yolo11n",
+    "params": 2591010,
+    "ms_rounds": [
+      8.427282900003775,
+      8.547663800003647,
+      8.454772600001888
+    ],
+    "ms": 8.476573100003103
+  },
+  "v11_esb": {
+    "run": "runs_controls_esb_v2/v11_a_esb/seed_42",
+    "params": 2622760,
+    "ms_rounds": [
+      9.601024499999767,
+      9.644810500001768,
+      9.54900340000313
+    ],
+    "ms": 9.598279466668222
+  },
+  "v11_cbam": {
+    "run": "runs_yolo11_a_cbam_v1/a_cbam/seed_42",
+    "params": 2593974,
+    "ms_rounds": [
+      9.559372700001404,
+      9.224892099999124,
+      8.73660640000162
+    ],
+    "ms": 9.173623733334049
+  },
+  "_meta": {
+    "device": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "torch": "2.3.1+cu121",
+    "dtype": "fp32",
+    "batch": 1,
+    "imgsz": 768,
+    "warmup": 200,
+    "iters": 1000,
+    "rounds": 3,
+    "note": "ms = mean per-image forward latency over 3 rounds"
+  }
+}

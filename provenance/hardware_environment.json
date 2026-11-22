@@ -1,0 +1,20 @@
+{
+  "recorded_date": "2026-11-17",
+  "timezone": "Asia/Shanghai",
+  "author_confirmed_same_training_computer": true,
+  "os_build_is_current_observation_not_historical_record": true,
+  "CPU": {
+    "Name": "13th Gen Intel(R) Core(TM) i9-13980HX",
+    "NumberOfCores": 24,
+    "NumberOfLogicalProcessors": 32
+  },
+  "OS": {
+    "Caption": "Microsoft Windows 11 家庭中文版",
+    "Version": "10.0.26100",
+    "BuildNumber": "26100",
+    "OSArchitecture": "64 位"
+  },
+  "Memory": {
+    "TotalPhysicalMemory": 33959731200
+  }
+}

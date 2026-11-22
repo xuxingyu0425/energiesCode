@@ -1,0 +1,528 @@
+{
+  "tables_checked": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14
+  ],
+  "rows_checked": 101,
+  "numerical_values_checked": 841,
+  "all_values_match_displayed_rounding": true,
+  "manuscript_name": "manuscript.tex",
+  "rows": [
+    {
+      "table": 2,
+      "row": "craze",
+      "numbers": 4
+    },
+    {
+      "table": 2,
+      "row": "crack",
+      "numbers": 4
+    },
+    {
+      "table": 2,
+      "row": "corrosion",
+      "numbers": 4
+    },
+    {
+      "table": 2,
+      "row": "hide\\_craze",
+      "numbers": 4
+    },
+    {
+      "table": 2,
+      "row": "surface\\_injure",
+      "numbers": 4
+    },
+    {
+      "table": 2,
+      "row": "thunderstrike",
+      "numbers": 4
+    },
+    {
+      "table": 2,
+      "row": "Total",
+      "numbers": 4
+    },
+    {
+      "table": 3,
+      "row": "Training",
+      "numbers": 3
+    },
+    {
+      "table": 3,
+      "row": "Validation",
+      "numbers": 3
+    },
+    {
+      "table": 3,
+      "row": "Test",
+      "numbers": 3
+    },
+    {
+      "table": 3,
+      "row": "Total",
+      "numbers": 3
+    },
+    {
+      "table": 4,
+      "row": "\\texttt{JPEGImages/*.jpg}",
+      "numbers": 1
+    },
+    {
+      "table": 4,
+      "row": "\\texttt{Annotations/*.xml}",
+      "numbers": 1
+    },
+    {
+      "table": 4,
+      "row": "\\texttt{annotation\\_second\\_person/*.xml}",
+      "numbers": 1
+    },
+    {
+      "table": 5,
+      "row": "YOLOv8n (A)",
+      "numbers": 12
+    },
+    {
+      "table": 5,
+      "row": "B only",
+      "numbers": 12
+    },
+    {
+      "table": 5,
+      "row": "S1",
+      "numbers": 12
+    },
+    {
+      "table": 5,
+      "row": "S2",
+      "numbers": 12
+    },
+    {
+      "table": 5,
+      "row": "A + ESB",
+      "numbers": 12
+    },
+    {
+      "table": 5,
+      "row": "A + CBAM",
+      "numbers": 12
+    },
+    {
+      "table": 5,
+      "row": "S2 + ESB",
+      "numbers": 12
+    },
+    {
+      "table": 5,
+      "row": "S2 + CBAM",
+      "numbers": 12
+    },
+    {
+      "table": 6,
+      "row": "Best / B only",
+      "numbers": 15
+    },
+    {
+      "table": 6,
+      "row": "Best / S1",
+      "numbers": 15
+    },
+    {
+      "table": 6,
+      "row": "Best / S2",
+      "numbers": 15
+    },
+    {
+      "table": 6,
+      "row": "Best / A + ESB",
+      "numbers": 15
+    },
+    {
+      "table": 6,
+      "row": "Best / A + CBAM",
+      "numbers": 15
+    },
+    {
+      "table": 6,
+      "row": "Best / S2 + ESB",
+      "numbers": 15
+    },
+    {
+      "table": 6,
+      "row": "Best / S2 + CBAM",
+      "numbers": 15
+    },
+    {
+      "table": 6,
+      "row": "Epoch 200 / B only",
+      "numbers": 15
+    },
+    {
+      "table": 6,
+      "row": "Epoch 200 / S1",
+      "numbers": 15
+    },
+    {
+      "table": 6,
+      "row": "Epoch 200 / S2",
+      "numbers": 15
+    },
+    {
+      "table": 6,
+      "row": "Epoch 200 / A + ESB",
+      "numbers": 15
+    },
+    {
+      "table": 6,
+      "row": "Epoch 200 / A + CBAM",
+      "numbers": 15
+    },
+    {
+      "table": 6,
+      "row": "Epoch 200 / S2 + ESB",
+      "numbers": 15
+    },
+    {
+      "table": 6,
+      "row": "Epoch 200 / S2 + CBAM",
+      "numbers": 15
+    },
+    {
+      "table": 7,
+      "row": "Best / YOLOv8n (A)",
+      "numbers": 4
+    },
+    {
+      "table": 7,
+      "row": "Best / S2",
+      "numbers": 10
+    },
+    {
+      "table": 7,
+      "row": "Best / A + ESB",
+      "numbers": 10
+    },
+    {
+      "table": 7,
+      "row": "Best / A + CBAM",
+      "numbers": 10
+    },
+    {
+      "table": 7,
+      "row": "Best / S2 + ESB",
+      "numbers": 10
+    },
+    {
+      "table": 7,
+      "row": "Best / S2 + CBAM",
+      "numbers": 10
+    },
+    {
+      "table": 7,
+      "row": "Epoch 200 / YOLOv8n (A)",
+      "numbers": 4
+    },
+    {
+      "table": 7,
+      "row": "Epoch 200 / S2",
+      "numbers": 10
+    },
+    {
+      "table": 7,
+      "row": "Epoch 200 / A + ESB",
+      "numbers": 10
+    },
+    {
+      "table": 7,
+      "row": "Epoch 200 / A + CBAM",
+      "numbers": 10
+    },
+    {
+      "table": 7,
+      "row": "Epoch 200 / S2 + ESB",
+      "numbers": 10
+    },
+    {
+      "table": 7,
+      "row": "Epoch 200 / S2 + CBAM",
+      "numbers": 10
+    },
+    {
+      "table": 8,
+      "row": "Best",
+      "numbers": 5
+    },
+    {
+      "table": 8,
+      "row": "Best",
+      "numbers": 5
+    },
+    {
+      "table": 8,
+      "row": "Epoch 200",
+      "numbers": 5
+    },
+    {
+      "table": 8,
+      "row": "Epoch 200",
+      "numbers": 5
+    },
+    {
+      "table": 9,
+      "row": "Epoch 200",
+      "numbers": 5
+    },
+    {
+      "table": 9,
+      "row": "Epoch 200",
+      "numbers": 5
+    },
+    {
+      "table": 9,
+      "row": "Epoch 200",
+      "numbers": 5
+    },
+    {
+      "table": 9,
+      "row": "Epoch 200",
+      "numbers": 5
+    },
+    {
+      "table": 9,
+      "row": "Epoch 200",
+      "numbers": 5
+    },
+    {
+      "table": 9,
+      "row": "Best",
+      "numbers": 5
+    },
+    {
+      "table": 9,
+      "row": "Best",
+      "numbers": 5
+    },
+    {
+      "table": 9,
+      "row": "Best",
+      "numbers": 5
+    },
+    {
+      "table": 9,
+      "row": "Best",
+      "numbers": 5
+    },
+    {
+      "table": 9,
+      "row": "Best",
+      "numbers": 5
+    },
+    {
+      "table": 9,
+      "row": "Epoch 200, locked",
+      "numbers": 5
+    },
+    {
+      "table": 9,
+      "row": "Epoch 200, locked",
+      "numbers": 5
+    },
+    {
+      "table": 9,
+      "row": "Epoch 200, locked",
+      "numbers": 5
+    },
+    {
+      "table": 9,
+      "row": "Epoch 200, locked",
+      "numbers": 5
+    },
+    {
+      "table": 9,
+      "row": "Epoch 200, locked",
+      "numbers": 5
+    },
+    {
+      "table": 10,
+      "row": "YOLOv8n (A)",
+      "numbers": 8
+    },
+    {
+      "table": 10,
+      "row": "S2",
+      "numbers": 8
+    },
+    {
+      "table": 10,
+      "row": "A + ESB",
+      "numbers": 8
+    },
+    {
+      "table": 10,
+      "row": "S2 + ESB",
+      "numbers": 8
+    },
+    {
+      "table": 10,
+      "row": "A + CBAM",
+      "numbers": 8
+    },
+    {
+      "table": 10,
+      "row": "S2 + CBAM",
+      "numbers": 8
+    },
+    {
+      "table": 10,
+      "row": "S1",
+      "numbers": 8
+    },
+    {
+      "table": 11,
+      "row": "S1",
+      "numbers": 15
+    },
+    {
+      "table": 11,
+      "row": "S2",
+      "numbers": 15
+    },
+    {
+      "table": 11,
+      "row": "A + ESB",
+      "numbers": 15
+    },
+    {
+      "table": 11,
+      "row": "A + CBAM",
+      "numbers": 15
+    },
+    {
+      "table": 11,
+      "row": "S2 + ESB",
+      "numbers": 15
+    },
+    {
+      "table": 11,
+      "row": "S2 + CBAM",
+      "numbers": 15
+    },
+    {
+      "table": 12,
+      "row": "0.10",
+      "numbers": 5
+    },
+    {
+      "table": 12,
+      "row": "0.25",
+      "numbers": 5
+    },
+    {
+      "table": 12,
+      "row": "0.50",
+      "numbers": 5
+    },
+    {
+      "table": 12,
+      "row": "0.75",
+      "numbers": 5
+    },
+    {
+      "table": 12,
+      "row": "0.10",
+      "numbers": 5
+    },
+    {
+      "table": 12,
+      "row": "0.25",
+      "numbers": 5
+    },
+    {
+      "table": 12,
+      "row": "0.50",
+      "numbers": 5
+    },
+    {
+      "table": 12,
+      "row": "0.75",
+      "numbers": 5
+    },
+    {
+      "table": 12,
+      "row": "0.10",
+      "numbers": 5
+    },
+    {
+      "table": 12,
+      "row": "0.25",
+      "numbers": 5
+    },
+    {
+      "table": 12,
+      "row": "0.50",
+      "numbers": 5
+    },
+    {
+      "table": 12,
+      "row": "0.75",
+      "numbers": 5
+    },
+    {
+      "table": 13,
+      "row": "A baseline",
+      "numbers": 12
+    },
+    {
+      "table": 13,
+      "row": "S2",
+      "numbers": 12
+    },
+    {
+      "table": 13,
+      "row": "A + ESB",
+      "numbers": 12
+    },
+    {
+      "table": 13,
+      "row": "S2 + ESB",
+      "numbers": 12
+    },
+    {
+      "table": 13,
+      "row": "A + CBAM",
+      "numbers": 12
+    },
+    {
+      "table": 13,
+      "row": "S2 + CBAM",
+      "numbers": 12
+    },
+    {
+      "table": 14,
+      "row": "None",
+      "numbers": 3
+    },
+    {
+      "table": 14,
+      "row": "ESB",
+      "numbers": 4
+    },
+    {
+      "table": 14,
+      "row": "CBAM",
+      "numbers": 4
+    }
+  ]
+}

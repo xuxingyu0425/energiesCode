@@ -1,0 +1,14 @@
+{
+  "status": "complete",
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "primary_checkpoint": "last",
+  "comparison": "S2_CBAM minus S1_CBAM",
+  "paired_contrasts": "E:\\风机图像\\papers\\energies_revision_20261117\\s1_cbam\\analysis\\paired_S2_minus_S1_contrasts.csv",
+  "analysis_provenance": "E:\\风机图像\\papers\\energies_revision_20261117\\s1_cbam\\analysis\\analysis_provenance.json"
+}

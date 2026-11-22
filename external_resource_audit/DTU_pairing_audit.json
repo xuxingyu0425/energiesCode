@@ -1,0 +1,222 @@
+{
+  "method": "same filename, same class, maximum-total-IoU Hungarian assignment, retain IoU>=0.5; exact xywh tolerance 1e-4 px",
+  "warning": "Diagnostic pairing does not prove independent annotators. Inferred parent ID strips two trailing numeric patch indices; raw-image identity/overlap with WTBD was not checked because images were not downloaded.",
+  "inventories": [
+    {
+      "variant": "base",
+      "split": "train",
+      "patch_images": 423,
+      "boxes": 559,
+      "inferred_source_images": 212,
+      "empty_patch_images": 0
+    },
+    {
+      "variant": "base",
+      "split": "val",
+      "patch_images": 82,
+      "boxes": 113,
+      "inferred_source_images": 44,
+      "empty_patch_images": 0
+    },
+    {
+      "variant": "base",
+      "split": "test",
+      "patch_images": 93,
+      "boxes": 124,
+      "inferred_source_images": 45,
+      "empty_patch_images": 0
+    },
+    {
+      "variant": "D2",
+      "split": "train",
+      "patch_images": 421,
+      "boxes": 559,
+      "inferred_source_images": 211,
+      "empty_patch_images": 0
+    },
+    {
+      "variant": "D2",
+      "split": "val",
+      "patch_images": 82,
+      "boxes": 115,
+      "inferred_source_images": 44,
+      "empty_patch_images": 0
+    },
+    {
+      "variant": "D2",
+      "split": "test",
+      "patch_images": 93,
+      "boxes": 124,
+      "inferred_source_images": 45,
+      "empty_patch_images": 0
+    },
+    {
+      "variant": "D3",
+      "split": "train",
+      "patch_images": 423,
+      "boxes": 566,
+      "inferred_source_images": 212,
+      "empty_patch_images": 0
+    },
+    {
+      "variant": "D3",
+      "split": "val",
+      "patch_images": 82,
+      "boxes": 118,
+      "inferred_source_images": 44,
+      "empty_patch_images": 0
+    },
+    {
+      "variant": "D3",
+      "split": "test",
+      "patch_images": 93,
+      "boxes": 124,
+      "inferred_source_images": 45,
+      "empty_patch_images": 0
+    }
+  ],
+  "comparisons": {
+    "D2": {
+      "train": {
+        "common_images": 421,
+        "base_boxes_common_images": 557,
+        "variant_boxes_common_images": 559,
+        "one_to_one_same_class_iou_ge_0_5_pairs": 554,
+        "matched_boxes_equal_within_1e_4_px": 554,
+        "common_images_with_identical_box_sets": 418,
+        "common_images_with_box_count_change": 2,
+        "images_only_base": 2,
+        "base_unmatched_common_images": 3,
+        "variant_unmatched_common_images": 5,
+        "paired_fraction_of_base_boxes_on_common_images": 0.9946140035906643,
+        "paired_fraction_of_variant_boxes_on_common_images": 0.9910554561717353,
+        "equal_fraction_of_matched_pairs": 1.0
+      },
+      "val": {
+        "common_images": 82,
+        "base_boxes_common_images": 113,
+        "variant_boxes_common_images": 115,
+        "one_to_one_same_class_iou_ge_0_5_pairs": 112,
+        "matched_boxes_equal_within_1e_4_px": 110,
+        "common_images_with_identical_box_sets": 79,
+        "common_images_with_box_count_change": 2,
+        "matched_boxes_changed": 2,
+        "base_unmatched_common_images": 1,
+        "variant_unmatched_common_images": 3,
+        "paired_fraction_of_base_boxes_on_common_images": 0.9911504424778761,
+        "paired_fraction_of_variant_boxes_on_common_images": 0.9739130434782609,
+        "equal_fraction_of_matched_pairs": 0.9821428571428571
+      },
+      "test": {
+        "common_images": 93,
+        "base_boxes_common_images": 124,
+        "variant_boxes_common_images": 124,
+        "one_to_one_same_class_iou_ge_0_5_pairs": 124,
+        "matched_boxes_equal_within_1e_4_px": 124,
+        "common_images_with_identical_box_sets": 93,
+        "base_unmatched_common_images": 0,
+        "variant_unmatched_common_images": 0,
+        "paired_fraction_of_base_boxes_on_common_images": 1.0,
+        "paired_fraction_of_variant_boxes_on_common_images": 1.0,
+        "equal_fraction_of_matched_pairs": 1.0
+      },
+      "all_splits_pooled": {
+        "common_images": 596,
+        "base_boxes_common_images": 794,
+        "variant_boxes_common_images": 798,
+        "one_to_one_same_class_iou_ge_0_5_pairs": 790,
+        "matched_boxes_equal_within_1e_4_px": 788,
+        "common_images_with_identical_box_sets": 590,
+        "common_images_with_box_count_change": 4,
+        "matched_boxes_changed": 2,
+        "images_only_base": 2,
+        "base_unmatched_common_images": 4,
+        "variant_unmatched_common_images": 8,
+        "paired_fraction_of_base_boxes_on_common_images": 0.9949622166246851,
+        "paired_fraction_of_variant_boxes_on_common_images": 0.9899749373433584,
+        "equal_fraction_of_matched_pairs": 0.9974683544303797
+      }
+    },
+    "D3": {
+      "train": {
+        "common_images": 423,
+        "base_boxes_common_images": 559,
+        "variant_boxes_common_images": 566,
+        "one_to_one_same_class_iou_ge_0_5_pairs": 555,
+        "matched_boxes_equal_within_1e_4_px": 554,
+        "common_images_with_identical_box_sets": 418,
+        "common_images_with_box_count_change": 4,
+        "matched_boxes_changed": 1,
+        "base_unmatched_common_images": 4,
+        "variant_unmatched_common_images": 11,
+        "paired_fraction_of_base_boxes_on_common_images": 0.9928443649373881,
+        "paired_fraction_of_variant_boxes_on_common_images": 0.980565371024735,
+        "equal_fraction_of_matched_pairs": 0.9981981981981982
+      },
+      "val": {
+        "common_images": 82,
+        "base_boxes_common_images": 113,
+        "variant_boxes_common_images": 118,
+        "one_to_one_same_class_iou_ge_0_5_pairs": 110,
+        "matched_boxes_equal_within_1e_4_px": 109,
+        "common_images_with_identical_box_sets": 78,
+        "common_images_with_box_count_change": 3,
+        "matched_boxes_changed": 1,
+        "base_unmatched_common_images": 3,
+        "variant_unmatched_common_images": 8,
+        "paired_fraction_of_base_boxes_on_common_images": 0.9734513274336283,
+        "paired_fraction_of_variant_boxes_on_common_images": 0.9322033898305084,
+        "equal_fraction_of_matched_pairs": 0.990909090909091
+      },
+      "test": {
+        "common_images": 93,
+        "base_boxes_common_images": 124,
+        "variant_boxes_common_images": 124,
+        "one_to_one_same_class_iou_ge_0_5_pairs": 124,
+        "matched_boxes_equal_within_1e_4_px": 124,
+        "common_images_with_identical_box_sets": 93,
+        "base_unmatched_common_images": 0,
+        "variant_unmatched_common_images": 0,
+        "paired_fraction_of_base_boxes_on_common_images": 1.0,
+        "paired_fraction_of_variant_boxes_on_common_images": 1.0,
+        "equal_fraction_of_matched_pairs": 1.0
+      },
+      "all_splits_pooled": {
+        "common_images": 598,
+        "base_boxes_common_images": 796,
+        "variant_boxes_common_images": 808,
+        "one_to_one_same_class_iou_ge_0_5_pairs": 789,
+        "matched_boxes_equal_within_1e_4_px": 787,
+        "common_images_with_identical_box_sets": 589,
+        "common_images_with_box_count_change": 7,
+        "matched_boxes_changed": 2,
+        "base_unmatched_common_images": 7,
+        "variant_unmatched_common_images": 19,
+        "paired_fraction_of_base_boxes_on_common_images": 0.9912060301507538,
+        "paired_fraction_of_variant_boxes_on_common_images": 0.9764851485148515,
+        "equal_fraction_of_matched_pairs": 0.9974651457541192
+      }
+    }
+  },
+  "inferred_parent_source_overlap_between_splits": {
+    "base": {
+      "train_val": [],
+      "train_test": [],
+      "val_test": []
+    },
+    "D2": {
+      "train_val": [],
+      "train_test": [],
+      "val_test": []
+    },
+    "D3": {
+      "train_val": [],
+      "train_test": [],
+      "val_test": []
+    }
+  },
+  "patches_moved_between_base_and_variant_splits": {
+    "D2": [],
+    "D3": []
+  }
+}

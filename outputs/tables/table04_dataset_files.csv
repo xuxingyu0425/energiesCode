@@ -1,0 +1,4 @@
+relative_pattern,count,file_names_sha256
+JPEGImages/*.jpg,1065,c315ceecdf7852f712441993d5a2c311147731588aa354efb832bc62ab462cc2
+Annotations/*.xml,1065,a1721360fb32f61d5d5df52c3acd94b4a2ba5bd1b8547cb9646bd4dd3e5a0afe
+annotation_second_person/*.xml,1065,a018fc4ee39186e72c659a108bb9791b9d2fd7bd0808d762df9212f4bec39740

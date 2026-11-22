@@ -1,0 +1,59 @@
+{
+  "study_id": "WTBD-YOLOV8-AB-S2-F1-V1",
+  "question_1": "Does S2 outperform annotator-A-only and annotator-B-only training on YOLOv8n?",
+  "question_2": "Does F1-ESB transfer from YOLO11n to YOLOv8n under fixed S2 supervision?",
+  "runs_root": "E:\\风机图像\\experiments\\runs_yolov8_ab_s2_f1_v1",
+  "experiments": {
+    "v8_a_f0": {
+      "paper_id": "V8-A",
+      "label": "YOLOv8n annotator A",
+      "data": "wtbd_primary.yaml",
+      "supervision": "single_a",
+      "architecture": "f0"
+    },
+    "v8_b_f0": {
+      "paper_id": "V8-B",
+      "label": "YOLOv8n annotator B",
+      "data": "wtbd_second.yaml",
+      "supervision": "single_b",
+      "architecture": "f0"
+    },
+    "v8_s2_f0": {
+      "paper_id": "V8-S2-F0",
+      "label": "YOLOv8n S2-F0",
+      "data": "wtbd_fused.yaml",
+      "supervision": "s2_dual_target",
+      "architecture": "f0"
+    },
+    "v8_s2_f1": {
+      "paper_id": "V8-S2-F1",
+      "label": "YOLOv8n S2-F1 (ESB)",
+      "data": "wtbd_fused.yaml",
+      "supervision": "s2_dual_target",
+      "architecture": "f1_esb"
+    }
+  },
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "epochs": 200,
+  "imgsz": 768,
+  "batch": 16,
+  "workers": 4,
+  "order": "seed-major",
+  "primary_metric": "mean annotator-A/B held-out test mAP50-95 from validation-selected best.pt",
+  "epoch_metrics": "one row per epoch in each run_dir/results.csv",
+  "checkpoint_policy": "best.pt, last.pt, and save_period=50",
+  "dataset_audit_sha256": "936ed4602972e5395c8fb091981b4fd449f358c7c5e5bb1fc1702f6f00766733",
+  "pretrained_weights_sha256": "f59b3d833e2ff32e194b5bb8e08d211dc7c5bdf144b90d2c8412c47ccfc83b36",
+  "f0_config_sha256": "01339a3f46fca547bad6427afc6d84e8df18f1d23191c4a2033e6877cbb683a8",
+  "esb_config_sha256": "e60d7aa93dbf1644d6d6be9e8ef34f8828a84e4603e98d6fe92469ce6ca37379",
+  "python": "3.12.13",
+  "torch": "2.3.1+cu121",
+  "ultralytics": "8.4.37",
+  "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU"
+}

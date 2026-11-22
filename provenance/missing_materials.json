@@ -1,0 +1,29 @@
+{
+  "missing_original_run_files": [],
+  "new_S1_CBAM": "Completed: five 200-epoch runs, 25 native evaluation caches, five locked selections, full initialization/first-augmentation checks, logs, arguments and analysis bundled.",
+  "historical_optional_dependency_versions": "The extant CV_uav environment has now been inventoried. Original manifests independently attest only the core Python/torch/Ultralytics versions; later changes to optional packages cannot be excluded.",
+  "large_weights": "13 files included: 10 S1/S2+CBAM epoch-200 EMA weights, 2 seed-42 A/A+CBAM timing weights, and identical COCO initialization. Other original checkpoints have hashes/configs/logs, not bundled weights.",
+  "source_data_scope": "Copied historical output files; cached evaluation can reproduce published tables, not claim external validation.",
+  "pending_release_items": [
+    "Supply revised authored Figure 1 editable design source with the main-figure deliverables.",
+    "Author-code release licence/public repository identifier are not invented; none is required to inspect this local review attachment.",
+    "Data preparation and full fresh training/inference remain optional; a clean-environment end-to-end retraining of every historical run was not performed.",
+    "No new independent-dataset, defect-free-image, or embedded-device model evaluation was performed."
+  ],
+  "acceptance_completed": [
+    "306 copied source/data/config/log fingerprints verified",
+    "40 original runs with complete 200-epoch logs; 80 best/last weight manifest rows",
+    "35 validation/test locked operating points (70 subsets), maximum absolute count/metric error 1.4210854715202004e-14",
+    "Original Tables5-14 numerical exports",
+    "Original Figures2-5 numerical/matching/selection replay with local WTBD photos",
+    "Baseline, ESB, CBAM CPU forward and parameter counts in existing CV_uav Python environment",
+    "Tables2-14: 101 rows/841 displayed values match original manuscript rounding",
+    "All five CBAM initial full/common state SHA256 hashes reconstructed on CPU and match historical records",
+    "Portable S1 paired augmentation/native v8DetectionLoss criterion constructed on CPU; training is not run by this packaging task",
+    "Completed five-seed S1+CBAM control records and 10 best/last new weight hashes preserved",
+    "Portable CPU replay of all 34 S2-minus-S1 contrasts, 20 screening rows and 1608 common-object records; maximum error 3.552713678800501e-15",
+    "Original fixed-800 desktop-GPU benchmark actually executed: 3000 synchronized forward and 96 preloaded-image pipeline samples per model",
+    "Portable supplement generator executed; final five-page supplement compiled twice and visually reviewed",
+    "External resource audit records included, without redistributing source DTU annotation files"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "created_utc": "2026-10-14T17:17:45.704948+00:00",
+  "status": "retrospective supplementary evaluation; not preregistered or independent confirmation",
+  "checkpoint": "fixed epoch200 last.pt for every model; no checkpoint optimization",
+  "threshold_rule": "maximize micro F1 on A validation, grid .01-.99 step .01; smallest threshold breaks exact ties",
+  "test_rule": "freeze threshold per cell/seed before test inference; no test threshold adjustment",
+  "matching": "same-class confidence-descending one-to-one IoU>=.5",
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "cells": {
+    "A": "runs_yolov8_ab_s2_f1_v1/v8_a_f0",
+    "S2": "runs_yolov8_ab_s2_f1_v1/v8_s2_f0",
+    "A_ESB": "runs_controls_esb_v2/v8_a_esb",
+    "S2_ESB": "runs_yolov8_ab_s2_f1_v1/v8_s2_f1",
+    "A_CBAM": "runs_yolov8_dual_fusion_v1/v8_a_cbam",
+    "S2_CBAM": "runs_yolov8_attention_comparison_v1/cbam",
+    "S1": "runs_controls_esb_v2/v8_s1"
+  },
+  "ultralytics": "8.4.37",
+  "torch": "2.3.1+cu121"
+}

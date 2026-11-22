@@ -1,0 +1,128 @@
+{
+  "passed": true,
+  "CPU_only": true,
+  "no_new_inference": true,
+  "checked_reference_models": 10,
+  "all_legacy_AP_localization_screening_and_thresholds_reconciled": true,
+  "separate_reference_B_screening_reconciled": true,
+  "records": [
+    {
+      "checkpoint": "last",
+      "seed": 42,
+      "localization_reconciled": true,
+      "native_AP_reconciled": true,
+      "weight_hash_reconciled": true
+    },
+    {
+      "checkpoint": "last",
+      "seed": 43,
+      "localization_reconciled": true,
+      "native_AP_reconciled": true,
+      "weight_hash_reconciled": true
+    },
+    {
+      "checkpoint": "last",
+      "seed": 44,
+      "localization_reconciled": true,
+      "native_AP_reconciled": true,
+      "weight_hash_reconciled": true
+    },
+    {
+      "checkpoint": "last",
+      "seed": 45,
+      "localization_reconciled": true,
+      "native_AP_reconciled": true,
+      "weight_hash_reconciled": true
+    },
+    {
+      "checkpoint": "last",
+      "seed": 46,
+      "localization_reconciled": true,
+      "native_AP_reconciled": true,
+      "weight_hash_reconciled": true
+    },
+    {
+      "checkpoint": "best",
+      "seed": 42,
+      "localization_reconciled": true,
+      "native_AP_reconciled": true,
+      "weight_hash_reconciled": true
+    },
+    {
+      "checkpoint": "best",
+      "seed": 43,
+      "localization_reconciled": true,
+      "native_AP_reconciled": true,
+      "weight_hash_reconciled": true
+    },
+    {
+      "checkpoint": "best",
+      "seed": 44,
+      "localization_reconciled": true,
+      "native_AP_reconciled": true,
+      "weight_hash_reconciled": true
+    },
+    {
+      "checkpoint": "best",
+      "seed": 45,
+      "localization_reconciled": true,
+      "native_AP_reconciled": true,
+      "weight_hash_reconciled": true
+    },
+    {
+      "checkpoint": "best",
+      "seed": 46,
+      "localization_reconciled": true,
+      "native_AP_reconciled": true,
+      "weight_hash_reconciled": true
+    }
+  ],
+  "sources": {
+    "E:\\风机图像\\papers\\mdpi_wind_20261019_v25_en\\source_data\\yolov8_reeval_table.csv": "d9f236f7b52dafe509b9cc4cba7a34a03fce903cf58c71770ed355710da3b295",
+    "E:\\风机图像\\papers\\mdpi_wind_20261019_v25_en\\source_data\\localization_v12.csv": "820e8fb3a4de0d88829eb0937aafa0c4523c84058aff791f525dcf09525c6bf0",
+    "E:\\风机图像\\papers\\mdpi_wind_20261019_v25_en\\source_data\\locked_per_seed.csv": "46c1a0164e684aeb50517c604242a320824a675cde5092580bba00c3933b0b56",
+    "E:\\风机图像\\papers\\mdpi_wind_20261019_v25_en\\source_data\\annotation_sensitivity.csv": "79a4a0210a8bd3353a16702c023c6f19c7e7e4ca47f5bdeaf22633318b5da8ed",
+    "E:\\风机图像\\papers\\mdpi_wind_20261019_v25_en\\source_data\\cbam_increment_summary_v16.json": "22374f43675e4c8a7dff44d766da195f98ba3b7c19db868e1de8b805b62dc6cb",
+    "E:\\风机图像\\papers\\mdpi_wind_20261019_v25_en\\source_data\\locked\\S2_CBAM_42_test.json": "9f341432c1d63976e1f91e5581c695ec24d342324bf17388bc1a13d04d660a67",
+    "E:\\风机图像\\experiments\\runs_yolov8_attention_comparison_v1\\cbam\\seed_42\\weights\\last.pt": "3a2db266bf7220d203e873bfd273148b8b4d80ac613e76f36d8b6af9175be56b",
+    "E:\\风机图像\\papers\\mdpi_wind_20261019_v25_en\\source_data\\locked\\A_CBAM_42_test.json": "8807c46ad1ab6c301b9b3b06c5d919ba4eb3b172eff5c891b03a9f0eec33f2d3",
+    "E:\\风机图像\\papers\\mdpi_wind_20261019_v25_en\\source_data\\locked\\S2_CBAM_43_test.json": "09590a3be373dead1d714948c5ffa7770233eae93aaf4ed91e882fb5c3263246",
+    "E:\\风机图像\\experiments\\runs_yolov8_attention_comparison_v1\\cbam\\seed_43\\weights\\last.pt": "aad6fb387394060a455c93998fd13737d2dfadad803b71a9c653365c27362e3a",
+    "E:\\风机图像\\papers\\mdpi_wind_20261019_v25_en\\source_data\\locked\\A_CBAM_43_test.json": "a833aaaa7f7e8f59c4ced2de2ca301f56420a06c7ac4ec0555d03c13c908d316",
+    "E:\\风机图像\\papers\\mdpi_wind_20261019_v25_en\\source_data\\locked\\S2_CBAM_44_test.json": "2840f2ccbcdfc2683ff62ecd66db202f51853b9c49e85fcd216d346d4bb606aa",
+    "E:\\风机图像\\experiments\\runs_yolov8_attention_comparison_v1\\cbam\\seed_44\\weights\\last.pt": "a72d3d3eb997e22e01f3f68ae3d879526fbe0e047f5a2db017c77ebf636cc274",
+    "E:\\风机图像\\papers\\mdpi_wind_20261019_v25_en\\source_data\\locked\\A_CBAM_44_test.json": "264203fd4289716e643b293fb067a00f58b6a229c5a87844d3f2a37f11df4def",
+    "E:\\风机图像\\papers\\mdpi_wind_20261019_v25_en\\source_data\\locked\\S2_CBAM_45_test.json": "57d1de5b1285378e5aa2e6c1c4b7ec4faf39d8780d81e1164219fbc23856c536",
+    "E:\\风机图像\\experiments\\runs_yolov8_attention_comparison_v1\\cbam\\seed_45\\weights\\last.pt": "58710c2061528f213d04ce73ab6fd460bf048cedd43fa1c5767e84a60150e8d9",
+    "E:\\风机图像\\papers\\mdpi_wind_20261019_v25_en\\source_data\\locked\\A_CBAM_45_test.json": "48ee862fb4dcf66b5983bb2c04adcd9bbb5257c52710b190cdfc2701208ed9e9",
+    "E:\\风机图像\\papers\\mdpi_wind_20261019_v25_en\\source_data\\locked\\S2_CBAM_46_test.json": "31beb52f755abe7bfbc64e197ce24edfc925072f9d1edee4995d729ca7d1ce90",
+    "E:\\风机图像\\experiments\\runs_yolov8_attention_comparison_v1\\cbam\\seed_46\\weights\\last.pt": "f5f6931fe2e046833d632a72a793323e3c574e74c430edb5195dbab706ee4a1c",
+    "E:\\风机图像\\papers\\mdpi_wind_20261019_v25_en\\source_data\\locked\\A_CBAM_46_test.json": "2336f9cf253e9f7a4e5529fd8e64307d28dc1c54854601d0281fb9992ea89c43",
+    "E:\\风机图像\\papers\\mdpi_wind_20261019_v25_en\\reproducibility\\predictions\\v8_S2_CBAM_42_best_annotator_a.json": "cfcced89dbe0416850358e4069061171a0dce9443e45357892993eba1092146f",
+    "E:\\风机图像\\experiments\\runs_yolov8_attention_comparison_v1\\cbam\\seed_42\\weights\\best.pt": "bef440d81c8cc63602487e8c980b9aef2db271fab004d149c96e8e9a4891f32a",
+    "E:\\风机图像\\papers\\mdpi_wind_20261019_v25_en\\reproducibility\\predictions\\v8_A_CBAM_42_best_annotator_a.json": "a66e8bfecb7b3df1805dd6ba539d2a49dd3d2ed7f453eb310dbf630120fa5d63",
+    "E:\\风机图像\\papers\\mdpi_wind_20261019_v25_en\\reproducibility\\predictions\\v8_S2_CBAM_43_best_annotator_a.json": "7a4ea2121fd468ccbb9b6ae1c7191a74d645f4fad2c18d9ad765d8864e098e9b",
+    "E:\\风机图像\\experiments\\runs_yolov8_attention_comparison_v1\\cbam\\seed_43\\weights\\best.pt": "66513856e388591d78cec56c280430014d2b3abcc94d3e0c9296433da880aa58",
+    "E:\\风机图像\\papers\\mdpi_wind_20261019_v25_en\\reproducibility\\predictions\\v8_A_CBAM_43_best_annotator_a.json": "4d5b1505e588828ba2dd71532ac5167a1bc14ce704c7ca180f68d9ce02623728",
+    "E:\\风机图像\\papers\\mdpi_wind_20261019_v25_en\\reproducibility\\predictions\\v8_S2_CBAM_44_best_annotator_a.json": "67418e69f5052db6806c7e2d42f4fddfec9b0f5cbbbaac3ae0032652174b8f70",
+    "E:\\风机图像\\experiments\\runs_yolov8_attention_comparison_v1\\cbam\\seed_44\\weights\\best.pt": "7f2c3fa48e187c1a05b779e64c08af3f907a58c54a648b3f512f9224a249ece2",
+    "E:\\风机图像\\papers\\mdpi_wind_20261019_v25_en\\reproducibility\\predictions\\v8_A_CBAM_44_best_annotator_a.json": "3f9c2d48e267fa97379427491685af31e9df28d2c886c126e4e522faddf92490",
+    "E:\\风机图像\\papers\\mdpi_wind_20261019_v25_en\\reproducibility\\predictions\\v8_S2_CBAM_45_best_annotator_a.json": "26b2185ed1484a27ae15aaed83dd283cfe8d94c94fb34af8d58ff697cd587dd6",
+    "E:\\风机图像\\experiments\\runs_yolov8_attention_comparison_v1\\cbam\\seed_45\\weights\\best.pt": "d973a762bcc47fe8f3a50e07006bcf6398c2df762912d4fb9286b246918d6786",
+    "E:\\风机图像\\papers\\mdpi_wind_20261019_v25_en\\reproducibility\\predictions\\v8_A_CBAM_45_best_annotator_a.json": "6c7d2f8bd2652f0087594fc53c7eaf974aa76a399189a37223b68275f6618a23",
+    "E:\\风机图像\\papers\\mdpi_wind_20261019_v25_en\\reproducibility\\predictions\\v8_S2_CBAM_46_best_annotator_a.json": "5f8e68e09699068b79b878a28d14249483b24b7c009eec1af7e3fb934038e2f6",
+    "E:\\风机图像\\experiments\\runs_yolov8_attention_comparison_v1\\cbam\\seed_46\\weights\\best.pt": "aa510bba149128e049968a87330cc6e6fa9f591095f62f04c23b94499a425073",
+    "E:\\风机图像\\papers\\mdpi_wind_20261019_v25_en\\reproducibility\\predictions\\v8_A_CBAM_46_best_annotator_a.json": "d7da0e47c3ae3b0c87ff8d623b9189366886fb94369495a647d990a2fedd47ea",
+    "E:\\风机图像\\papers\\mdpi_wind_20261019_v25_en\\source_data\\locked\\S2_CBAM_42_val.json": "321aafe8a6216760ecf9f5df74e8e51fdd08d6600bc7e2faa49553aaaf473c58",
+    "E:\\风机图像\\papers\\mdpi_wind_20261019_v25_en\\source_data\\locked\\S2_CBAM_42_selection.json": "e59270f81b8b7dc7d01cdad94c3a640caaf368eff8e1774fc2377661ab44b54f",
+    "E:\\风机图像\\papers\\mdpi_wind_20261019_v25_en\\source_data\\locked\\S2_CBAM_43_val.json": "4ebbc8e30ed1d0cf86861f64d927163e328cd291437111d6ce5df4a78b298f52",
+    "E:\\风机图像\\papers\\mdpi_wind_20261019_v25_en\\source_data\\locked\\S2_CBAM_43_selection.json": "b90b0e4a66bf2b413dd72001c0576511405d53e0be47403e85b6a6f17a9fff34",
+    "E:\\风机图像\\papers\\mdpi_wind_20261019_v25_en\\source_data\\locked\\S2_CBAM_44_val.json": "bcc47f12ab76b5cc63d61c3cd02a54306463a755108573174cb7e7a60e4769da",
+    "E:\\风机图像\\papers\\mdpi_wind_20261019_v25_en\\source_data\\locked\\S2_CBAM_44_selection.json": "96961ec01a320cb644c2547170a91471a616961431787c26ab394619c5577db0",
+    "E:\\风机图像\\papers\\mdpi_wind_20261019_v25_en\\source_data\\locked\\S2_CBAM_45_val.json": "031d8f94c94bfd9f32c44dd61bb0e0a0bb4956147d50f48520e3fd4910567cf1",
+    "E:\\风机图像\\papers\\mdpi_wind_20261019_v25_en\\source_data\\locked\\S2_CBAM_45_selection.json": "84b2395d7c9c1ec3fd7b6f3a9d11f6abbdbb5fd51cd65ce533457b74826370c1",
+    "E:\\风机图像\\papers\\mdpi_wind_20261019_v25_en\\source_data\\locked\\S2_CBAM_46_val.json": "b2057bc1418a1dcb879c11ceed16e314b0cf3aa58906a81ace6b8eae1d037072",
+    "E:\\风机图像\\papers\\mdpi_wind_20261019_v25_en\\source_data\\locked\\S2_CBAM_46_selection.json": "00d58c398e953880c52319532405f1ae352feaae86fbd5ff3b12be45a88397e6"
+  },
+  "analysis_script_sha256": "d539b1df87bc4219e69ab8a1e3ae0b426591460b9bebeee6a5fa3165657bf8d4"
+}

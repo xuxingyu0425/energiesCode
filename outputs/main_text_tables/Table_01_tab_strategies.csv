@@ -1,0 +1,5 @@
+﻿Strategy,Assignment target,Regression target,Class
+A,$b^A$,$b^A$,A
+B,$b^B$,$b^B$,B
+S1,$b^{F}$,$b^{F}$,A if conflicting
+S2,$b^{F}$,"$b^A,b^B$ with weights $1/2$ each",A if conflicting

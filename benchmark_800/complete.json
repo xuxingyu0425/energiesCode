@@ -1,0 +1,68 @@
+{
+  "status": "complete",
+  "cells": [
+    "A",
+    "A_CBAM",
+    "S2_CBAM"
+  ],
+  "actual_shape": [
+    800,
+    800
+  ],
+  "rounds": 3,
+  "forward_samples_per_model": 3000,
+  "pipeline_samples_per_model": 96,
+  "no_training": true,
+  "no_embedded_device_claim": true,
+  "protocol_sha256": "d39e89b1c3ac7cf779f3a3de0b7ed23a13d351b0000451836ab6011301ffdd03",
+  "summary": [
+    {
+      "cell": "A",
+      "parameters": 3012018,
+      "forward_n": 3000,
+      "forward_mean_ms": 5.089079800037628,
+      "forward_p50_ms": 4.937350000545848,
+      "forward_p95_ms": 6.327765000605723,
+      "pipeline_n": 96,
+      "pipeline_mean_ms": 9.047377083182559,
+      "pipeline_p50_ms": 8.755549999477807,
+      "pipeline_p95_ms": 11.461749996669823,
+      "peak_allocated_MiB": 96.4482421875,
+      "image_preprocess_ms": 2.4157208340511716,
+      "image_forward_ms": 5.759747916120735,
+      "image_nms_ms": 0.8719083330106514
+    },
+    {
+      "cell": "A_CBAM",
+      "parameters": 3014982,
+      "forward_n": 3000,
+      "forward_mean_ms": 6.281823433339014,
+      "forward_p50_ms": 6.012550002196804,
+      "forward_p95_ms": 8.655979987815952,
+      "pipeline_n": 96,
+      "pipeline_mean_ms": 9.684156249628964,
+      "pipeline_p50_ms": 9.619899996323511,
+      "pipeline_p95_ms": 11.514074998558499,
+      "peak_allocated_MiB": 96.4658203125,
+      "image_preprocess_ms": 2.4163041668240717,
+      "image_forward_ms": 6.45302604122359,
+      "image_nms_ms": 0.8148260415813032
+    },
+    {
+      "cell": "S2_CBAM",
+      "parameters": 3014982,
+      "forward_n": 3000,
+      "forward_mean_ms": 6.115313433338694,
+      "forward_p50_ms": 5.902399992919527,
+      "forward_p95_ms": 7.663139997748658,
+      "pipeline_n": 96,
+      "pipeline_mean_ms": 9.755195832440222,
+      "pipeline_p50_ms": 9.668250000686385,
+      "pipeline_p95_ms": 11.659699994197581,
+      "peak_allocated_MiB": 96.4658203125,
+      "image_preprocess_ms": 2.4401166662452547,
+      "image_forward_ms": 6.484134374810917,
+      "image_nms_ms": 0.830944791384051
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "preserved_revision_files_verified": 501,
+  "bundled_weight_files": 13,
+  "core_epoch200_control_weights": 10,
+  "original_checkpoint_manifest_scope": 80,
+  "all_original_weights_bundled": false,
+  "new_training_runs": 5,
+  "epochs_per_run": 200,
+  "new_cached_evaluations": 25,
+  "actual_desktop_GPU_benchmark": true,
+  "external_model_test_performed": false,
+  "raw_DTU_annotations_redistributed": false,
+  "GPU_used_by_this_audit": false
+}

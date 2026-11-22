@@ -62,6 +62,8 @@ The offline replay checks the stored WTBD validation and test predictions agains
 
 The [DTU inspection frames](https://doi.org/10.17632/hd96prn3nc.2) are available from the original deposit. The identifiers and checksums in `external_dtu_false_alarms/frozen_sample.csv` identify the 11 source frames. The archived A, S1+CBAM, and S2+CBAM evaluations contain 5, 6, and 5 frame–seed cases with false alarms and 7, 9, and 6 false-positive boxes, respectively. Each detector was evaluated on the same 11 frames for five seeds with its WTBD A-validation threshold.
 
+Figure 7 credits the photos in DTU version 1 under CC BY 4.0. The SHA-256 hashes match the 11 version 2 evaluation frames. [Figure 7 photo sources](external_dtu_false_alarms/figure7_v1_sources.csv).
+
 ## Tables, figures and timing
 
 ~~~sh

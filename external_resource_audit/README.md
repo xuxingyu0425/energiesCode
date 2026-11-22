@@ -11,8 +11,8 @@ because the annotation repository has no explicit license. To repeat the audit,
 obtain the inputs from the original author repository under its terms, place
 them at the relative locations in `DTU_download_manifest.json` (under
 `DTU_annotations/`), and run `python audit_dtu_annotations.py` in this directory.
-The underlying DTU image dataset has separate CC BY-NC 3.0 terms; no original
-DTU images were downloaded or compared with WTBD in this audit.
+The underlying DTU version 2 image dataset has separate CC BY-NC 3.0 terms.
+This audit examined the released annotation records. [Figure 7 photo sources](../external_dtu_false_alarms/README.md)
 
 The diagnostic comparison pairs boxes on the same file and class using maximum
 sum-IoU Hungarian matching, retains IoU>=0.5, and checks coordinate equality to

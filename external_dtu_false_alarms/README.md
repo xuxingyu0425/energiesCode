@@ -1,10 +1,14 @@
 # DTU inspection-image false alarms
 
-The manuscript's Figure 7 shows the 11 full frames listed in frozen_sample.csv.
-The identifiers, source URLs, and SHA-256 hashes specify the exact originals.
-The files were acquired on one Nordtank turbine in 2017 and 2018 and are
-available from the DTU dataset, version 2, under CC BY-NC 3.0.
-[DTU inspection images](https://doi.org/10.17632/hd96prn3nc.2)
+The evaluation used 11 uncropped images of one Nordtank turbine from DTU version 2.
+`frozen_sample.csv` records the original file IDs, source URLs, and SHA-256 hashes.
+Mendeley Data lists version 2 under CC BY-NC 3.0. [DTU version 2](https://doi.org/10.17632/hd96prn3nc.2)
+
+Figure 7 credits the photographs published in DTU version 1 under CC BY 4.0.
+The version 1 SHA-256 hashes match the evaluation originals for all 11 frames.
+`figure7_v1_sources.csv` records the version 1 file ID, download URL, and
+matching hash for each panel. The figure presents the resized photographs in panels.
+[DTU version 1](https://doi.org/10.17632/hd96prn3nc.1) · [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) · [Related DTU study](https://doi.org/10.3390/en12040676)
 
 Candidates were identified by year and frame order after removing originals matched
 to a published defect annotation. Of the 120 reviewed candidates, 70 had ambiguous

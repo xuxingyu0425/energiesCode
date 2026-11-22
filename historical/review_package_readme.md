@@ -35,8 +35,7 @@ redistributed in this package. Numerical rules are preserved; renderer/font
 differences can change the exported pixels. These commands produce files only in
 `outputs/`, and do not perform training or model inference. Figure 1 is an authored
 architecture schematic; its editable PowerPoint is supplied in the LaTeX
-source package. Run `figures_source/make_experimental_workflow.py` to export
-the experimental workflow (Figure 2).
+source package. The editable workflow diagram (Figure 2) is provided in `figures_source/`.
 
 With the model environment, an additional CPU-only check is available:
 
@@ -321,8 +320,8 @@ by these replay commands.
 For the old plotting entry points, original Figures 2, 3, 4 and 5 correspond
 to revised Figures 3, 4, 5 and 6. The author-edited Figure 1 PowerPoint is
 supplied as `figure_sources/fig1_author_enlarged.pptx` in the LaTeX source
-package. Figure 2 has an editable SVG and deterministic PNG/PDF export code
-in `figures_source/`. The source-photo examples require the upstream WTBD images.
+package. The editable SVG for Figure 2 is in `figures_source/`. The
+source-photo examples require the upstream WTBD images.
 
 ## Validation references
 

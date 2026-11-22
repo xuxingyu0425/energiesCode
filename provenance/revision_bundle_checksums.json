@@ -1091,13 +1091,8 @@
   },
   {
     "path": "figures_source/fig2_experimental_workflow.svg",
-    "bytes": 12796,
-    "sha256": "d8bc4bc8f4bef70a189e58ba3eb4fdd6d4a205a608f785533cb71204752dd322"
-  },
-  {
-    "path": "figures_source/make_experimental_workflow.py",
-    "bytes": 11099,
-    "sha256": "8f09c52bd630ddcfe26566cfeaa4f02b66069dc3fba99934c04638e6ec6e7491"
+    "bytes": 19720,
+    "sha256": "8be9f65318f6da454485687524b509fb923ce1c55a1229880c5db4d694ed09b8"
   },
   {
     "path": "historical/epoch_logs/A_42.csv",
